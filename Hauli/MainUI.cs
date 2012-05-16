@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
 
         private void contestantListButton_Click(object sender, EventArgs e)
         {
-            //ok
+            //konfliktitesti
         }
 
 

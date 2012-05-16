@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace Hauli
 {
     public partial class MainUIform : Form
     {
@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1
 
         private void contestantListButton_Click(object sender, EventArgs e)
         {
+
             //ok
         }
 

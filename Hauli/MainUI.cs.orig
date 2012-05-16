@@ -18,13 +18,17 @@ namespace Hauli
 
         private void contestantListButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 
-            //okTämä on te
+            //okTämä on testi
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
 
+=======
+            //konfliktitesti
+>>>>>>> 6fbec963fefbd52949828e867e1ee2a56f62ab5d
         }
 
 

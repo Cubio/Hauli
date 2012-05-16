@@ -18,15 +18,8 @@ namespace Hauli
 
         private void contestantListButton_Click(object sender, EventArgs e)
         {
-
             //okTämä on te
         }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
 
     }
 }

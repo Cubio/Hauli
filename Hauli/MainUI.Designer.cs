@@ -33,15 +33,12 @@
             this.roundScheduleButton = new System.Windows.Forms.Button();
             this.printViewButton = new System.Windows.Forms.Button();
             this.scoreInputViewButton = new System.Windows.Forms.Button();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.AddContestGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddContestGroupBox
             // 
             this.AddContestGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddContestGroupBox.Controls.Add(this.monthCalendar1);
             this.AddContestGroupBox.Location = new System.Drawing.Point(12, 33);
             this.AddContestGroupBox.Name = "AddContestGroupBox";
             this.AddContestGroupBox.Size = new System.Drawing.Size(305, 488);
@@ -90,13 +87,6 @@
             this.scoreInputViewButton.Text = "Tulosten kirjaus";
             this.scoreInputViewButton.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(81, 61);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
-            // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,7 +99,6 @@
             this.Controls.Add(this.AddContestGroupBox);
             this.Name = "MainUIform";
             this.Text = "Hauli - tulospalvelu";
-            this.AddContestGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -121,7 +110,6 @@
         private System.Windows.Forms.Button printViewButton;
         private System.Windows.Forms.Button scoreInputViewButton;
         private System.Windows.Forms.Button contestantListButton;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
     }
 }
 

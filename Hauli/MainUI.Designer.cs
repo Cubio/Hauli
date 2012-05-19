@@ -56,7 +56,6 @@
             this.contest = new System.Windows.Forms.TextBox();
             this.contestantListButton = new System.Windows.Forms.Button();
             this.roundScheduleButton = new System.Windows.Forms.Button();
-            this.printViewButton = new System.Windows.Forms.Button();
             this.scoreInputViewButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.avaaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,8 +101,6 @@
             // 
             // AddContestGroupBox
             // 
-            this.AddContestGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
             this.AddContestGroupBox.Controls.Add(this.saveSettings);
             this.AddContestGroupBox.Controls.Add(this.comboBox1);
             this.AddContestGroupBox.Controls.Add(this.label11);
@@ -117,7 +114,7 @@
             this.AddContestGroupBox.Controls.Add(this.contest);
             this.AddContestGroupBox.Location = new System.Drawing.Point(12, 33);
             this.AddContestGroupBox.Name = "AddContestGroupBox";
-            this.AddContestGroupBox.Size = new System.Drawing.Size(258, 532);
+            this.AddContestGroupBox.Size = new System.Drawing.Size(258, 537);
             this.AddContestGroupBox.TabIndex = 0;
             this.AddContestGroupBox.TabStop = false;
             this.AddContestGroupBox.Text = "Järjestäjä";
@@ -446,7 +443,7 @@
             // contestantListButton
             // 
             this.contestantListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.contestantListButton.Location = new System.Drawing.Point(21, 120);
+            this.contestantListButton.Location = new System.Drawing.Point(20, 19);
             this.contestantListButton.Name = "contestantListButton";
             this.contestantListButton.Size = new System.Drawing.Size(124, 33);
             this.contestantListButton.TabIndex = 1;
@@ -457,27 +454,17 @@
             // roundScheduleButton
             // 
             this.roundScheduleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.roundScheduleButton.Location = new System.Drawing.Point(21, 169);
+            this.roundScheduleButton.Location = new System.Drawing.Point(20, 68);
             this.roundScheduleButton.Name = "roundScheduleButton";
             this.roundScheduleButton.Size = new System.Drawing.Size(124, 33);
             this.roundScheduleButton.TabIndex = 2;
             this.roundScheduleButton.Text = "Eräaikataulu";
             this.roundScheduleButton.UseVisualStyleBackColor = true;
             // 
-            // printViewButton
-            // 
-            this.printViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.printViewButton.Location = new System.Drawing.Point(21, 22);
-            this.printViewButton.Name = "printViewButton";
-            this.printViewButton.Size = new System.Drawing.Size(124, 33);
-            this.printViewButton.TabIndex = 3;
-            this.printViewButton.Text = "Tulostukset";
-            this.printViewButton.UseVisualStyleBackColor = true;
-            // 
             // scoreInputViewButton
             // 
             this.scoreInputViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.scoreInputViewButton.Location = new System.Drawing.Point(21, 71);
+            this.scoreInputViewButton.Location = new System.Drawing.Point(20, 117);
             this.scoreInputViewButton.Name = "scoreInputViewButton";
             this.scoreInputViewButton.Size = new System.Drawing.Size(124, 33);
             this.scoreInputViewButton.TabIndex = 4;
@@ -735,12 +722,11 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.scoreInputViewButton);
-            this.groupBox3.Controls.Add(this.printViewButton);
             this.groupBox3.Controls.Add(this.contestantListButton);
             this.groupBox3.Controls.Add(this.roundScheduleButton);
             this.groupBox3.Location = new System.Drawing.Point(335, 33);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(161, 222);
+            this.groupBox3.Size = new System.Drawing.Size(161, 161);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Toiminnot";
@@ -749,7 +735,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 611);
+            this.ClientSize = new System.Drawing.Size(507, 616);
             this.Controls.Add(this.AddContestGroupBox);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox3);
@@ -774,7 +760,6 @@
 
         private System.Windows.Forms.GroupBox AddContestGroupBox;
         private System.Windows.Forms.Button roundScheduleButton;
-        private System.Windows.Forms.Button printViewButton;
         private System.Windows.Forms.Button scoreInputViewButton;
         private System.Windows.Forms.Button contestantListButton;
         private System.Windows.Forms.DateTimePicker day1Calendar;

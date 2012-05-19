@@ -21,5 +21,15 @@ namespace Hauli
             //okTämä on teko
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddContestGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

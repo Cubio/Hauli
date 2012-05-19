@@ -34,6 +34,7 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -51,6 +52,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tulostaKaikkiSelkälaputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mattiMeikäläinenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tulostaTuloksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -72,20 +76,30 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.sarjaYToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sarjaNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mattiMeikäläinenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddContestGroupBox
             // 
             this.AddContestGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddContestGroupBox.Controls.Add(this.textBox3);
+            this.AddContestGroupBox.Controls.Add(this.textBox2);
+            this.AddContestGroupBox.Controls.Add(this.label3);
+            this.AddContestGroupBox.Controls.Add(this.label2);
+            this.AddContestGroupBox.Controls.Add(this.label1);
+            this.AddContestGroupBox.Controls.Add(this.textBox1);
             this.AddContestGroupBox.Controls.Add(this.groupBox2);
             this.AddContestGroupBox.Controls.Add(this.groupBox1);
             this.AddContestGroupBox.Location = new System.Drawing.Point(12, 33);
@@ -93,7 +107,8 @@
             this.AddContestGroupBox.Size = new System.Drawing.Size(305, 504);
             this.AddContestGroupBox.TabIndex = 0;
             this.AddContestGroupBox.TabStop = false;
-            this.AddContestGroupBox.Text = "Lisää kisa";
+            this.AddContestGroupBox.Text = "Järjestäjä";
+            this.AddContestGroupBox.Enter += new System.EventHandler(this.AddContestGroupBox_Enter);
             // 
             // groupBox2
             // 
@@ -143,6 +158,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Päivä 1";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(62, 17);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Päivä 1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -174,7 +199,7 @@
             // contestantListButton
             // 
             this.contestantListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.contestantListButton.Location = new System.Drawing.Point(358, 45);
+            this.contestantListButton.Location = new System.Drawing.Point(21, 120);
             this.contestantListButton.Name = "contestantListButton";
             this.contestantListButton.Size = new System.Drawing.Size(124, 33);
             this.contestantListButton.TabIndex = 1;
@@ -185,7 +210,7 @@
             // roundScheduleButton
             // 
             this.roundScheduleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.roundScheduleButton.Location = new System.Drawing.Point(358, 134);
+            this.roundScheduleButton.Location = new System.Drawing.Point(21, 169);
             this.roundScheduleButton.Name = "roundScheduleButton";
             this.roundScheduleButton.Size = new System.Drawing.Size(124, 33);
             this.roundScheduleButton.TabIndex = 2;
@@ -195,7 +220,7 @@
             // printViewButton
             // 
             this.printViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.printViewButton.Location = new System.Drawing.Point(358, 223);
+            this.printViewButton.Location = new System.Drawing.Point(21, 22);
             this.printViewButton.Name = "printViewButton";
             this.printViewButton.Size = new System.Drawing.Size(124, 33);
             this.printViewButton.TabIndex = 3;
@@ -205,7 +230,7 @@
             // scoreInputViewButton
             // 
             this.scoreInputViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.scoreInputViewButton.Location = new System.Drawing.Point(358, 312);
+            this.scoreInputViewButton.Location = new System.Drawing.Point(21, 71);
             this.scoreInputViewButton.Name = "scoreInputViewButton";
             this.scoreInputViewButton.Size = new System.Drawing.Size(124, 33);
             this.scoreInputViewButton.TabIndex = 4;
@@ -293,6 +318,26 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 22);
             this.toolStripMenuItem2.Text = "Selkälaput";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem7.Text = "Tulosta kaikki selkälaput";
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mattiMeikäläinenToolStripMenuItem});
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem8.Text = "Tulosta yksittäinen selkälappu";
+            // 
+            // mattiMeikäläinenToolStripMenuItem
+            // 
+            this.mattiMeikäläinenToolStripMenuItem.Name = "mattiMeikäläinenToolStripMenuItem";
+            this.mattiMeikäläinenToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.mattiMeikäläinenToolStripMenuItem.Text = "1. Matti Meikäläinen";
             // 
             // tulostaTuloksetToolStripMenuItem
             // 
@@ -440,56 +485,87 @@
             this.sarjaNToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sarjaNToolStripMenuItem.Text = "Sarja n";
             // 
-            // toolStripMenuItem7
+            // textBox1
             // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(232, 22);
-            this.toolStripMenuItem7.Text = "Tulosta kaikki selkälaput";
+            this.textBox1.Location = new System.Drawing.Point(9, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(232, 20);
+            this.textBox1.TabIndex = 6;
             // 
-            // toolStripMenuItem8
+            // label1
             // 
-            this.toolStripMenuItem8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mattiMeikäläinenToolStripMenuItem});
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(232, 22);
-            this.toolStripMenuItem8.Text = "Tulosta yksittäinen selkälappu";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Tapahtuma";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // mattiMeikäläinenToolStripMenuItem
+            // label2
             // 
-            this.mattiMeikäläinenToolStripMenuItem.Name = "mattiMeikäläinenToolStripMenuItem";
-            this.mattiMeikäläinenToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.mattiMeikäläinenToolStripMenuItem.Text = "1. Matti Meikäläinen";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Järjestäjä";
             // 
-            // checkBox1
+            // label3
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(62, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Päivä 1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Paikkakunta";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(9, 141);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(232, 20);
+            this.textBox2.TabIndex = 10;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(9, 92);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(232, 20);
+            this.textBox3.TabIndex = 11;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.scoreInputViewButton);
+            this.groupBox3.Controls.Add(this.printViewButton);
+            this.groupBox3.Controls.Add(this.contestantListButton);
+            this.groupBox3.Controls.Add(this.roundScheduleButton);
+            this.groupBox3.Location = new System.Drawing.Point(335, 33);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(161, 222);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Toiminnot";
             // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 549);
-            this.Controls.Add(this.scoreInputViewButton);
-            this.Controls.Add(this.printViewButton);
-            this.Controls.Add(this.roundScheduleButton);
-            this.Controls.Add(this.contestantListButton);
             this.Controls.Add(this.AddContestGroupBox);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.groupBox3);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainUIform";
             this.Text = "Hauli - tulospalvelu";
             this.AddContestGroupBox.ResumeLayout(false);
+            this.AddContestGroupBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,6 +621,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem mattiMeikäläinenToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

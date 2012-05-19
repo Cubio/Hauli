@@ -29,15 +29,31 @@
         private void InitializeComponent()
         {
             this.AddContestGroupBox = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.saveSettings = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.activeDay2Selection = new System.Windows.Forms.CheckBox();
+            this.day2Calendar = new System.Windows.Forms.DateTimePicker();
+            this.day2min = new System.Windows.Forms.ComboBox();
+            this.day2h = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.activeDay1Selection = new System.Windows.Forms.CheckBox();
+            this.day1Calendar = new System.Windows.Forms.DateTimePicker();
+            this.day1min = new System.Windows.Forms.ComboBox();
+            this.day1h = new System.Windows.Forms.ComboBox();
+            this.organizer = new System.Windows.Forms.TextBox();
+            this.locality = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.contest = new System.Windows.Forms.TextBox();
             this.contestantListButton = new System.Windows.Forms.Button();
             this.roundScheduleButton = new System.Windows.Forms.Button();
             this.printViewButton = new System.Windows.Forms.Button();
@@ -76,12 +92,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.sarjaYToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sarjaNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,107 +104,344 @@
             // 
             this.AddContestGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddContestGroupBox.Controls.Add(this.textBox3);
-            this.AddContestGroupBox.Controls.Add(this.textBox2);
+            this.AddContestGroupBox.Controls.Add(this.saveSettings);
+            this.AddContestGroupBox.Controls.Add(this.comboBox1);
+            this.AddContestGroupBox.Controls.Add(this.label11);
+            this.AddContestGroupBox.Controls.Add(this.groupBox2);
+            this.AddContestGroupBox.Controls.Add(this.groupBox1);
+            this.AddContestGroupBox.Controls.Add(this.organizer);
+            this.AddContestGroupBox.Controls.Add(this.locality);
             this.AddContestGroupBox.Controls.Add(this.label3);
             this.AddContestGroupBox.Controls.Add(this.label2);
             this.AddContestGroupBox.Controls.Add(this.label1);
-            this.AddContestGroupBox.Controls.Add(this.textBox1);
-            this.AddContestGroupBox.Controls.Add(this.groupBox2);
-            this.AddContestGroupBox.Controls.Add(this.groupBox1);
+            this.AddContestGroupBox.Controls.Add(this.contest);
             this.AddContestGroupBox.Location = new System.Drawing.Point(12, 33);
             this.AddContestGroupBox.Name = "AddContestGroupBox";
-            this.AddContestGroupBox.Size = new System.Drawing.Size(305, 504);
+            this.AddContestGroupBox.Size = new System.Drawing.Size(258, 532);
             this.AddContestGroupBox.TabIndex = 0;
             this.AddContestGroupBox.TabStop = false;
             this.AddContestGroupBox.Text = "Järjestäjä";
             this.AddContestGroupBox.Enter += new System.EventHandler(this.AddContestGroupBox_Enter);
             // 
+            // saveSettings
+            // 
+            this.saveSettings.Location = new System.Drawing.Point(169, 492);
+            this.saveSettings.Name = "saveSettings";
+            this.saveSettings.Size = new System.Drawing.Size(75, 23);
+            this.saveSettings.TabIndex = 7;
+            this.saveSettings.Text = "Tallenna";
+            this.saveSettings.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.comboBox1.Location = new System.Drawing.Point(15, 180);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(42, 21);
+            this.comboBox1.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 164);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Ratojenmäärä";
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
-            this.groupBox2.Controls.Add(this.comboBox3);
-            this.groupBox2.Controls.Add(this.comboBox4);
-            this.groupBox2.Location = new System.Drawing.Point(6, 387);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.activeDay2Selection);
+            this.groupBox2.Controls.Add(this.day2Calendar);
+            this.groupBox2.Controls.Add(this.day2min);
+            this.groupBox2.Controls.Add(this.day2h);
+            this.groupBox2.Location = new System.Drawing.Point(9, 361);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(235, 100);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.Size = new System.Drawing.Size(235, 125);
+            this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Päivä 1";
+            this.groupBox2.Text = "Päivä 2";
             // 
-            // dateTimePicker2
+            // label7
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(6, 28);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 0;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(162, 62);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Minuutit";
             // 
-            // comboBox3
+            // label8
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(64, 69);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(38, 21);
-            this.comboBox3.TabIndex = 3;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(151, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Ajankohta";
             // 
-            // comboBox4
+            // label9
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(6, 69);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(42, 21);
-            this.comboBox4.TabIndex = 2;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(96, 62);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Tunnit";
+            // 
+            // activeDay2Selection
+            // 
+            this.activeDay2Selection.AutoSize = true;
+            this.activeDay2Selection.Location = new System.Drawing.Point(6, 19);
+            this.activeDay2Selection.Name = "activeDay2Selection";
+            this.activeDay2Selection.Size = new System.Drawing.Size(62, 17);
+            this.activeDay2Selection.TabIndex = 4;
+            this.activeDay2Selection.Text = "Päivä 2";
+            this.activeDay2Selection.UseVisualStyleBackColor = true;
+            this.activeDay2Selection.CheckedChanged += new System.EventHandler(this.activeDay2Selection_CheckedChanged);
+            // 
+            // day2Calendar
+            // 
+            this.day2Calendar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day2Calendar.Enabled = false;
+            this.day2Calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.day2Calendar.Location = new System.Drawing.Point(91, 39);
+            this.day2Calendar.Name = "day2Calendar";
+            this.day2Calendar.Size = new System.Drawing.Size(115, 20);
+            this.day2Calendar.TabIndex = 0;
+            // 
+            // day2min
+            // 
+            this.day2min.Enabled = false;
+            this.day2min.FormattingEnabled = true;
+            this.day2min.Items.AddRange(new object[] {
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55"});
+            this.day2min.Location = new System.Drawing.Point(168, 78);
+            this.day2min.Name = "day2min";
+            this.day2min.Size = new System.Drawing.Size(38, 21);
+            this.day2min.TabIndex = 3;
+            // 
+            // day2h
+            // 
+            this.day2h.Enabled = false;
+            this.day2h.FormattingEnabled = true;
+            this.day2h.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.day2h.Location = new System.Drawing.Point(91, 78);
+            this.day2h.Name = "day2h";
+            this.day2h.Size = new System.Drawing.Size(42, 21);
+            this.day2h.TabIndex = 2;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 244);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.activeDay1Selection);
+            this.groupBox1.Controls.Add(this.day1Calendar);
+            this.groupBox1.Controls.Add(this.day1min);
+            this.groupBox1.Controls.Add(this.day1h);
+            this.groupBox1.Location = new System.Drawing.Point(9, 230);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(235, 125);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Päivä 1";
             // 
-            // checkBox1
+            // label5
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(62, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Päivä 1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(162, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Minuutit";
             // 
-            // dateTimePicker1
+            // label6
             // 
-            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(91, 58);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(115, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(151, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Ajankohta";
             // 
-            // comboBox2
+            // label4
             // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(149, 94);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(38, 21);
-            this.comboBox2.TabIndex = 3;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(96, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Tunnit";
             // 
-            // comboBox1
+            // activeDay1Selection
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(91, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(42, 21);
-            this.comboBox1.TabIndex = 2;
+            this.activeDay1Selection.AutoSize = true;
+            this.activeDay1Selection.Location = new System.Drawing.Point(6, 19);
+            this.activeDay1Selection.Name = "activeDay1Selection";
+            this.activeDay1Selection.Size = new System.Drawing.Size(62, 17);
+            this.activeDay1Selection.TabIndex = 4;
+            this.activeDay1Selection.Text = "Päivä 1";
+            this.activeDay1Selection.UseVisualStyleBackColor = true;
+            this.activeDay1Selection.CheckedChanged += new System.EventHandler(this.activeDay1Selection_CheckedChanged);
+            // 
+            // day1Calendar
+            // 
+            this.day1Calendar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.day1Calendar.Enabled = false;
+            this.day1Calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.day1Calendar.Location = new System.Drawing.Point(91, 39);
+            this.day1Calendar.Name = "day1Calendar";
+            this.day1Calendar.Size = new System.Drawing.Size(115, 20);
+            this.day1Calendar.TabIndex = 0;
+            // 
+            // day1min
+            // 
+            this.day1min.Enabled = false;
+            this.day1min.FormattingEnabled = true;
+            this.day1min.Items.AddRange(new object[] {
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55"});
+            this.day1min.Location = new System.Drawing.Point(168, 78);
+            this.day1min.Name = "day1min";
+            this.day1min.Size = new System.Drawing.Size(38, 21);
+            this.day1min.TabIndex = 3;
+            // 
+            // day1h
+            // 
+            this.day1h.Enabled = false;
+            this.day1h.FormattingEnabled = true;
+            this.day1h.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.day1h.Location = new System.Drawing.Point(91, 78);
+            this.day1h.Name = "day1h";
+            this.day1h.Size = new System.Drawing.Size(42, 21);
+            this.day1h.TabIndex = 2;
+            // 
+            // organizer
+            // 
+            this.organizer.Location = new System.Drawing.Point(9, 92);
+            this.organizer.Name = "organizer";
+            this.organizer.Size = new System.Drawing.Size(232, 20);
+            this.organizer.TabIndex = 11;
+            // 
+            // locality
+            // 
+            this.locality.Location = new System.Drawing.Point(9, 141);
+            this.locality.Name = "locality";
+            this.locality.Size = new System.Drawing.Size(232, 20);
+            this.locality.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Paikkakunta";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Järjestäjä";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Tapahtuma";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // contest
+            // 
+            this.contest.Location = new System.Drawing.Point(9, 43);
+            this.contest.Name = "contest";
+            this.contest.Size = new System.Drawing.Size(232, 20);
+            this.contest.TabIndex = 6;
             // 
             // contestantListButton
             // 
@@ -245,7 +492,7 @@
             this.tulostuksetToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(508, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(507, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -485,55 +732,6 @@
             this.sarjaNToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sarjaNToolStripMenuItem.Text = "Sarja n";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(9, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 20);
-            this.textBox1.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Tapahtuma";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Järjestäjä";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 120);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Paikkakunta";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(9, 141);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(232, 20);
-            this.textBox2.TabIndex = 10;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(9, 92);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(232, 20);
-            this.textBox3.TabIndex = 11;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.scoreInputViewButton);
@@ -551,7 +749,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 549);
+            this.ClientSize = new System.Drawing.Size(507, 611);
             this.Controls.Add(this.AddContestGroupBox);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox3);
@@ -561,6 +759,7 @@
             this.AddContestGroupBox.ResumeLayout(false);
             this.AddContestGroupBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -578,14 +777,10 @@
         private System.Windows.Forms.Button printViewButton;
         private System.Windows.Forms.Button scoreInputViewButton;
         private System.Windows.Forms.Button contestantListButton;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker day1Calendar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox day1min;
+        private System.Windows.Forms.ComboBox day1h;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem avaaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suljeSovellusToolStripMenuItem1;
@@ -620,14 +815,28 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem mattiMeikäläinenToolStripMenuItem;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox activeDay1Selection;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox contest;
+        private System.Windows.Forms.TextBox organizer;
+        private System.Windows.Forms.TextBox locality;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox activeDay2Selection;
+        private System.Windows.Forms.DateTimePicker day2Calendar;
+        private System.Windows.Forms.ComboBox day2min;
+        private System.Windows.Forms.ComboBox day2h;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button saveSettings;
     }
 }
 

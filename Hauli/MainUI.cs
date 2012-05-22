@@ -11,24 +11,18 @@ namespace Hauli
 {
     public partial class MainUIform : Form
     {
+        private HauliDBHandler dbHandler;
+
         public MainUIform()
         {
             InitializeComponent();
+
+            dbHandler = new HauliDBHandler(); 
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)
         {
-            //okTämä on teko
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddContestGroupBox_Enter(object sender, EventArgs e)
-        {
-
+            new ContestantListForm(dbHandler).ShowDialog();
         }
 
         private void activeDay1Selection_CheckedChanged(object sender, EventArgs e)
@@ -63,14 +57,6 @@ namespace Hauli
             }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
 
     }
 }

@@ -118,7 +118,6 @@
             this.AddContestGroupBox.TabIndex = 0;
             this.AddContestGroupBox.TabStop = false;
             this.AddContestGroupBox.Text = "Järjestäjä";
-            this.AddContestGroupBox.Enter += new System.EventHandler(this.AddContestGroupBox_Enter);
             // 
             // saveSettings
             // 
@@ -431,7 +430,6 @@
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Tapahtuma";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // contest
             // 

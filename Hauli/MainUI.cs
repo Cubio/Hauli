@@ -9,10 +9,17 @@ using System.Windows.Forms;
 
 namespace Hauli
 {
+    /// <summary>
+    /// Sisältää päännäkymäluokan tapahtumien käsittelymetodit ja luokan konstruktorin.
+    /// </summary>
     public partial class MainUIform : Form
     {
         private HauliDBHandler dbHandler;
 
+        /// <summary>
+        /// MainUIform-konstruktori, joka alustaa käyttöliittymäkomponentit ja
+        /// tietokannanmuokkausluokan.
+        /// </summary>
         public MainUIform()
         {
             InitializeComponent();
@@ -21,12 +28,11 @@ namespace Hauli
             {
                 dbHandler = new HauliDBHandler();
             }
-            catch(HauliException e) 
+            catch (HauliException e)
             {
                 MessageBox.Show(e.Message, "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
-
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)
@@ -64,8 +70,27 @@ namespace Hauli
                 this.day2h.Enabled = false;
                 this.day2Calendar.Enabled = false;
             }
-
         }
 
+        private void tietojaHauliTulospalvelustaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutHauli().ShowDialog();
+        
+        }
+
+        private void roundScheduleButton_Click(object sender, EventArgs e)
+        {
+            new RoundScheduleView().ShowDialog();
+        }
+
+        private void scoreInputViewButton_Click(object sender, EventArgs e)
+        {
+            new scoreInputView().ShowDialog();
+        }
+
+        private void suljeSovellusToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

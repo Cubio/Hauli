@@ -92,6 +92,8 @@
             this.sarjaYToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sarjaNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tietojaHauliTulospalvelustaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -458,6 +460,7 @@
             this.roundScheduleButton.TabIndex = 2;
             this.roundScheduleButton.Text = "Eräaikataulu";
             this.roundScheduleButton.UseVisualStyleBackColor = true;
+            this.roundScheduleButton.Click += new System.EventHandler(this.roundScheduleButton_Click);
             // 
             // scoreInputViewButton
             // 
@@ -468,13 +471,15 @@
             this.scoreInputViewButton.TabIndex = 4;
             this.scoreInputViewButton.Text = "Tulosten kirjaus";
             this.scoreInputViewButton.UseVisualStyleBackColor = true;
+            this.scoreInputViewButton.Click += new System.EventHandler(this.scoreInputViewButton_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.avaaToolStripMenuItem,
             this.asetuksetToolStripMenuItem,
-            this.tulostuksetToolStripMenuItem});
+            this.tulostuksetToolStripMenuItem,
+            this.ohjeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(507, 24);
@@ -492,8 +497,9 @@
             // suljeSovellusToolStripMenuItem1
             // 
             this.suljeSovellusToolStripMenuItem1.Name = "suljeSovellusToolStripMenuItem1";
-            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.suljeSovellusToolStripMenuItem1.Text = "Sulje sovellus";
+            this.suljeSovellusToolStripMenuItem1.Click += new System.EventHandler(this.suljeSovellusToolStripMenuItem1_Click);
             // 
             // asetuksetToolStripMenuItem
             // 
@@ -729,6 +735,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Toiminnot";
             // 
+            // ohjeToolStripMenuItem
+            // 
+            this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tietojaHauliTulospalvelustaToolStripMenuItem});
+            this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
+            this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.ohjeToolStripMenuItem.Text = "Ohje";
+            // 
+            // tietojaHauliTulospalvelustaToolStripMenuItem
+            // 
+            this.tietojaHauliTulospalvelustaToolStripMenuItem.Name = "tietojaHauliTulospalvelustaToolStripMenuItem";
+            this.tietojaHauliTulospalvelustaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.tietojaHauliTulospalvelustaToolStripMenuItem.Text = "Tietoja Hauli - tulospalvelusta";
+            this.tietojaHauliTulospalvelustaToolStripMenuItem.Click += new System.EventHandler(this.tietojaHauliTulospalvelustaToolStripMenuItem_Click);
+            // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -820,6 +841,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button saveSettings;
+        private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tietojaHauliTulospalvelustaToolStripMenuItem;
     }
 }
 

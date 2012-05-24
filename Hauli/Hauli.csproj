@@ -75,6 +75,7 @@
       <DependentUpon>HauliDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="HauliDBHandler.cs" />
+    <Compile Include="HauliException.cs" />
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +101,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="HauliDBDataSet.xsc">
       <DependentUpon>HauliDBDataSet.xsd</DependentUpon>
     </None>

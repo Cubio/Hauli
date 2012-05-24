@@ -17,7 +17,16 @@ namespace Hauli
         {
             InitializeComponent();
 
-            dbHandler = new HauliDBHandler(); 
+            try
+            {
+                dbHandler = new HauliDBHandler();
+            }
+            catch(HauliException e) 
+            {
+                MessageBox.Show(e.Message, "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlServerCe;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Hauli
 {
@@ -12,7 +14,12 @@ namespace Hauli
 
         public HauliDBHandler()
         {
-            _connection = new SqlCeConnection(@"Data Source = |DataDirectory|\HauliDB.sdf");
+            if (File.Exists("HauliDB.sdf"))
+                _connection = new SqlCeConnection(@"Data Source = |DataDirectory|\HauliDB.sdf");
+            else
+            {
+                throw new HauliException("Tiedostoa HauliDB.sdf ei löytynyt");                
+            }
         }
 
 
@@ -50,10 +57,34 @@ namespace Hauli
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);   
+                Console.WriteLine(e.Message);
             }
 
             return null;
+        }
+
+        public void addContestant()
+        {
+
+            try
+            {
+                SqlCeCommand command = new SqlCeCommand();
+                command.Connection = _connection;
+                command.CommandText = "INSERT INTO Contestants(ContestantID, LastName, FirstName, Seura, Team, Sarja) " +
+                                      "VALUES('123543','Ampuja','Aapo','OSH','','Y')";
+                _connection.Open();
+
+                command.ExecuteNonQuery();
+
+                _connection.Close();
+
+
+            }
+            catch (SqlCeException e)
+            {
+                //ShowErrors(e);
+                Console.WriteLine(e.Message);
+            }
         }
 
     }

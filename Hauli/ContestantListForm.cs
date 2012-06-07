@@ -15,7 +15,7 @@ namespace Hauli
     {
         private HauliDBHandler dbHandler;
         List<Person> masterList;
-        List<Person> list;
+        List<ContestantListLine> contestantList;
 
         public ContestantListForm(HauliDBHandler dbHandler)
         {
@@ -32,20 +32,41 @@ namespace Hauli
             masterList.Add(new Person("Erä 3", "Madalene Alright", "School Teacher", 21, new DateTime(1964, 9, 23), 145.67, false, "Extensive, dimensionally challenged"));
             masterList.Add(new Person("Erä 1", "Ned Peirce", "School Teacher", 21, new DateTime(1960, 1, 23), 145.67, false, "Fulsome, effusive"));
             masterList.Add(new Person("Erä 2", "Felicity Brown", "Economist", 30, new DateTime(1975, 1, 12), 175.5, false, "Gifted, exceptional"));
+            masterList.Add(new Person());
             masterList.Add(new Person("Erä 1", "Urny Unmin", "Economist", 41, new DateTime(1956, 9, 24), 212.25, true, "Heinous, aesthetically challenged"));
             masterList.Add(new Person("Erä 3", "Terrance Darby", "Singer", 35, new DateTime(1970, 9, 29), 1145, false, "Introverted, relationally challenged"));
             //masterList.Add(new Person("Mister Null"));
-
-
-            list = new List<Person>();
-            foreach (Person p in masterList)
-                list.Add(new Person(p));
+            //list = new List<Person>();
+            //foreach (Person p in masterList)
+            //    list.Add(new Person(p));
 
             contestantObjectListView.DragSource = new SimpleDragSource();
+            objectListView1.DragSource = new SimpleDragSource();
 
-            contestantObjectListView.DropSink = new RearrangingDropSink(true);
+            RearrangingDropSink dropsink = new RearrangingDropSink(true);
+            dropsink.FeedbackColor = Color.Black;
+            objectListView1.DropSink = dropsink;
+            //contestantObjectListView.DropSink = dropsink;
 
-            contestantObjectListView.SetObjects(list);
+
+            contestantList = new List<ContestantListLine>();
+
+            contestantList.Add(new Contestant("1", "Teppo Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant("2", "Aeppo Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant("3", "Beppo Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new RoundDivider("Erä 1"));
+            contestantList.Add(new Contestant("4", "Ceppo Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant("5", "Deppo Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant("6", "Eeppo Töppönen", "OSH", "Y", ""));
+
+            nameColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Name; };
+            nameColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Name = newValue.ToString(); };
+            seuraColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Seura; };
+            sarjaColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Sarja; };
+            joukkueColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Team; };
+
+            objectListView1.SetObjects(contestantList);
+            contestantObjectListView.SetObjects(masterList);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,18 +88,29 @@ namespace Hauli
         private void button2_Click(object sender, EventArgs e)
         {
 
-            masterList.Add(new Person("Erä 1", "Pensseli-setä", "Singer", 35, new DateTime(1970, 9, 29), 1145, false, "Introverted, relationally challenged"));
+            for (int i = 0; i < contestantList.Count; i++)
+                Console.WriteLine(contestantList[i].Name);
 
-            list = new List<Person>();
-            foreach (Person p in masterList)
-                list.Add(new Person(p));
+            //masterList.Add(new Person("Erä 1", "Pensseli-setä", "Singer", 35, new DateTime(1970, 9, 29), 1145, false, "Introverted, relationally challenged"));
 
-            contestantObjectListView.SetObjects(list);
+            //list = new List<Person>();
+            //foreach (Person p in masterList)
+                //list.Add(new Person(p));
+
+            //contestantObjectListView.SetObjects(list);
         }
 
         private void contestantObjectListView_DragDrop(object sender, DragEventArgs e)
         {
             Console.WriteLine("Drop-event");
+
+
+            //for (int i = 0; i < masterList.Count; i++)
+                //Console.WriteLine(masterList[i].Name);
+            
+            //Console.WriteLine("------------");
+            for (int i = 0; i < contestantList.Count; i++)
+                Console.WriteLine(contestantList[i].Name);
         }
     }
 
@@ -89,6 +121,14 @@ namespace Hauli
         public Person(string name)
         {
             this.name = name;
+        }
+
+        public Person()
+        {
+            this.round = "Erä 1";
+            this.name = "-";
+            this.Occupation = "-";
+            this.Comments = "-";
         }
 
         public Person(string round, string name, string occupation, int culinaryRating, DateTime birthDate, double hourlyRate, bool canTellJokes, string comments)

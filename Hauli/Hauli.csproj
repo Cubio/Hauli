@@ -80,6 +80,7 @@
     <Compile Include="ContestantListForm.Designer.cs">
       <DependentUpon>ContestantListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ContestantListLine.cs" />
     <Compile Include="HauliDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

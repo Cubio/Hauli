@@ -37,7 +37,13 @@
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.seuraColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.sarjaColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.joukkueColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.contestantObjectListView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -52,9 +58,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(215, 404);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -80,9 +86,9 @@
             this.contestantObjectListView.AllColumns.Add(this.olvColumn3);
             this.contestantObjectListView.AllColumns.Add(this.olvColumn4);
             this.contestantObjectListView.AllowDrop = true;
-            this.contestantObjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.contestantObjectListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.contestantObjectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.round,
             this.olvColumn1,
@@ -94,11 +100,10 @@
             this.contestantObjectListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.contestantObjectListView.IsSimpleDragSource = true;
             this.contestantObjectListView.IsSimpleDropSink = true;
-            this.contestantObjectListView.Location = new System.Drawing.Point(215, 12);
+            this.contestantObjectListView.Location = new System.Drawing.Point(569, 12);
             this.contestantObjectListView.Name = "contestantObjectListView";
-            this.contestantObjectListView.ShowItemCountOnGroups = true;
-            this.contestantObjectListView.Size = new System.Drawing.Size(604, 371);
-            this.contestantObjectListView.SpaceBetweenGroups = 3;
+            this.contestantObjectListView.ShowGroups = false;
+            this.contestantObjectListView.Size = new System.Drawing.Size(250, 371);
             this.contestantObjectListView.TabIndex = 3;
             this.contestantObjectListView.UseCompatibleStateImageBehavior = false;
             this.contestantObjectListView.View = System.Windows.Forms.View.Details;
@@ -131,11 +136,39 @@
             this.olvColumn4.AspectName = "YearOfBirth";
             this.olvColumn4.Sortable = false;
             // 
+            // objectListView1
+            // 
+            this.objectListView1.AllColumns.Add(this.nameColumn);
+            this.objectListView1.AllColumns.Add(this.seuraColumn);
+            this.objectListView1.AllColumns.Add(this.sarjaColumn);
+            this.objectListView1.AllColumns.Add(this.joukkueColumn);
+            this.objectListView1.AllowDrop = true;
+            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumn,
+            this.seuraColumn,
+            this.sarjaColumn,
+            this.joukkueColumn});
+            this.objectListView1.FullRowSelect = true;
+            this.objectListView1.HasCollapsibleGroups = false;
+            this.objectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.objectListView1.IsSimpleDragSource = true;
+            this.objectListView1.IsSimpleDropSink = true;
+            this.objectListView1.Location = new System.Drawing.Point(215, 12);
+            this.objectListView1.Name = "objectListView1";
+            this.objectListView1.ShowGroups = false;
+            this.objectListView1.Size = new System.Drawing.Size(348, 371);
+            this.objectListView1.TabIndex = 4;
+            this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.View = System.Windows.Forms.View.Details;
+            // 
             // ContestantListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 570);
+            this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.contestantObjectListView);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
@@ -143,6 +176,7 @@
             this.Name = "ContestantListForm";
             this.Text = "ContestantListForm";
             ((System.ComponentModel.ISupportInitialize)(this.contestantObjectListView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +193,10 @@
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn round;
+        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.OLVColumn nameColumn;
+        private BrightIdeasSoftware.OLVColumn seuraColumn;
+        private BrightIdeasSoftware.OLVColumn sarjaColumn;
+        private BrightIdeasSoftware.OLVColumn joukkueColumn;
     }
 }

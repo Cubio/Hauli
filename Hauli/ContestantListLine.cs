@@ -9,6 +9,7 @@ namespace Hauli
     {
         //public ContestantListLine() { }
 
+        string Id { get; set; }
         string ContestantNumber { get; set; }
         string Name { get; set; }
         string Seura { get; set; }
@@ -19,19 +20,27 @@ namespace Hauli
 
     class Contestant : ContestantListLine
     {
+        private string id;
         private string contestantNumber;
         private string name;
         private string seura;
         private string sarja;
         private string team;
 
-        public Contestant(string contestantNumber, string name, string seura, string sarja, string team)
+        public Contestant(string id, string contestantNumber, string name, string seura, string sarja, string team)
         {
+            this.id = id;
             this.ContestantNumber = contestantNumber;
             this.Name = name;
             this.Seura = seura;
             this.Sarja = sarja;
             this.Team = team;
+        }
+
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
         }
 
         public string ContestantNumber
@@ -69,6 +78,7 @@ namespace Hauli
 
     class RoundDivider : ContestantListLine
     {
+        private string id;
         private string contestantNumber;
         private string name = "";
         private string seura = "";
@@ -76,6 +86,13 @@ namespace Hauli
         private string team = "";
 
         public string ContestantNumber { get; set; }
+
+        public string Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         public string Name
         {
             get { return name; }
@@ -85,8 +102,9 @@ namespace Hauli
         public string Sarja { get; set; }
         public string Team { get; set; }
 
-        public RoundDivider(string round)
+        public RoundDivider(string id, string round)
         {
+            this.id = id;
             name = round;
         }
     }

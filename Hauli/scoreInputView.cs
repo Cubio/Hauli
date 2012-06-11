@@ -14,6 +14,18 @@ namespace Hauli
         public scoreInputView()
         {
             InitializeComponent();
+
+
+            //Laitetaan socers taulukkoon uusi välilehti
+            //Infoa: http://msdn.microsoft.com/en-us/library/system.windows.forms.tabcontrol.aspx
+            tabPage1 = new System.Windows.Forms.TabPage();
+            tabPage1.Text = "teeesti";
+            tabPage1.Size = new System.Drawing.Size(256, 214);
+            tabPage1.TabIndex = 0;
+            scores.Controls.Add(tabPage1);
         }
+
+
+
     }
 }

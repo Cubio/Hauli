@@ -40,21 +40,6 @@ namespace Hauli
             new ContestantListForm(dbHandler).ShowDialog();
         }
 
-        private void activeDay1Selection_CheckedChanged(object sender, EventArgs e)
-        {
-            if (activeDay1Selection.Checked == true)
-            {
-                this.day1min.Enabled = true;
-                this.day1h.Enabled = true;
-                this.day1Calendar.Enabled = true;
-            }
-            else
-            {
-                this.day1min.Enabled = false;
-                this.day1h.Enabled = false;
-                this.day1Calendar.Enabled = false;
-            }
-        }
 
         private void activeDay2Selection_CheckedChanged(object sender, EventArgs e)
         {

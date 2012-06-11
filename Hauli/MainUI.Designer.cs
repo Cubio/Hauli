@@ -44,7 +44,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.activeDay1Selection = new System.Windows.Forms.CheckBox();
             this.day1Calendar = new System.Windows.Forms.DateTimePicker();
             this.day1min = new System.Windows.Forms.ComboBox();
             this.day1h = new System.Windows.Forms.ComboBox();
@@ -91,9 +90,13 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.sarjaYToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sarjaNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaHauliTulospalvelustaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -103,6 +106,10 @@
             // 
             // AddContestGroupBox
             // 
+            this.AddContestGroupBox.Controls.Add(this.label13);
+            this.AddContestGroupBox.Controls.Add(this.label12);
+            this.AddContestGroupBox.Controls.Add(this.comboBox2);
+            this.AddContestGroupBox.Controls.Add(this.label10);
             this.AddContestGroupBox.Controls.Add(this.saveSettings);
             this.AddContestGroupBox.Controls.Add(this.comboBox1);
             this.AddContestGroupBox.Controls.Add(this.label11);
@@ -227,6 +234,8 @@
             this.day2min.Enabled = false;
             this.day2min.FormattingEnabled = true;
             this.day2min.Items.AddRange(new object[] {
+            "00",
+            "10",
             "15",
             "20",
             "25",
@@ -280,7 +289,6 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.activeDay1Selection);
             this.groupBox1.Controls.Add(this.day1Calendar);
             this.groupBox1.Controls.Add(this.day1min);
             this.groupBox1.Controls.Add(this.day1h);
@@ -318,17 +326,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Tunnit";
             // 
-            // activeDay1Selection
-            // 
-            this.activeDay1Selection.AutoSize = true;
-            this.activeDay1Selection.Location = new System.Drawing.Point(6, 19);
-            this.activeDay1Selection.Name = "activeDay1Selection";
-            this.activeDay1Selection.Size = new System.Drawing.Size(62, 17);
-            this.activeDay1Selection.TabIndex = 4;
-            this.activeDay1Selection.Text = "Päivä 1";
-            this.activeDay1Selection.UseVisualStyleBackColor = true;
-            this.activeDay1Selection.CheckedChanged += new System.EventHandler(this.activeDay1Selection_CheckedChanged);
-            // 
             // day1Calendar
             // 
             this.day1Calendar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -344,6 +341,8 @@
             this.day1min.Enabled = false;
             this.day1min.FormattingEnabled = true;
             this.day1min.Items.AddRange(new object[] {
+            "00",
+            "10",
             "15",
             "20",
             "25",
@@ -497,7 +496,7 @@
             // suljeSovellusToolStripMenuItem1
             // 
             this.suljeSovellusToolStripMenuItem1.Name = "suljeSovellusToolStripMenuItem1";
-            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.suljeSovellusToolStripMenuItem1.Text = "Sulje sovellus";
             this.suljeSovellusToolStripMenuItem1.Click += new System.EventHandler(this.suljeSovellusToolStripMenuItem1_Click);
             // 
@@ -723,18 +722,6 @@
             this.sarjaNToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sarjaNToolStripMenuItem.Text = "Sarja n";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.scoreInputViewButton);
-            this.groupBox3.Controls.Add(this.contestantListButton);
-            this.groupBox3.Controls.Add(this.roundScheduleButton);
-            this.groupBox3.Location = new System.Drawing.Point(335, 33);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(161, 161);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Toiminnot";
-            // 
             // ohjeToolStripMenuItem
             // 
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -749,6 +736,63 @@
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Text = "Tietoja Hauli - tulospalvelusta";
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Click += new System.EventHandler(this.tietojaHauliTulospalvelustaToolStripMenuItem_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.scoreInputViewButton);
+            this.groupBox3.Controls.Add(this.contestantListButton);
+            this.groupBox3.Controls.Add(this.roundScheduleButton);
+            this.groupBox3.Location = new System.Drawing.Point(335, 33);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(161, 161);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Toiminnot";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55"});
+            this.comboBox2.Location = new System.Drawing.Point(145, 180);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(42, 21);
+            this.comboBox2.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(142, 164);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Eränkesto";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(63, 183);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(22, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Kpl";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(193, 183);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 13);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Minuutit";
             // 
             // MainUIform
             // 
@@ -819,7 +863,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem mattiMeikäläinenToolStripMenuItem;
-        private System.Windows.Forms.CheckBox activeDay1Selection;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox contest;
         private System.Windows.Forms.TextBox organizer;
@@ -843,6 +886,10 @@
         private System.Windows.Forms.Button saveSettings;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tietojaHauliTulospalvelustaToolStripMenuItem;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label10;
     }
 }
 

@@ -10,8 +10,9 @@ namespace Hauli
         //public ContestantListLine() { }
 
         string Id { get; set; }
-        string ContestantNumber { get; set; }
-        string Name { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        string FullName { get; set; }
         string Seura { get; set; }
         string Sarja { get; set; }
         string Team { get; set; }
@@ -21,20 +22,30 @@ namespace Hauli
     class Contestant : ContestantListLine
     {
         private string id;
-        private string contestantNumber;
-        private string name;
+        private string firstName;
+        private string lastName;
         private string seura;
         private string sarja;
         private string team;
 
-        public Contestant(string id, string contestantNumber, string name, string seura, string sarja, string team)
+        public Contestant(string id, string firstName, string lastName, string seura, string sarja, string team)
         {
             this.id = id;
-            this.ContestantNumber = contestantNumber;
-            this.Name = name;
+            this.FirstName = firstName;
+            this.LastName = lastName;
             this.Seura = seura;
             this.Sarja = sarja;
             this.Team = team;
+        }
+
+        public Contestant(Contestant c)
+        {
+            this.id = c.Id;
+            this.FirstName = c.FirstName;
+            this.LastName = c.LastName;
+            this.Seura = c.Seura;
+            this.Sarja = c.Sarja;
+            this.Team = c.Team;
         }
 
         public string Id
@@ -43,16 +54,22 @@ namespace Hauli
             set { id = value; }
         }
 
-        public string ContestantNumber
+        public string FirstName
         {
-            get { return contestantNumber; }
-            set { contestantNumber = value; }
+            get { return firstName; }
+            set { firstName = value; }
         }
 
-        public string Name
+        public string LastName
         {
-            get { return name; }
-            set { name = value; }
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        public string FullName
+        {
+            get { return firstName + " " + lastName; }
+            set {}
         }
 
         public string Seura
@@ -79,13 +96,10 @@ namespace Hauli
     class RoundDivider : ContestantListLine
     {
         private string id;
-        private string contestantNumber;
         private string name = "";
         private string seura = "";
         private string sarja = "";
         private string team = "";
-
-        public string ContestantNumber { get; set; }
 
         public string Id
         {
@@ -93,10 +107,22 @@ namespace Hauli
             set { id = value; }
         }
 
-        public string Name
+        public string FirstName
+        {
+            get { return null; }
+            set {}
+        }
+
+        public string LastName
+        {
+            get { return null; }
+            set {}
+        }
+
+        public string FullName
         {
             get { return name; }
-            set {}
+            set { name = value; }
         }
         public string Seura { get; set; }
         public string Sarja { get; set; }
@@ -104,8 +130,8 @@ namespace Hauli
 
         public RoundDivider(string id, string round)
         {
-            this.id = id;
-            name = round;
+            this.Id = id;
+            this.FullName = round;
         }
     }
 

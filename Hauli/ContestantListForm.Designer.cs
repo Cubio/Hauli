@@ -28,49 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContestantListForm));
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.idColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.seuraColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.sarjaColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.joukkueColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.editButtonColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.deleteButtonColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fillerColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameLabel = new System.Windows.Forms.Label();
+            this.lastNameLabel = new System.Windows.Forms.Label();
+            this.newContestantGroupBox = new System.Windows.Forms.GroupBox();
+            this.joukkueComboBox = new System.Windows.Forms.ComboBox();
+            this.sarjaComboBox = new System.Windows.Forms.ComboBox();
+            this.seuraComboBox = new System.Windows.Forms.ComboBox();
+            this.addContestantButton = new System.Windows.Forms.Button();
+            this.sarjaLabel = new System.Windows.Forms.Label();
+            this.joukkueLabel = new System.Windows.Forms.Label();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.seuraLabel = new System.Windows.Forms.Label();
+            this.reorderListGroupBox = new System.Windows.Forms.GroupBox();
+            this.fillerSlotButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.contestantImportGroupBox = new System.Windows.Forms.GroupBox();
+            this.importContestantsButton = new System.Windows.Forms.Button();
+            this.openPathButton = new System.Windows.Forms.Button();
+            this.importFilePathTextBox = new System.Windows.Forms.TextBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.avaaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asetuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tulostuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.newContestantGroupBox.SuspendLayout();
+            this.reorderListGroupBox.SuspendLayout();
+            this.contestantImportGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(33, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(215, 480);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(384, 78);
-            this.textBox1.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(33, 86);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // objectListView1
             // 
@@ -79,30 +83,49 @@
             this.objectListView1.AllColumns.Add(this.seuraColumn);
             this.objectListView1.AllColumns.Add(this.sarjaColumn);
             this.objectListView1.AllColumns.Add(this.joukkueColumn);
+            this.objectListView1.AllColumns.Add(this.editButtonColumn);
+            this.objectListView1.AllColumns.Add(this.deleteButtonColumn);
+            this.objectListView1.AllColumns.Add(this.fillerColumn);
             this.objectListView1.AllowDrop = true;
-            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.objectListView1.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
             this.objectListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectListView1.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
+            this.objectListView1.AutoArrange = false;
             this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.idColumn,
             this.nameColumn,
             this.seuraColumn,
             this.sarjaColumn,
-            this.joukkueColumn});
+            this.joukkueColumn,
+            this.editButtonColumn,
+            this.deleteButtonColumn,
+            this.fillerColumn});
+            this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListView1.FullRowSelect = true;
             this.objectListView1.HasCollapsibleGroups = false;
             this.objectListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.objectListView1.IsSimpleDragSource = true;
             this.objectListView1.IsSimpleDropSink = true;
-            this.objectListView1.Location = new System.Drawing.Point(215, 12);
+            this.objectListView1.Location = new System.Drawing.Point(249, 34);
             this.objectListView1.Name = "objectListView1";
+            this.objectListView1.OwnerDraw = true;
+            this.objectListView1.RowHeight = 27;
             this.objectListView1.ShowGroups = false;
-            this.objectListView1.Size = new System.Drawing.Size(384, 462);
+            this.objectListView1.ShowImagesOnSubItems = true;
+            this.objectListView1.Size = new System.Drawing.Size(493, 570);
+            this.objectListView1.SmallImageList = this.imageList1;
             this.objectListView1.TabIndex = 4;
+            this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
+            this.objectListView1.UseHotItem = true;
+            this.objectListView1.UseOverlays = false;
+            this.objectListView1.UseTranslucentHotItem = true;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.objectListView1_FormatRow);
+            this.objectListView1.Click += new System.EventHandler(this.objectListView1_Click);
+            this.objectListView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.objectListView1_DragDrop);
+            this.objectListView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListView1_MouseDoubleClick);
             // 
             // idColumn
             // 
@@ -113,33 +136,347 @@
             // nameColumn
             // 
             this.nameColumn.Sortable = false;
-            this.nameColumn.Width = 120;
+            this.nameColumn.Text = "Nimi";
+            this.nameColumn.Width = 150;
             this.nameColumn.WordWrap = true;
             // 
             // seuraColumn
             // 
             this.seuraColumn.Sortable = false;
+            this.seuraColumn.Text = "Seura";
             // 
             // sarjaColumn
             // 
             this.sarjaColumn.Sortable = false;
+            this.sarjaColumn.Text = "Sarja";
             // 
             // joukkueColumn
             // 
             this.joukkueColumn.Sortable = false;
+            this.joukkueColumn.Text = "Joukkue";
+            this.joukkueColumn.Width = 120;
+            // 
+            // editButtonColumn
+            // 
+            this.editButtonColumn.MaximumWidth = 20;
+            this.editButtonColumn.MinimumWidth = 20;
+            this.editButtonColumn.ShowTextInHeader = false;
+            this.editButtonColumn.Text = " ";
+            this.editButtonColumn.Width = 20;
+            // 
+            // deleteButtonColumn
+            // 
+            this.deleteButtonColumn.MaximumWidth = 20;
+            this.deleteButtonColumn.MinimumWidth = 20;
+            this.deleteButtonColumn.Text = " ";
+            this.deleteButtonColumn.Width = 20;
+            // 
+            // fillerColumn
+            // 
+            this.fillerColumn.FillsFreeSpace = true;
+            this.fillerColumn.ShowTextInHeader = false;
+            this.fillerColumn.Sortable = false;
+            this.fillerColumn.Text = " ";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Maroon;
+            this.imageList1.Images.SetKeyName(0, "editIcon");
+            this.imageList1.Images.SetKeyName(1, "deleteIcon");
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.Location = new System.Drawing.Point(62, 25);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(135, 20);
+            this.firstNameTextBox.TabIndex = 1;
+            // 
+            // firstNameLabel
+            // 
+            this.firstNameLabel.AutoSize = true;
+            this.firstNameLabel.Location = new System.Drawing.Point(6, 28);
+            this.firstNameLabel.Name = "firstNameLabel";
+            this.firstNameLabel.Size = new System.Drawing.Size(41, 13);
+            this.firstNameLabel.TabIndex = 6;
+            this.firstNameLabel.Text = "Etunimi";
+            // 
+            // lastNameLabel
+            // 
+            this.lastNameLabel.AutoSize = true;
+            this.lastNameLabel.Location = new System.Drawing.Point(6, 60);
+            this.lastNameLabel.Name = "lastNameLabel";
+            this.lastNameLabel.Size = new System.Drawing.Size(50, 13);
+            this.lastNameLabel.TabIndex = 7;
+            this.lastNameLabel.Text = "Sukunimi";
+            // 
+            // newContestantGroupBox
+            // 
+            this.newContestantGroupBox.Controls.Add(this.joukkueComboBox);
+            this.newContestantGroupBox.Controls.Add(this.sarjaComboBox);
+            this.newContestantGroupBox.Controls.Add(this.seuraComboBox);
+            this.newContestantGroupBox.Controls.Add(this.addContestantButton);
+            this.newContestantGroupBox.Controls.Add(this.sarjaLabel);
+            this.newContestantGroupBox.Controls.Add(this.joukkueLabel);
+            this.newContestantGroupBox.Controls.Add(this.lastNameTextBox);
+            this.newContestantGroupBox.Controls.Add(this.seuraLabel);
+            this.newContestantGroupBox.Controls.Add(this.firstNameLabel);
+            this.newContestantGroupBox.Controls.Add(this.lastNameLabel);
+            this.newContestantGroupBox.Controls.Add(this.firstNameTextBox);
+            this.newContestantGroupBox.Location = new System.Drawing.Point(12, 73);
+            this.newContestantGroupBox.Name = "newContestantGroupBox";
+            this.newContestantGroupBox.Size = new System.Drawing.Size(218, 242);
+            this.newContestantGroupBox.TabIndex = 8;
+            this.newContestantGroupBox.TabStop = false;
+            this.newContestantGroupBox.Text = "Lisää uusi osallistuja";
+            // 
+            // joukkueComboBox
+            // 
+            this.joukkueComboBox.FormattingEnabled = true;
+            this.joukkueComboBox.Location = new System.Drawing.Point(62, 155);
+            this.joukkueComboBox.Name = "joukkueComboBox";
+            this.joukkueComboBox.Size = new System.Drawing.Size(135, 21);
+            this.joukkueComboBox.TabIndex = 5;
+            // 
+            // sarjaComboBox
+            // 
+            this.sarjaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sarjaComboBox.FormattingEnabled = true;
+            this.sarjaComboBox.Location = new System.Drawing.Point(62, 122);
+            this.sarjaComboBox.Name = "sarjaComboBox";
+            this.sarjaComboBox.Size = new System.Drawing.Size(135, 21);
+            this.sarjaComboBox.TabIndex = 4;
+            // 
+            // seuraComboBox
+            // 
+            this.seuraComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.seuraComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.seuraComboBox.FormattingEnabled = true;
+            this.seuraComboBox.Location = new System.Drawing.Point(62, 89);
+            this.seuraComboBox.Name = "seuraComboBox";
+            this.seuraComboBox.Size = new System.Drawing.Size(135, 21);
+            this.seuraComboBox.TabIndex = 3;
+            // 
+            // addContestantButton
+            // 
+            this.addContestantButton.Location = new System.Drawing.Point(9, 192);
+            this.addContestantButton.Name = "addContestantButton";
+            this.addContestantButton.Size = new System.Drawing.Size(97, 23);
+            this.addContestantButton.TabIndex = 6;
+            this.addContestantButton.Text = "Lisää osallistuja";
+            this.addContestantButton.UseVisualStyleBackColor = true;
+            this.addContestantButton.Click += new System.EventHandler(this.addContestantButton_Click);
+            // 
+            // sarjaLabel
+            // 
+            this.sarjaLabel.AutoSize = true;
+            this.sarjaLabel.Location = new System.Drawing.Point(6, 125);
+            this.sarjaLabel.Name = "sarjaLabel";
+            this.sarjaLabel.Size = new System.Drawing.Size(31, 13);
+            this.sarjaLabel.TabIndex = 12;
+            this.sarjaLabel.Text = "Sarja";
+            // 
+            // joukkueLabel
+            // 
+            this.joukkueLabel.AutoSize = true;
+            this.joukkueLabel.Location = new System.Drawing.Point(6, 158);
+            this.joukkueLabel.Name = "joukkueLabel";
+            this.joukkueLabel.Size = new System.Drawing.Size(48, 13);
+            this.joukkueLabel.TabIndex = 11;
+            this.joukkueLabel.Text = "Joukkue";
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.Location = new System.Drawing.Point(62, 57);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(135, 20);
+            this.lastNameTextBox.TabIndex = 2;
+            // 
+            // seuraLabel
+            // 
+            this.seuraLabel.AutoSize = true;
+            this.seuraLabel.Location = new System.Drawing.Point(6, 92);
+            this.seuraLabel.Name = "seuraLabel";
+            this.seuraLabel.Size = new System.Drawing.Size(35, 13);
+            this.seuraLabel.TabIndex = 10;
+            this.seuraLabel.Text = "Seura";
+            // 
+            // reorderListGroupBox
+            // 
+            this.reorderListGroupBox.Controls.Add(this.fillerSlotButton);
+            this.reorderListGroupBox.Controls.Add(this.button2);
+            this.reorderListGroupBox.Controls.Add(this.button1);
+            this.reorderListGroupBox.Location = new System.Drawing.Point(12, 321);
+            this.reorderListGroupBox.Name = "reorderListGroupBox";
+            this.reorderListGroupBox.Size = new System.Drawing.Size(218, 123);
+            this.reorderListGroupBox.TabIndex = 9;
+            this.reorderListGroupBox.TabStop = false;
+            this.reorderListGroupBox.Text = "Järjestä lista";
+            // 
+            // fillerSlotButton
+            // 
+            this.fillerSlotButton.Location = new System.Drawing.Point(9, 80);
+            this.fillerSlotButton.Name = "fillerSlotButton";
+            this.fillerSlotButton.Size = new System.Drawing.Size(159, 23);
+            this.fillerSlotButton.TabIndex = 9;
+            this.fillerSlotButton.Text = "Lisää jälki-ilmoittautumispaikat";
+            this.fillerSlotButton.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(9, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(159, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Tasaa erät";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 24);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Sekoita järjestys";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // contestantImportGroupBox
+            // 
+            this.contestantImportGroupBox.Controls.Add(this.importContestantsButton);
+            this.contestantImportGroupBox.Controls.Add(this.openPathButton);
+            this.contestantImportGroupBox.Controls.Add(this.importFilePathTextBox);
+            this.contestantImportGroupBox.Location = new System.Drawing.Point(12, 450);
+            this.contestantImportGroupBox.Name = "contestantImportGroupBox";
+            this.contestantImportGroupBox.Size = new System.Drawing.Size(218, 82);
+            this.contestantImportGroupBox.TabIndex = 10;
+            this.contestantImportGroupBox.TabStop = false;
+            this.contestantImportGroupBox.Text = "Tuo osallistujia tiedostosta";
+            // 
+            // importContestantsButton
+            // 
+            this.importContestantsButton.Enabled = false;
+            this.importContestantsButton.Location = new System.Drawing.Point(6, 49);
+            this.importContestantsButton.Name = "importContestantsButton";
+            this.importContestantsButton.Size = new System.Drawing.Size(97, 23);
+            this.importContestantsButton.TabIndex = 12;
+            this.importContestantsButton.Text = "Lisää";
+            this.importContestantsButton.UseVisualStyleBackColor = true;
+            // 
+            // openPathButton
+            // 
+            this.openPathButton.Location = new System.Drawing.Point(174, 21);
+            this.openPathButton.Name = "openPathButton";
+            this.openPathButton.Size = new System.Drawing.Size(34, 23);
+            this.openPathButton.TabIndex = 11;
+            this.openPathButton.Text = "...";
+            this.openPathButton.UseVisualStyleBackColor = true;
+            this.openPathButton.Click += new System.EventHandler(this.openPathButton_Click);
+            // 
+            // importFilePathTextBox
+            // 
+            this.importFilePathTextBox.Location = new System.Drawing.Point(6, 23);
+            this.importFilePathTextBox.Name = "importFilePathTextBox";
+            this.importFilePathTextBox.Size = new System.Drawing.Size(162, 20);
+            this.importFilePathTextBox.TabIndex = 10;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(12, 34);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 15;
+            this.saveButton.Text = "Tallenna";
+            this.saveButton.UseVisualStyleBackColor = true;
+            // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(588, 613);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 13;
+            this.okButton.Text = "Ok";
+            this.okButton.UseVisualStyleBackColor = true;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.Location = new System.Drawing.Point(669, 613);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 14;
+            this.cancelButton.Text = "Peruuta";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.avaaToolStripMenuItem,
+            this.asetuksetToolStripMenuItem,
+            this.tulostuksetToolStripMenuItem,
+            this.ohjeToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(754, 24);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // avaaToolStripMenuItem
+            // 
+            this.avaaToolStripMenuItem.Name = "avaaToolStripMenuItem";
+            this.avaaToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.avaaToolStripMenuItem.Text = "Avaa";
+            // 
+            // asetuksetToolStripMenuItem
+            // 
+            this.asetuksetToolStripMenuItem.Name = "asetuksetToolStripMenuItem";
+            this.asetuksetToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.asetuksetToolStripMenuItem.Text = "Asetukset";
+            // 
+            // tulostuksetToolStripMenuItem
+            // 
+            this.tulostuksetToolStripMenuItem.Name = "tulostuksetToolStripMenuItem";
+            this.tulostuksetToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.tulostuksetToolStripMenuItem.Text = "Tulostukset";
+            // 
+            // ohjeToolStripMenuItem
+            // 
+            this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
+            this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.ohjeToolStripMenuItem.Text = "Ohje";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // ContestantListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 570);
+            this.ClientSize = new System.Drawing.Size(754, 643);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.contestantImportGroupBox);
+            this.Controls.Add(this.reorderListGroupBox);
+            this.Controls.Add(this.newContestantGroupBox);
             this.Controls.Add(this.objectListView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(606, 604);
             this.Name = "ContestantListForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContestantListForm";
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.newContestantGroupBox.ResumeLayout(false);
+            this.newContestantGroupBox.PerformLayout();
+            this.reorderListGroupBox.ResumeLayout(false);
+            this.contestantImportGroupBox.ResumeLayout(false);
+            this.contestantImportGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,14 +484,44 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
         private BrightIdeasSoftware.ObjectListView objectListView1;
         private BrightIdeasSoftware.OLVColumn nameColumn;
         private BrightIdeasSoftware.OLVColumn seuraColumn;
         private BrightIdeasSoftware.OLVColumn sarjaColumn;
         private BrightIdeasSoftware.OLVColumn joukkueColumn;
         private BrightIdeasSoftware.OLVColumn idColumn;
+        private BrightIdeasSoftware.OLVColumn fillerColumn;
+        private BrightIdeasSoftware.OLVColumn editButtonColumn;
+        private BrightIdeasSoftware.OLVColumn deleteButtonColumn;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.Label firstNameLabel;
+        private System.Windows.Forms.Label lastNameLabel;
+        private System.Windows.Forms.GroupBox newContestantGroupBox;
+        private System.Windows.Forms.Label sarjaLabel;
+        private System.Windows.Forms.Label joukkueLabel;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.Label seuraLabel;
+        private System.Windows.Forms.ComboBox sarjaComboBox;
+        private System.Windows.Forms.ComboBox seuraComboBox;
+        private System.Windows.Forms.Button addContestantButton;
+        private System.Windows.Forms.GroupBox reorderListGroupBox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox contestantImportGroupBox;
+        private System.Windows.Forms.Button importContestantsButton;
+        private System.Windows.Forms.Button openPathButton;
+        private System.Windows.Forms.TextBox importFilePathTextBox;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.ComboBox joukkueComboBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem avaaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asetuksetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tulostuksetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
+        private System.Windows.Forms.Button fillerSlotButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

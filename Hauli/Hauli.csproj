@@ -81,6 +81,12 @@
       <DependentUpon>ContestantListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ContestantListLine.cs" />
+    <Compile Include="ContestantRowEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContestantRowEditForm.Designer.cs">
+      <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HauliDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContestantListForm.resx">
       <DependentUpon>ContestantListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContestantRowEditForm.resx">
+      <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>
@@ -160,6 +169,7 @@
     <Content Include="HauliDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\editIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

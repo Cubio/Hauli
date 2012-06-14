@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Hauli
 {
@@ -27,6 +28,9 @@ namespace Hauli
             try
             {
                 dbHandler = new HauliDBHandler();
+
+                if (!File.Exists("ObjectListView.dll"))
+                    throw new HauliException("Tiedostoa ObjectListView.dll ei löytynyt");
             }
             catch (HauliException e)
             {

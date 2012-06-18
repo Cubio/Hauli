@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Hauli
 {
-    public partial class scoreInputView : Form
+    public partial class ScoreInputView : Form
     {
-        public scoreInputView()
+        public ScoreInputView()
         {
             InitializeComponent();
 

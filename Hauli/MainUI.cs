@@ -74,7 +74,7 @@ namespace Hauli
 
         private void scoreInputViewButton_Click(object sender, EventArgs e)
         {
-            new scoreInputView().ShowDialog();
+            new ScoreInputView().ShowDialog();
         }
 
         private void suljeSovellusToolStripMenuItem1_Click(object sender, EventArgs e)

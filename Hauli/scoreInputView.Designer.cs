@@ -1,6 +1,6 @@
 ﻿namespace Hauli
 {
-    partial class scoreInputView
+    partial class ScoreInputView
     {
         /// <summary>
         /// Required designer variable.

@@ -108,11 +108,11 @@
     <Compile Include="RoundScheduleView.Designer.cs">
       <DependentUpon>RoundScheduleView.cs</DependentUpon>
     </Compile>
-    <Compile Include="scoreInputView.cs">
+    <Compile Include="ScoreInputView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="scoreInputView.Designer.cs">
-      <DependentUpon>scoreInputView.cs</DependentUpon>
+    <Compile Include="ScoreInputView.Designer.cs">
+      <DependentUpon>ScoreInputView.cs</DependentUpon>
     </Compile>
     <Compile Include="SeriesListForm.cs">
       <SubType>Form</SubType>
@@ -145,8 +145,8 @@
     <EmbeddedResource Include="RoundScheduleView.resx">
       <DependentUpon>RoundScheduleView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="scoreInputView.resx">
-      <DependentUpon>scoreInputView.cs</DependentUpon>
+    <EmbeddedResource Include="ScoreInputView.resx">
+      <DependentUpon>ScoreInputView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SeriesListForm.resx">
       <DependentUpon>SeriesListForm.cs</DependentUpon>

@@ -17,6 +17,7 @@ namespace Hauli
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;
         private List<string> sarjaList;
+        private bool rowMoved = false;
 
         public ContestantListForm(HauliDBHandler dbHandler)
         {
@@ -66,10 +67,9 @@ namespace Hauli
             dropsink.FeedbackColor = Color.Black;
             objectListView1.DropSink = dropsink;
             objectListView1.ItemDrag += objectListView1_ItemDrag;
-            //objectListView1.MouseClick += objectListView1_MouseClick;
 
             contestantList = new List<ContestantListLine>();
-            
+
             contestantList.Add(new RoundDivider("round 1", "Erä 1"));
             contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
@@ -85,7 +85,7 @@ namespace Hauli
             contestantList.Add(new Contestant(generateId(), "Ieppo", "Töppönen", "OSH", "Y", ""));
             contestantList.Add(new Contestant(generateId(), "Jeppoliina", "Töppönen", "OSH", "N", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
-            
+
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
 
             nameColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).FullName; };
@@ -117,52 +117,21 @@ namespace Hauli
                 else
                     return null;
             };
-
-
             deleteButtonColumn.Tag = "deleteButtonColumn";
 
-            refreshContestantList();
+            refreshContestantListView();
         }
 
-        private void setCellBackgroundColors()
+        public List<string> GetSarjaList()
         {
-            /*
-            foreach (ListViewItem item in objectListView1.Items)
-            {
-                if (item.SubItems[0].Text.Contains("round"))
-                {
-                    item.BackColor = Color.LightGray;
-                }
-
-                if (item.SubItems[3].Text == "Y")
-                {
-                    item.BackColor = Color.LightBlue;
-
-                }
-
-                if (item.SubItems[3].Text == "N")
-                {
-                    item.BackColor = Color.LightPink;
-                }
-            }
-              */
+            return sarjaList;
         }
-        /*
-        private void objectListView1_MouseClick(object sender, MouseEventArgs e)
+
+        public List<string> GetSeuraList()
         {
-            ListViewItem clickedItem = objectListView1.GetItemAt(e.X, e.Y);
-
-            Console.WriteLine("Click: " + clickedItem.Text);
-
-            if (clickedItem != null)
-            {
-                if (clickedItem.SubItems[1].Text.Contains("Teppo"))
-                {
-                    Console.WriteLine("Click");
-                }
-            }
+            return seuraList;
         }
-        */
+
         private void objectListView1_ItemDrag(Object sender, ItemDragEventArgs e)
         {
 
@@ -173,69 +142,38 @@ namespace Hauli
             }
         }
 
-        /*
-        private void button1_Click(object sender, EventArgs e)
-        {
-            /*
-            List<string> resultSet = new List<string>();
-            resultSet = dbHandler.getContestants();
-
-            if (resultSet == null)
-                Console.WriteLine("NULLI ON");
-
-            for (int i = 0; i < resultSet.Count; i++)
-            {
-                textBox1.AppendText(resultSet[i].ToString());
-                textBox1.AppendText("\n");
-            }
-            
-        }
-        
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-            //contestantList[4].Name = "ASDF";
-            Contestant cont = new Contestant((Contestant)contestantList[4]);
-            contestantList.RemoveAt(4);
-            contestantList.Insert(7, cont);
-            objectListView1.SetObjects(contestantList);
-
-            setCellBackgroundColors();
-
-            for (int i = 0; i < contestantList.Count; i++)
-                Console.WriteLine(contestantList[i].FullName);
-
-            //masterList.Add(new Person("Erä 1", "Pensseli-setä", "Singer", 35, new DateTime(1970, 9, 29), 1145, false, "Introverted, relationally challenged"));
-
-            //list = new List<Person>();
-            //foreach (Person p in masterList)
-            //list.Add(new Person(p));
-
-            //contestantObjectListView.SetObjects(list);
-        }
-        */
-        private void ObjectListView_DragDrop(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("Drop-event");
-
-
-            //for (int i = 0; i < masterList.Count; i++)
-            //Console.WriteLine(masterList[i].Name);
-
-            //Console.WriteLine("------------");
-            for (int i = 0; i < contestantList.Count; i++)
-                Console.WriteLine(contestantList[i].FullName);
-        }
-
         private void objectListView1_DragDrop(object sender, DragEventArgs e)
         {
-            setCellBackgroundColors();
+            Console.WriteLine("DROP!");
+            //refreshContestantListView();
+            rowMoved = true;
         }
 
         private void objectListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //new ContestantRowEditForm().ShowDialog();
 
+            Point ptCursor = Cursor.Position;
+            ptCursor = PointToClient(ptCursor);
+
+            int x = ptCursor.X - objectListView1.Location.X - 2;
+            int y = ptCursor.Y - objectListView1.Location.Y - 2;
+
+            ListViewItem clickedItem = objectListView1.GetItemAt(x, y);
+            Contestant selectedContestant = null;
+
+            if (!clickedItem.SubItems[0].Text.Contains("round"))
+
+                for (int i = 0; i < contestantList.Count; i++)
+                {
+                    if (!contestantList[i].Id.Contains("round") && contestantList[i].Id == clickedItem.SubItems[0].Text)
+                    {
+                        selectedContestant = new Contestant((Contestant)contestantList[i]);
+                        break;
+                    }
+                }
+
+            if (selectedContestant != null)
+                new ContestantRowEditForm(this, selectedContestant).ShowDialog();
         }
 
         private void objectListView1_Click(object sender, EventArgs e)
@@ -250,21 +188,30 @@ namespace Hauli
 
             OLVColumn hitColumn;
             ListViewItem clickedItem = objectListView1.GetItemAt(x, y, out hitColumn);
-            ContestantListLine selectedContestant;
+            Contestant selectedContestant = null;
 
             if (hitColumn != null && !clickedItem.SubItems[0].Text.Contains("round") && (hitColumn.Tag != null))
+            {
                 if (hitColumn.Tag.ToString() == "editButtonColumn")
                 {
                     for (int i = 0; i < contestantList.Count; i++)
+                    {
                         if (!contestantList[i].Id.Contains("round") && contestantList[i].Id == clickedItem.SubItems[0].Text)
-                            selectedContestant = (Contestant)contestantList[i];
+                        {
+                            selectedContestant = new Contestant((Contestant)contestantList[i]);
+                            break;
+                        }
+                    }
 
-
-                    //new ContestantRowEditForm().ShowDialog(selectedContestant);
+                    if (selectedContestant != null)
+                        new ContestantRowEditForm(this, selectedContestant).ShowDialog();
 
                 }
                 else if (hitColumn.Tag.ToString() == "deleteButtonColumn")
+                {
                     deleteLine(clickedItem);
+                }
+            }
         }
 
         private void deleteLine(ListViewItem item)
@@ -278,25 +225,52 @@ namespace Hauli
                     if (contestantList[i].Id == item.SubItems[0].Text.ToString())
                         contestantList.RemoveAt(i);
 
-                refreshContestantList();
+                refreshContestantListView();
             }
         }
 
-        private void refreshContestantList()
+        private void refreshContestantListView()
         {
             objectListView1.SetObjects(contestantList);
-            setCellBackgroundColors();
         }
 
         private void objectListView1_FormatRow(object sender, FormatRowEventArgs e)
         {
             e.UseCellFormatEvents = true;
 
-            foreach (ListViewItem item in objectListView1.Items)
+            if (rowMoved)
             {
-                if (item.SubItems[0].Text.Contains("round"))
+                rowMoved = false;
+
+                List<ContestantListLine> newList = new List<ContestantListLine>();
+
+                foreach (ListViewItem row in objectListView1.Items)
                 {
-                    item.BackColor = Color.LightGray;
+                    if (!row.SubItems[0].Text.Contains("round"))
+                    {
+                        for (int i = 0; i < contestantList.Count; i++)
+                        {
+                            if (contestantList[i].Id.ToString() == row.SubItems[0].Text.ToString())
+                            {
+                                newList.Add(new Contestant(contestantList[i].Id, contestantList[i].FirstName, contestantList[i].LastName, contestantList[i].Seura, contestantList[i].Sarja, contestantList[i].Team));
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[1].Text.ToString()));
+                    }
+                }
+
+                contestantList = newList;
+            }
+
+            foreach (ListViewItem row in objectListView1.Items)
+            {
+                if (row.SubItems[0].Text.Contains("round"))
+                {
+                    row.BackColor = Color.LightGray;
                 }
             }
         }
@@ -314,7 +288,7 @@ namespace Hauli
         private void addContestantButton_Click(object sender, EventArgs e)
         {
             contestantList.Add(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
-            refreshContestantList();
+            refreshContestantListView();
 
             firstNameTextBox.Clear();
             lastNameTextBox.Clear();
@@ -349,6 +323,46 @@ namespace Hauli
 
             return id.ToString();
         }
-    }
 
+        internal void UpdateContestantLine(Contestant updatedContestant)
+        {
+            for (int i = 0; i < contestantList.Count; i++)
+            {
+                if (contestantList[i].Id == updatedContestant.Id)
+                {
+                    contestantList[i].FirstName = updatedContestant.FirstName;
+                    contestantList[i].LastName = updatedContestant.LastName;
+                    contestantList[i].Seura = updatedContestant.Seura;
+                    contestantList[i].Sarja = updatedContestant.Sarja;
+                    contestantList[i].Team = updatedContestant.Team;
+
+                    refreshContestantListView();
+                    break;
+                }
+            }
+        }
+
+        private void mixListOrderButton_Click(object sender, EventArgs e)
+        {
+            //todo
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ContestantListForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Haluatko tallentaa muutokset?", "Hauli", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+
+            if (result == DialogResult.Yes)
+            {
+                //saveList();
+            }
+            else if (result == DialogResult.Cancel)
+                e.Cancel = true;
+        }
+    }
 }

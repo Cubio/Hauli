@@ -55,14 +55,13 @@
             this.reorderListGroupBox = new System.Windows.Forms.GroupBox();
             this.fillerSlotButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.mixListOrderButton = new System.Windows.Forms.Button();
             this.contestantImportGroupBox = new System.Windows.Forms.GroupBox();
             this.importContestantsButton = new System.Windows.Forms.Button();
             this.openPathButton = new System.Windows.Forms.Button();
             this.importFilePathTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.avaaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asetuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,7 +243,7 @@
             this.sarjaComboBox.FormattingEnabled = true;
             this.sarjaComboBox.Location = new System.Drawing.Point(62, 122);
             this.sarjaComboBox.Name = "sarjaComboBox";
-            this.sarjaComboBox.Size = new System.Drawing.Size(135, 21);
+            this.sarjaComboBox.Size = new System.Drawing.Size(44, 21);
             this.sarjaComboBox.TabIndex = 4;
             // 
             // seuraComboBox
@@ -305,7 +304,7 @@
             // 
             this.reorderListGroupBox.Controls.Add(this.fillerSlotButton);
             this.reorderListGroupBox.Controls.Add(this.button2);
-            this.reorderListGroupBox.Controls.Add(this.button1);
+            this.reorderListGroupBox.Controls.Add(this.mixListOrderButton);
             this.reorderListGroupBox.Location = new System.Drawing.Point(12, 321);
             this.reorderListGroupBox.Name = "reorderListGroupBox";
             this.reorderListGroupBox.Size = new System.Drawing.Size(218, 123);
@@ -331,14 +330,15 @@
             this.button2.Text = "Tasaa erät";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // mixListOrderButton
             // 
-            this.button1.Location = new System.Drawing.Point(9, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 24);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Sekoita järjestys";
-            this.button1.UseVisualStyleBackColor = true;
+            this.mixListOrderButton.Location = new System.Drawing.Point(9, 22);
+            this.mixListOrderButton.Name = "mixListOrderButton";
+            this.mixListOrderButton.Size = new System.Drawing.Size(159, 24);
+            this.mixListOrderButton.TabIndex = 7;
+            this.mixListOrderButton.Text = "Sekoita järjestys";
+            this.mixListOrderButton.UseVisualStyleBackColor = true;
+            this.mixListOrderButton.Click += new System.EventHandler(this.mixListOrderButton_Click);
             // 
             // contestantImportGroupBox
             // 
@@ -388,25 +388,16 @@
             this.saveButton.Text = "Tallenna";
             this.saveButton.UseVisualStyleBackColor = true;
             // 
-            // okButton
+            // closeButton
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(588, 613);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 13;
-            this.okButton.Text = "Ok";
-            this.okButton.UseVisualStyleBackColor = true;
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(669, 613);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 14;
-            this.cancelButton.Text = "Peruuta";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.Location = new System.Drawing.Point(669, 613);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 14;
+            this.closeButton.Text = "Sulje";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // menuStrip1
             // 
@@ -456,8 +447,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 643);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.contestantImportGroupBox);
             this.Controls.Add(this.reorderListGroupBox);
@@ -469,6 +459,7 @@
             this.Name = "ContestantListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ContestantListForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ContestantListForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             this.newContestantGroupBox.ResumeLayout(false);
             this.newContestantGroupBox.PerformLayout();
@@ -507,14 +498,13 @@
         private System.Windows.Forms.Button addContestantButton;
         private System.Windows.Forms.GroupBox reorderListGroupBox;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button mixListOrderButton;
         private System.Windows.Forms.GroupBox contestantImportGroupBox;
         private System.Windows.Forms.Button importContestantsButton;
         private System.Windows.Forms.Button openPathButton;
         private System.Windows.Forms.TextBox importFilePathTextBox;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button closeButton;
         private System.Windows.Forms.ComboBox joukkueComboBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem avaaToolStripMenuItem;

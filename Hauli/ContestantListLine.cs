@@ -19,18 +19,19 @@ namespace Hauli
     }
 
 
-    class Contestant : ContestantListLine
+    public class Contestant : ContestantListLine
     {
         private string id;
         private string firstName;
         private string lastName;
+        private string fullName;
         private string seura;
         private string sarja;
         private string team;
 
         public Contestant(string id, string firstName, string lastName, string seura, string sarja, string team)
         {
-            this.id = id;
+            this.Id = id;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Seura = seura;
@@ -68,8 +69,12 @@ namespace Hauli
 
         public string FullName
         {
-            get { return firstName + " " + lastName; }
-            set {}
+            get 
+            {
+                fullName = firstName + " " + lastName;
+                return fullName;   
+            }
+            set { fullName = value; }
         }
 
         public string Seura
@@ -93,7 +98,7 @@ namespace Hauli
     }
 
 
-    class RoundDivider : ContestantListLine
+    public class RoundDivider : ContestantListLine
     {
         private string id;
         private string name = "";

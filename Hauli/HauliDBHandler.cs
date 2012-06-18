@@ -87,5 +87,15 @@ namespace Hauli
             }
         }
 
+        /// <summary>
+        /// Lisätään tiedoston tiedot tietokantaan
+        /// </summary>
+        public void addFile()
+        {
+
+
+        }
+
+
     }
 }

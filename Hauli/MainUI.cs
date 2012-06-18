@@ -81,5 +81,15 @@ namespace Hauli
         {
             this.Close();
         }
+
+        private void joukkueetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void seuratToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SeriesListForm().ShowDialog();
+        }
     }
 }

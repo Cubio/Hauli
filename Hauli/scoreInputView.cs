@@ -25,6 +25,11 @@ namespace Hauli
             scores.Controls.Add(tabPage1);
         }
 
+        private void scoreInputView_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

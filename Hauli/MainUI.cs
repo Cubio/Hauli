@@ -89,7 +89,7 @@ namespace Hauli
 
         private void seuratToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new SeriesListForm().ShowDialog();
+            new SeriesListForm(dbHandler).ShowDialog();
         }
     }
 }

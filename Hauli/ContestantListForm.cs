@@ -364,5 +364,10 @@ namespace Hauli
             else if (result == DialogResult.Cancel)
                 e.Cancel = true;
         }
+
+        private void importContestantsButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

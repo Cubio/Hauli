@@ -64,6 +64,12 @@
             this.avaaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suljeSovellusToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.asetuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.joukkueetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seuratToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sarjatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kilpailumuotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skeetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.trapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tulostuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tulostaKaikkiSelkälaputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,12 +101,6 @@
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaHauliTulospalvelustaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.joukkueetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seuratToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sarjatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kilpailumuotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.skeetToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.trapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -378,7 +378,6 @@
             // day1Calendar
             // 
             this.day1Calendar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.day1Calendar.Enabled = false;
             this.day1Calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.day1Calendar.Location = new System.Drawing.Point(91, 39);
             this.day1Calendar.Name = "day1Calendar";
@@ -387,7 +386,6 @@
             // 
             // day1min
             // 
-            this.day1min.Enabled = false;
             this.day1min.FormattingEnabled = true;
             this.day1min.Items.AddRange(new object[] {
             "00",
@@ -408,7 +406,6 @@
             // 
             // day1h
             // 
-            this.day1h.Enabled = false;
             this.day1h.FormattingEnabled = true;
             this.day1h.Items.AddRange(new object[] {
             "1",
@@ -545,7 +542,7 @@
             // suljeSovellusToolStripMenuItem1
             // 
             this.suljeSovellusToolStripMenuItem1.Name = "suljeSovellusToolStripMenuItem1";
-            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.suljeSovellusToolStripMenuItem1.Text = "Sulje sovellus";
             this.suljeSovellusToolStripMenuItem1.Click += new System.EventHandler(this.suljeSovellusToolStripMenuItem1_Click);
             // 
@@ -559,6 +556,47 @@
             this.asetuksetToolStripMenuItem.Name = "asetuksetToolStripMenuItem";
             this.asetuksetToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.asetuksetToolStripMenuItem.Text = "Asetukset";
+            // 
+            // joukkueetToolStripMenuItem
+            // 
+            this.joukkueetToolStripMenuItem.Name = "joukkueetToolStripMenuItem";
+            this.joukkueetToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.joukkueetToolStripMenuItem.Text = "Joukkueet";
+            this.joukkueetToolStripMenuItem.Click += new System.EventHandler(this.joukkueetToolStripMenuItem_Click);
+            // 
+            // seuratToolStripMenuItem
+            // 
+            this.seuratToolStripMenuItem.Name = "seuratToolStripMenuItem";
+            this.seuratToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.seuratToolStripMenuItem.Text = "Seurat";
+            this.seuratToolStripMenuItem.Click += new System.EventHandler(this.seuratToolStripMenuItem_Click);
+            // 
+            // sarjatToolStripMenuItem
+            // 
+            this.sarjatToolStripMenuItem.Name = "sarjatToolStripMenuItem";
+            this.sarjatToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.sarjatToolStripMenuItem.Text = "Sarjat";
+            // 
+            // kilpailumuotoToolStripMenuItem
+            // 
+            this.kilpailumuotoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.skeetToolStripMenuItem1,
+            this.trapToolStripMenuItem1});
+            this.kilpailumuotoToolStripMenuItem.Name = "kilpailumuotoToolStripMenuItem";
+            this.kilpailumuotoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.kilpailumuotoToolStripMenuItem.Text = "Kilpailumuoto";
+            // 
+            // skeetToolStripMenuItem1
+            // 
+            this.skeetToolStripMenuItem1.Name = "skeetToolStripMenuItem1";
+            this.skeetToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.skeetToolStripMenuItem1.Text = "Skeet";
+            // 
+            // trapToolStripMenuItem1
+            // 
+            this.trapToolStripMenuItem1.Name = "trapToolStripMenuItem1";
+            this.trapToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.trapToolStripMenuItem1.Text = "Trap";
             // 
             // tulostuksetToolStripMenuItem
             // 
@@ -785,47 +823,6 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Toiminnot";
-            // 
-            // joukkueetToolStripMenuItem
-            // 
-            this.joukkueetToolStripMenuItem.Name = "joukkueetToolStripMenuItem";
-            this.joukkueetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.joukkueetToolStripMenuItem.Text = "Joukkueet";
-            this.joukkueetToolStripMenuItem.Click += new System.EventHandler(this.joukkueetToolStripMenuItem_Click);
-            // 
-            // seuratToolStripMenuItem
-            // 
-            this.seuratToolStripMenuItem.Name = "seuratToolStripMenuItem";
-            this.seuratToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.seuratToolStripMenuItem.Text = "Seurat";
-            this.seuratToolStripMenuItem.Click += new System.EventHandler(this.seuratToolStripMenuItem_Click);
-            // 
-            // sarjatToolStripMenuItem
-            // 
-            this.sarjatToolStripMenuItem.Name = "sarjatToolStripMenuItem";
-            this.sarjatToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sarjatToolStripMenuItem.Text = "Sarjat";
-            // 
-            // kilpailumuotoToolStripMenuItem
-            // 
-            this.kilpailumuotoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.skeetToolStripMenuItem1,
-            this.trapToolStripMenuItem1});
-            this.kilpailumuotoToolStripMenuItem.Name = "kilpailumuotoToolStripMenuItem";
-            this.kilpailumuotoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kilpailumuotoToolStripMenuItem.Text = "Kilpailumuoto";
-            // 
-            // skeetToolStripMenuItem1
-            // 
-            this.skeetToolStripMenuItem1.Name = "skeetToolStripMenuItem1";
-            this.skeetToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.skeetToolStripMenuItem1.Text = "Skeet";
-            // 
-            // trapToolStripMenuItem1
-            // 
-            this.trapToolStripMenuItem1.Name = "trapToolStripMenuItem1";
-            this.trapToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.trapToolStripMenuItem1.Text = "Trap";
             // 
             // MainUIform
             // 

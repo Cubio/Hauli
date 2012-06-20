@@ -36,8 +36,8 @@
             this.seuraColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.sarjaColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.joukkueColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.editButtonColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.deleteButtonColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.buttonColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.buttonColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fillerColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
@@ -54,7 +54,7 @@
             this.seuraLabel = new System.Windows.Forms.Label();
             this.reorderListGroupBox = new System.Windows.Forms.GroupBox();
             this.fillerSlotButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.evenOutRounds = new System.Windows.Forms.Button();
             this.mixListOrderButton = new System.Windows.Forms.Button();
             this.contestantImportGroupBox = new System.Windows.Forms.GroupBox();
             this.importContestantsButton = new System.Windows.Forms.Button();
@@ -82,8 +82,8 @@
             this.objectListView1.AllColumns.Add(this.seuraColumn);
             this.objectListView1.AllColumns.Add(this.sarjaColumn);
             this.objectListView1.AllColumns.Add(this.joukkueColumn);
-            this.objectListView1.AllColumns.Add(this.editButtonColumn);
-            this.objectListView1.AllColumns.Add(this.deleteButtonColumn);
+            this.objectListView1.AllColumns.Add(this.buttonColumn1);
+            this.objectListView1.AllColumns.Add(this.buttonColumn2);
             this.objectListView1.AllColumns.Add(this.fillerColumn);
             this.objectListView1.AllowDrop = true;
             this.objectListView1.AlternateRowBackColor = System.Drawing.Color.WhiteSmoke;
@@ -97,8 +97,8 @@
             this.seuraColumn,
             this.sarjaColumn,
             this.joukkueColumn,
-            this.editButtonColumn,
-            this.deleteButtonColumn,
+            this.buttonColumn1,
+            this.buttonColumn2,
             this.fillerColumn});
             this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListView1.FullRowSelect = true;
@@ -117,13 +117,12 @@
             this.objectListView1.TabIndex = 4;
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
-            this.objectListView1.UseHotItem = true;
             this.objectListView1.UseOverlays = false;
-            this.objectListView1.UseTranslucentHotItem = true;
+            this.objectListView1.UseTranslucentSelection = true;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.Dropped += new System.EventHandler<BrightIdeasSoftware.OlvDropEventArgs>(this.objectListView1_Dropped);
             this.objectListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.objectListView1_FormatRow);
             this.objectListView1.Click += new System.EventHandler(this.objectListView1_Click);
-            this.objectListView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.objectListView1_DragDrop);
             this.objectListView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListView1_MouseDoubleClick);
             // 
             // idColumn
@@ -155,27 +154,29 @@
             this.joukkueColumn.Text = "Joukkue";
             this.joukkueColumn.Width = 120;
             // 
-            // editButtonColumn
+            // buttonColumn1
             // 
-            this.editButtonColumn.MaximumWidth = 20;
-            this.editButtonColumn.MinimumWidth = 20;
-            this.editButtonColumn.ShowTextInHeader = false;
-            this.editButtonColumn.Text = " ";
-            this.editButtonColumn.Width = 20;
+            this.buttonColumn1.MaximumWidth = 20;
+            this.buttonColumn1.MinimumWidth = 20;
+            this.buttonColumn1.ShowTextInHeader = false;
+            this.buttonColumn1.Text = " ";
+            this.buttonColumn1.Width = 20;
             // 
-            // deleteButtonColumn
+            // buttonColumn2
             // 
-            this.deleteButtonColumn.MaximumWidth = 20;
-            this.deleteButtonColumn.MinimumWidth = 20;
-            this.deleteButtonColumn.Text = " ";
-            this.deleteButtonColumn.Width = 20;
+            this.buttonColumn2.MaximumWidth = 20;
+            this.buttonColumn2.MinimumWidth = 20;
+            this.buttonColumn2.Text = " ";
+            this.buttonColumn2.Width = 20;
             // 
             // fillerColumn
             // 
             this.fillerColumn.FillsFreeSpace = true;
+            this.fillerColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fillerColumn.ShowTextInHeader = false;
             this.fillerColumn.Sortable = false;
             this.fillerColumn.Text = " ";
+            this.fillerColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // imageList1
             // 
@@ -183,6 +184,7 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Maroon;
             this.imageList1.Images.SetKeyName(0, "editIcon");
             this.imageList1.Images.SetKeyName(1, "deleteIcon");
+            this.imageList1.Images.SetKeyName(2, "fire");
             // 
             // firstNameTextBox
             // 
@@ -303,7 +305,7 @@
             // reorderListGroupBox
             // 
             this.reorderListGroupBox.Controls.Add(this.fillerSlotButton);
-            this.reorderListGroupBox.Controls.Add(this.button2);
+            this.reorderListGroupBox.Controls.Add(this.evenOutRounds);
             this.reorderListGroupBox.Controls.Add(this.mixListOrderButton);
             this.reorderListGroupBox.Location = new System.Drawing.Point(12, 321);
             this.reorderListGroupBox.Name = "reorderListGroupBox";
@@ -321,14 +323,15 @@
             this.fillerSlotButton.Text = "Lisää jälki-ilmoittautumispaikat";
             this.fillerSlotButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // evenOutRounds
             // 
-            this.button2.Location = new System.Drawing.Point(9, 51);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Tasaa erät";
-            this.button2.UseVisualStyleBackColor = true;
+            this.evenOutRounds.Location = new System.Drawing.Point(9, 51);
+            this.evenOutRounds.Name = "evenOutRounds";
+            this.evenOutRounds.Size = new System.Drawing.Size(159, 23);
+            this.evenOutRounds.TabIndex = 8;
+            this.evenOutRounds.Text = "Tasaa erät";
+            this.evenOutRounds.UseVisualStyleBackColor = true;
+            this.evenOutRounds.Click += new System.EventHandler(this.evenOutRounds_Click);
             // 
             // mixListOrderButton
             // 
@@ -482,8 +485,8 @@
         private BrightIdeasSoftware.OLVColumn joukkueColumn;
         private BrightIdeasSoftware.OLVColumn idColumn;
         private BrightIdeasSoftware.OLVColumn fillerColumn;
-        private BrightIdeasSoftware.OLVColumn editButtonColumn;
-        private BrightIdeasSoftware.OLVColumn deleteButtonColumn;
+        private BrightIdeasSoftware.OLVColumn buttonColumn1;
+        private BrightIdeasSoftware.OLVColumn buttonColumn2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.Label firstNameLabel;
@@ -497,7 +500,7 @@
         private System.Windows.Forms.ComboBox seuraComboBox;
         private System.Windows.Forms.Button addContestantButton;
         private System.Windows.Forms.GroupBox reorderListGroupBox;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button evenOutRounds;
         private System.Windows.Forms.Button mixListOrderButton;
         private System.Windows.Forms.GroupBox contestantImportGroupBox;
         private System.Windows.Forms.Button importContestantsButton;

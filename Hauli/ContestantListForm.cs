@@ -70,23 +70,26 @@ namespace Hauli
 
             contestantList = new List<ContestantListLine>();
 
-            contestantList.Add(new RoundDivider("round 1", "Erä 1"));
+            contestantList.Add(new RoundDivider("roundCold;1", "Erä"));
             contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
             contestantList.Add(new Contestant(generateId(), "Beppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new RoundDivider("round 2", "Erä 2"));
+            contestantList.Add(new RoundDivider("roundCold;2", "Erä"));
             contestantList.Add(new Contestant(generateId(), "Deppo", "Töppönen", "OSH", "Y", ""));
             contestantList.Add(new Contestant(generateId(), "Eeppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Feppo", "Töppönen", "OSH", "Y", ""));
             contestantList.Add(new Contestant(generateId(), "Geppoliina", "Töppönen", "OSH", "N", "Ninja-pinjat"));
-            contestantList.Add(new RoundDivider("round 3", "Erä 3"));
+            contestantList.Add(new RoundDivider("roundCold;3", "Erä"));
             contestantList.Add(new Contestant(generateId(), "Heppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
             contestantList.Add(new Contestant(generateId(), "Ieppo", "Töppönen", "OSH", "Y", ""));
             contestantList.Add(new Contestant(generateId(), "Jeppoliina", "Töppönen", "OSH", "N", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new RoundDivider("roundCold;4", "Erä"));
+            contestantList.Add(new Contestant(generateId(), "Zeppo", "Töppönen", "OSH", "Y", ""));
 
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
+            //idColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Id = newValue.ToString(); };
 
             nameColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).FullName; };
             nameColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).FullName = newValue.ToString(); };
@@ -100,26 +103,27 @@ namespace Hauli
             joukkueColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Team; };
             joukkueColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Team = newValue.ToString(); };
 
-            editButtonColumn.ImageGetter = delegate(object row)
+            buttonColumn1.ImageGetter = delegate(object row)
             {
                 if (!((ContestantListLine)row).Id.Contains("round"))
                     return 0;
                 else
-                    return null;
+                    return 2;
 
             };
-            editButtonColumn.Tag = "editButtonColumn";
+            buttonColumn1.Tag = "buttonColumn1";
 
-            deleteButtonColumn.ImageGetter = delegate(object row)
+            buttonColumn2.ImageGetter = delegate(object row)
             {
                 if (!((ContestantListLine)row).Id.Contains("round"))
                     return 1;
                 else
                     return null;
             };
-            deleteButtonColumn.Tag = "deleteButtonColumn";
+            buttonColumn2.Tag = "buttonColumn2";
 
             refreshContestantListView();
+            countRoundSizes();
         }
 
         public List<string> GetSarjaList()
@@ -137,26 +141,18 @@ namespace Hauli
 
             if (((ListViewItem)e.Item).SubItems[0].Text.Contains("round"))
             {
-                Console.WriteLine("Roundia liikutetaan");
                 ((ListViewItem)e.Item).Selected = false;
             }
-        }
-
-        private void objectListView1_DragDrop(object sender, DragEventArgs e)
-        {
-            Console.WriteLine("DROP!");
-            //refreshContestantListView();
-            rowMoved = true;
         }
 
         private void objectListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
-            Point ptCursor = Cursor.Position;
-            ptCursor = PointToClient(ptCursor);
+            Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
 
-            int x = ptCursor.X - objectListView1.Location.X - 2;
-            int y = ptCursor.Y - objectListView1.Location.Y - 2;
+            int x = cursor.X - objectListView1.Location.X - 2;
+            int y = cursor.Y - objectListView1.Location.Y - 2;
 
             ListViewItem clickedItem = objectListView1.GetItemAt(x, y);
             Contestant selectedContestant = null;
@@ -178,36 +174,70 @@ namespace Hauli
 
         private void objectListView1_Click(object sender, EventArgs e)
         {
-            Point ptCursor = Cursor.Position;
-            ptCursor = PointToClient(ptCursor);
+            Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
 
-            int x = ptCursor.X - objectListView1.Location.X - 2;
-            int y = ptCursor.Y - objectListView1.Location.Y - 2;
-
-            Console.WriteLine("OLV Clicked: " + x.ToString() + " " + y.ToString());
+            int x = cursor.X - objectListView1.Location.X - 2;
+            int y = cursor.Y - objectListView1.Location.Y - 2;
 
             OLVColumn hitColumn;
             ListViewItem clickedItem = objectListView1.GetItemAt(x, y, out hitColumn);
             Contestant selectedContestant = null;
 
-            if (hitColumn != null && !clickedItem.SubItems[0].Text.Contains("round") && (hitColumn.Tag != null))
+            if (hitColumn != null && hitColumn.Tag != null)
             {
-                if (hitColumn.Tag.ToString() == "editButtonColumn")
+                if (hitColumn.Tag.ToString() == "buttonColumn1")
                 {
-                    for (int i = 0; i < contestantList.Count; i++)
+                    string[] listIdColumnText = clickedItem.SubItems[0].Text.Split(';');
+
+                    if (listIdColumnText[0] == "roundHot")
                     {
-                        if (!contestantList[i].Id.Contains("round") && contestantList[i].Id == clickedItem.SubItems[0].Text)
+                        Console.WriteLine("hot->cold");
+
+                        foreach (ContestantListLine line in contestantList)
                         {
-                            selectedContestant = new Contestant((Contestant)contestantList[i]);
-                            break;
+                            if (line.Id.Contains("round"))
+                            {
+                                string[] modelIdColumnText = line.Id.Split(';');
+                                if (modelIdColumnText[1] == listIdColumnText[1])
+                                    line.Id = "roundCold" + ";" + listIdColumnText[1];
+                            }
                         }
+
+                        refreshContestantListView();
                     }
+                    else if (listIdColumnText[0] == "roundCold")
+                    {
+                        Console.WriteLine("cold->hot");
 
-                    if (selectedContestant != null)
-                        new ContestantRowEditForm(this, selectedContestant).ShowDialog();
+                        foreach (ContestantListLine line in contestantList)
+                        {
+                            if (line.Id.Contains("round"))
+                            {
+                                string[] modelIdColumnText = line.Id.Split(';');
+                                if (modelIdColumnText[1] == listIdColumnText[1])
+                                    line.Id = "roundHot" + ";" + listIdColumnText[1];
+                            }
+                        }
 
+                        refreshContestantListView();
+                    }
+                    else
+                    {
+                        for (int i = 0; i < contestantList.Count; i++)
+                        {
+                            if (!contestantList[i].Id.Contains("round") && contestantList[i].Id == clickedItem.SubItems[0].Text)
+                            {
+                                selectedContestant = new Contestant((Contestant)contestantList[i]);
+                                break;
+                            }
+                        }
+
+                        if (selectedContestant != null)
+                            new ContestantRowEditForm(this, selectedContestant).ShowDialog();
+                    }
                 }
-                else if (hitColumn.Tag.ToString() == "deleteButtonColumn")
+                else if (hitColumn.Tag.ToString() == "buttonColumn2")
                 {
                     deleteLine(clickedItem);
                 }
@@ -225,12 +255,15 @@ namespace Hauli
                     if (contestantList[i].Id == item.SubItems[0].Text.ToString())
                         contestantList.RemoveAt(i);
 
+                countRoundSizes();
                 refreshContestantListView();
             }
         }
 
         private void refreshContestantListView()
         {
+            Console.WriteLine("refreshContestantListView");
+
             objectListView1.SetObjects(contestantList);
         }
 
@@ -238,41 +271,99 @@ namespace Hauli
         {
             e.UseCellFormatEvents = true;
 
-            if (rowMoved)
+            foreach (ListViewItem row in objectListView1.Items)
             {
-                rowMoved = false;
-
-                List<ContestantListLine> newList = new List<ContestantListLine>();
-
-                foreach (ListViewItem row in objectListView1.Items)
+                if (row.SubItems[0].Text.Contains("round"))
                 {
-                    if (!row.SubItems[0].Text.Contains("round"))
+                    if (row.SubItems[0].Text.Contains("roundCold"))
+                        row.BackColor = Color.LightGray;
+                    else if (row.SubItems[0].Text.Contains("roundHot"))
+                        row.BackColor = Color.LightPink;
+                }
+            }
+        }
+
+        private void updateModelList()
+        {
+            List<ContestantListLine> newList = new List<ContestantListLine>();
+
+            Console.WriteLine("updateModelList");
+
+            foreach (ListViewItem row in objectListView1.Items)
+            {
+                if (!row.SubItems[0].Text.Contains("round"))
+                {
+                    for (int i = 0; i < contestantList.Count; i++)
                     {
-                        for (int i = 0; i < contestantList.Count; i++)
+                        if (contestantList[i].Id.ToString() == row.SubItems[0].Text.ToString())
                         {
-                            if (contestantList[i].Id.ToString() == row.SubItems[0].Text.ToString())
-                            {
-                                newList.Add(new Contestant(contestantList[i].Id, contestantList[i].FirstName, contestantList[i].LastName, contestantList[i].Seura, contestantList[i].Sarja, contestantList[i].Team));
-                                break;
-                            }
+                            newList.Add(new Contestant(contestantList[i].Id, contestantList[i].FirstName, contestantList[i].LastName, contestantList[i].Seura, contestantList[i].Sarja, contestantList[i].Team));
+                            break;
                         }
                     }
-                    else
-                    {
-                        newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[1].Text.ToString()));
-                    }
                 }
+                else
+                {
+                    newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[1].Text.ToString()));
+                }
+            }
 
-                contestantList = newList;
+            contestantList = newList;
+        }
+
+        private void countRoundSizes()
+        {
+            Console.WriteLine("Count");
+
+            List<int> roundDividerIndices = new List<int>();
+            List<int> roundContestantAmounts = new List<int>();
+            int round = 1;
+
+            for (int i = 0; i < contestantList.Count; i++)
+            {
+                if (contestantList[i].Id.Contains("round"))
+                    roundDividerIndices.Add(i + 1);
+            }
+
+            for (int i = 0; i < roundDividerIndices.Count; i++)
+            {
+                if (i != roundDividerIndices.Count - 1)
+                {
+                    roundContestantAmounts.Add((roundDividerIndices[i + 1] - roundDividerIndices[i]) - 1);
+                }
+                else
+                {
+                    roundContestantAmounts.Add(contestantList.Count - roundDividerIndices[i]);
+                }
             }
 
             foreach (ListViewItem row in objectListView1.Items)
             {
                 if (row.SubItems[0].Text.Contains("round"))
                 {
-                    row.BackColor = Color.LightGray;
+                    row.SubItems[1].Text = "Erä " + round + " (" + roundContestantAmounts[round - 1] + "/6)";
+                    round++;
                 }
             }
+
+
+            for (int i = 0; i < roundDividerIndices.Count; i++)
+            {
+                contestantList[roundDividerIndices[i] - 1].FullName = "Erä " + (i + 1).ToString() +
+                " (" + roundContestantAmounts[i] + "/6)";
+            }
+
+            nameColumn.ImageGetter = delegate(object row)
+            {
+                if (((ContestantListLine)row).Id.Contains("round"))
+                {
+                    string[] id = ((ContestantListLine)row).Id.Split(';');
+                    if (roundContestantAmounts[Convert.ToInt32(id[1]) - 1] > 6)
+                        return 1;
+                }
+
+                return -1;
+            };
         }
 
         private void openPathButton_Click(object sender, EventArgs e)
@@ -288,6 +379,7 @@ namespace Hauli
         private void addContestantButton_Click(object sender, EventArgs e)
         {
             contestantList.Add(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
+            countRoundSizes();
             refreshContestantListView();
 
             firstNameTextBox.Clear();
@@ -317,10 +409,6 @@ namespace Hauli
                     id = random.Next(10000, 99999);
             } while (!ok);
 
-
-            for (int i = 0; i < contestantList.Count; i++)
-                Console.WriteLine(idList[i]);
-
             return id.ToString();
         }
 
@@ -344,7 +432,24 @@ namespace Hauli
 
         private void mixListOrderButton_Click(object sender, EventArgs e)
         {
-            //todo
+            Console.WriteLine("Model:");
+
+            for (int i = 0; i < contestantList.Count; i++)
+                Console.WriteLine(contestantList[i].FullName);
+
+            Console.WriteLine("View:");
+            for (int i = 0; i < objectListView1.Items.Count; i++)
+                Console.WriteLine(objectListView1.Items[i].SubItems[1]);
+        }
+
+
+        private void evenOutRounds_Click(object sender, EventArgs e)
+        {
+            nameColumn.ImageGetter = delegate(object row)
+            {
+                return -1;
+            };
+            refreshContestantListView();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -363,6 +468,15 @@ namespace Hauli
             }
             else if (result == DialogResult.Cancel)
                 e.Cancel = true;
+        }
+
+        private void objectListView1_Dropped(object sender, OlvDropEventArgs e)
+        {
+            Console.WriteLine("dropped");
+            countRoundSizes();
+            updateModelList();
+            countRoundSizes();
+            refreshContestantListView();
         }
     }
 }

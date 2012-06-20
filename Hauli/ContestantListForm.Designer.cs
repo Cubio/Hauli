@@ -364,6 +364,7 @@
             this.importContestantsButton.TabIndex = 12;
             this.importContestantsButton.Text = "Lisää";
             this.importContestantsButton.UseVisualStyleBackColor = true;
+            this.importContestantsButton.Click += new System.EventHandler(this.importContestantsButton_Click);
             // 
             // openPathButton
             // 

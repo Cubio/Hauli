@@ -478,5 +478,10 @@ namespace Hauli
             countRoundSizes();
             refreshContestantListView();
         }
+
+        private void importContestantsButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

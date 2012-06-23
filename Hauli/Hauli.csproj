@@ -52,7 +52,8 @@
   <ItemGroup>
     <Reference Include="ObjectListView">
       <HintPath>.\ObjectListView.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -179,7 +180,10 @@
     <Content Include="HauliDB.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\editIcon.png" />
+    <Content Include="Resources\editIcon.png" />
+    <Content Include="Resources\move.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

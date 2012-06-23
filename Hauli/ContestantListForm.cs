@@ -17,7 +17,9 @@ namespace Hauli
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;
         private List<string> sarjaList;
-        private bool rowMoved = false;
+        //private bool rowMoved = false;
+        private Cursor moveHandCursor;
+        private List<int> roundContestantAmounts;
 
         public ContestantListForm(HauliDBHandler dbHandler)
         {
@@ -27,6 +29,8 @@ namespace Hauli
             AutoCompleteStringCollection seuraAutoCompleteCollection = new AutoCompleteStringCollection();
             seuraList = new List<string>();
             sarjaList = new List<string>();
+
+            moveHandCursor = new Cursor("Resources/move.cur");
 
             seuraList.Add("AavU");
             seuraList.Add("ASA");
@@ -42,7 +46,6 @@ namespace Hauli
             seuraAutoCompleteCollection.AddRange(seuraList.ToArray());
             seuraComboBox.AutoCompleteCustomSource = seuraAutoCompleteCollection;
             seuraComboBox.Items.AddRange(seuraList.ToArray());
-
 
             sarjaList.Add("Y");
             sarjaList.Add("Y15");
@@ -66,7 +69,7 @@ namespace Hauli
             RearrangingDropSink dropsink = new RearrangingDropSink(true);
             dropsink.FeedbackColor = Color.Black;
             objectListView1.DropSink = dropsink;
-            objectListView1.ItemDrag += objectListView1_ItemDrag;
+            //objectListView1.ItemDrag += objectListView1_ItemDrag;
 
             contestantList = new List<ContestantListLine>();
 
@@ -91,6 +94,8 @@ namespace Hauli
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
             //idColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Id = newValue.ToString(); };
 
+            grabColumn.AspectGetter = delegate(object x) { return " "; };
+
             nameColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).FullName; };
             nameColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).FullName = newValue.ToString(); };
 
@@ -102,6 +107,17 @@ namespace Hauli
 
             joukkueColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Team; };
             joukkueColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Team = newValue.ToString(); };
+
+            grabColumn.DisplayIndex = 1;
+            grabColumn.ImageGetter = delegate(object row)
+            {
+                if (((ContestantListLine)row).Id.Contains("round"))
+                    return -1;
+                else
+                    return 3;
+
+            };
+            grabColumn.Tag = "grabColumn";
 
             buttonColumn1.ImageGetter = delegate(object row)
             {
@@ -304,7 +320,7 @@ namespace Hauli
                 }
                 else
                 {
-                    newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[1].Text.ToString()));
+                    newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[2].Text.ToString()));
                 }
             }
 
@@ -316,7 +332,7 @@ namespace Hauli
             Console.WriteLine("Count");
 
             List<int> roundDividerIndices = new List<int>();
-            List<int> roundContestantAmounts = new List<int>();
+            roundContestantAmounts = new List<int>();
             int round = 1;
 
             for (int i = 0; i < contestantList.Count; i++)
@@ -341,7 +357,7 @@ namespace Hauli
             {
                 if (row.SubItems[0].Text.Contains("round"))
                 {
-                    row.SubItems[1].Text = "Erä " + round + " (" + roundContestantAmounts[round - 1] + "/6)";
+                    row.SubItems[2].Text = "Erä " + round + " (" + roundContestantAmounts[round - 1] + "/6)";
                     round++;
                 }
             }
@@ -359,7 +375,9 @@ namespace Hauli
                 {
                     string[] id = ((ContestantListLine)row).Id.Split(';');
                     if (roundContestantAmounts[Convert.ToInt32(id[1]) - 1] > 6)
-                        return 1;
+                    {
+                        return 4;
+                    }
                 }
 
                 return -1;
@@ -432,6 +450,8 @@ namespace Hauli
 
         private void mixListOrderButton_Click(object sender, EventArgs e)
         {
+            //todo
+
             Console.WriteLine("Model:");
 
             for (int i = 0; i < contestantList.Count; i++)
@@ -439,17 +459,13 @@ namespace Hauli
 
             Console.WriteLine("View:");
             for (int i = 0; i < objectListView1.Items.Count; i++)
-                Console.WriteLine(objectListView1.Items[i].SubItems[1]);
+                Console.WriteLine(objectListView1.Items[i].SubItems[2]);
         }
 
 
         private void evenOutRounds_Click(object sender, EventArgs e)
         {
-            nameColumn.ImageGetter = delegate(object row)
-            {
-                return -1;
-            };
-            refreshContestantListView();
+            //todo
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -481,7 +497,46 @@ namespace Hauli
 
         private void importContestantsButton_Click(object sender, EventArgs e)
         {
+            //todo
+        }
 
+        private void objectListView1_CellOver(object sender, CellOverEventArgs e)
+        {
+            Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
+
+            int x = cursor.X - objectListView1.Location.X - 2;
+            int y = cursor.Y - objectListView1.Location.Y - 2;
+
+            OLVColumn hitColumn;
+            ListViewItem hoverItem = objectListView1.GetItemAt(x, y, out hitColumn);
+
+            if (hitColumn != null && hitColumn.Tag != null && !hoverItem.SubItems[0].Text.Contains("round"))
+            {
+                if (hitColumn.Tag.ToString() == "grabColumn")
+                    Cursor = moveHandCursor;
+                else
+                    Cursor = Cursors.Default;
+            }
+        }
+
+        private void objectListView1_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
+
+        private void objectListView1_CellToolTipShowing(object sender, ToolTipShowingEventArgs e)
+        {
+            if (e.Item.SubItems[0].Text.Contains("round"))
+            {
+                string[] id = e.Item.SubItems[0].Text.Split(';');
+                if (roundContestantAmounts[Convert.ToInt32(id[1]) - 1] > 6)
+                {
+                    e.Title = "Varoitus";
+                    e.StandardIcon = ToolTipControl.StandardIcons.Warning;
+                    e.Text = "Erässä on liikaa kilpailijoita";
+                }
+            }
         }
     }
 }

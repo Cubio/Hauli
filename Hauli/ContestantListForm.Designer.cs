@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContestantListForm));
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.idColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.grabColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.nameColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.seuraColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.sarjaColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -78,6 +79,7 @@
             // objectListView1
             // 
             this.objectListView1.AllColumns.Add(this.idColumn);
+            this.objectListView1.AllColumns.Add(this.grabColumn);
             this.objectListView1.AllColumns.Add(this.nameColumn);
             this.objectListView1.AllColumns.Add(this.seuraColumn);
             this.objectListView1.AllColumns.Add(this.sarjaColumn);
@@ -93,6 +95,7 @@
             this.objectListView1.AutoArrange = false;
             this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.idColumn,
+            this.grabColumn,
             this.nameColumn,
             this.seuraColumn,
             this.sarjaColumn,
@@ -120,16 +123,31 @@
             this.objectListView1.UseOverlays = false;
             this.objectListView1.UseTranslucentSelection = true;
             this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.objectListView1.CellOver += new System.EventHandler<BrightIdeasSoftware.CellOverEventArgs>(this.objectListView1_CellOver);
+            this.objectListView1.CellToolTipShowing += new System.EventHandler<BrightIdeasSoftware.ToolTipShowingEventArgs>(this.objectListView1_CellToolTipShowing);
             this.objectListView1.Dropped += new System.EventHandler<BrightIdeasSoftware.OlvDropEventArgs>(this.objectListView1_Dropped);
             this.objectListView1.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.objectListView1_FormatRow);
+            this.objectListView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.objectListView1_ItemDrag);
             this.objectListView1.Click += new System.EventHandler(this.objectListView1_Click);
             this.objectListView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListView1_MouseDoubleClick);
+            this.objectListView1.MouseLeave += new System.EventHandler(this.objectListView1_MouseLeave);
             // 
             // idColumn
             // 
             this.idColumn.MaximumWidth = 0;
+            this.idColumn.ShowTextInHeader = false;
             this.idColumn.Sortable = false;
+            this.idColumn.Text = "";
             this.idColumn.Width = 0;
+            // 
+            // grabColumn
+            // 
+            this.grabColumn.MaximumWidth = 6;
+            this.grabColumn.MinimumWidth = 6;
+            this.grabColumn.ShowTextInHeader = false;
+            this.grabColumn.Sortable = false;
+            this.grabColumn.Text = "";
+            this.grabColumn.Width = 6;
             // 
             // nameColumn
             // 
@@ -159,6 +177,7 @@
             this.buttonColumn1.MaximumWidth = 20;
             this.buttonColumn1.MinimumWidth = 20;
             this.buttonColumn1.ShowTextInHeader = false;
+            this.buttonColumn1.Sortable = false;
             this.buttonColumn1.Text = " ";
             this.buttonColumn1.Width = 20;
             // 
@@ -166,6 +185,8 @@
             // 
             this.buttonColumn2.MaximumWidth = 20;
             this.buttonColumn2.MinimumWidth = 20;
+            this.buttonColumn2.ShowTextInHeader = false;
+            this.buttonColumn2.Sortable = false;
             this.buttonColumn2.Text = " ";
             this.buttonColumn2.Width = 20;
             // 
@@ -181,10 +202,12 @@
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Maroon;
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "editIcon");
             this.imageList1.Images.SetKeyName(1, "deleteIcon");
             this.imageList1.Images.SetKeyName(2, "fire");
+            this.imageList1.Images.SetKeyName(3, "grabDotsS.png");
+            this.imageList1.Images.SetKeyName(4, "warning.ico");
             // 
             // firstNameTextBox
             // 
@@ -517,5 +540,6 @@
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.Button fillerSlotButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private BrightIdeasSoftware.OLVColumn grabColumn;
     }
 }

@@ -91,5 +91,10 @@ namespace Hauli
         {
             new SeriesListForm(dbHandler).ShowDialog();
         }
+
+        private void day1min_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

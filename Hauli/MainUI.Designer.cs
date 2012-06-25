@@ -164,25 +164,26 @@
             "50",
             "55"});
             this.comboBox2.Location = new System.Drawing.Point(145, 180);
+            this.comboBox2.MaxDropDownItems = 10;
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(42, 21);
-            this.comboBox2.TabIndex = 15;
+            this.comboBox2.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(142, 164);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 13);
+            this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 16;
-            this.label10.Text = "Eränkesto";
+            this.label10.Text = "Erän kesto";
             // 
             // saveSettings
             // 
             this.saveSettings.Location = new System.Drawing.Point(169, 492);
             this.saveSettings.Name = "saveSettings";
             this.saveSettings.Size = new System.Drawing.Size(75, 23);
-            this.saveSettings.TabIndex = 7;
+            this.saveSettings.TabIndex = 15;
             this.saveSettings.Text = "Tallenna";
             this.saveSettings.UseVisualStyleBackColor = true;
             // 
@@ -201,18 +202,19 @@
             "9",
             "10"});
             this.comboBox1.Location = new System.Drawing.Point(15, 180);
+            this.comboBox1.MaxDropDownItems = 10;
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(42, 21);
-            this.comboBox1.TabIndex = 10;
+            this.comboBox1.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(12, 164);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.Size = new System.Drawing.Size(76, 13);
             this.label11.TabIndex = 14;
-            this.label11.Text = "Ratojenmäärä";
+            this.label11.Text = "Ratojen määrä";
             // 
             // groupBox2
             // 
@@ -263,7 +265,7 @@
             this.activeDay2Selection.Location = new System.Drawing.Point(6, 19);
             this.activeDay2Selection.Name = "activeDay2Selection";
             this.activeDay2Selection.Size = new System.Drawing.Size(62, 17);
-            this.activeDay2Selection.TabIndex = 4;
+            this.activeDay2Selection.TabIndex = 11;
             this.activeDay2Selection.Text = "Päivä 2";
             this.activeDay2Selection.UseVisualStyleBackColor = true;
             this.activeDay2Selection.CheckedChanged += new System.EventHandler(this.activeDay2Selection_CheckedChanged);
@@ -276,7 +278,7 @@
             this.day2Calendar.Location = new System.Drawing.Point(91, 39);
             this.day2Calendar.Name = "day2Calendar";
             this.day2Calendar.Size = new System.Drawing.Size(115, 20);
-            this.day2Calendar.TabIndex = 0;
+            this.day2Calendar.TabIndex = 12;
             // 
             // day2min
             // 
@@ -297,7 +299,7 @@
             this.day2min.Location = new System.Drawing.Point(168, 78);
             this.day2min.Name = "day2min";
             this.day2min.Size = new System.Drawing.Size(38, 21);
-            this.day2min.TabIndex = 3;
+            this.day2min.TabIndex = 14;
             // 
             // day2h
             // 
@@ -331,7 +333,7 @@
             this.day2h.Location = new System.Drawing.Point(91, 78);
             this.day2h.Name = "day2h";
             this.day2h.Size = new System.Drawing.Size(42, 21);
-            this.day2h.TabIndex = 2;
+            this.day2h.TabIndex = 13;
             // 
             // groupBox1
             // 
@@ -344,7 +346,7 @@
             this.groupBox1.Location = new System.Drawing.Point(9, 230);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(235, 125);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Päivä 1";
             // 
@@ -382,7 +384,7 @@
             this.day1Calendar.Location = new System.Drawing.Point(91, 39);
             this.day1Calendar.Name = "day1Calendar";
             this.day1Calendar.Size = new System.Drawing.Size(115, 20);
-            this.day1Calendar.TabIndex = 0;
+            this.day1Calendar.TabIndex = 7;
             // 
             // day1min
             // 
@@ -402,7 +404,8 @@
             this.day1min.Location = new System.Drawing.Point(168, 78);
             this.day1min.Name = "day1min";
             this.day1min.Size = new System.Drawing.Size(38, 21);
-            this.day1min.TabIndex = 3;
+            this.day1min.TabIndex = 9;
+            this.day1min.SelectedIndexChanged += new System.EventHandler(this.day1min_SelectedIndexChanged);
             // 
             // day1h
             // 
@@ -435,21 +438,21 @@
             this.day1h.Location = new System.Drawing.Point(91, 78);
             this.day1h.Name = "day1h";
             this.day1h.Size = new System.Drawing.Size(42, 21);
-            this.day1h.TabIndex = 2;
+            this.day1h.TabIndex = 8;
             // 
             // organizer
             // 
             this.organizer.Location = new System.Drawing.Point(9, 92);
             this.organizer.Name = "organizer";
             this.organizer.Size = new System.Drawing.Size(232, 20);
-            this.organizer.TabIndex = 11;
+            this.organizer.TabIndex = 2;
             // 
             // locality
             // 
             this.locality.Location = new System.Drawing.Point(9, 141);
             this.locality.Name = "locality";
             this.locality.Size = new System.Drawing.Size(232, 20);
-            this.locality.TabIndex = 10;
+            this.locality.TabIndex = 3;
             // 
             // label3
             // 
@@ -483,7 +486,7 @@
             this.contest.Location = new System.Drawing.Point(9, 43);
             this.contest.Name = "contest";
             this.contest.Size = new System.Drawing.Size(232, 20);
-            this.contest.TabIndex = 6;
+            this.contest.TabIndex = 1;
             // 
             // contestantListButton
             // 
@@ -491,7 +494,7 @@
             this.contestantListButton.Location = new System.Drawing.Point(20, 19);
             this.contestantListButton.Name = "contestantListButton";
             this.contestantListButton.Size = new System.Drawing.Size(124, 33);
-            this.contestantListButton.TabIndex = 1;
+            this.contestantListButton.TabIndex = 17;
             this.contestantListButton.Text = "Osallistujaluettelo";
             this.contestantListButton.UseVisualStyleBackColor = true;
             this.contestantListButton.Click += new System.EventHandler(this.contestantListButton_Click);
@@ -502,7 +505,7 @@
             this.roundScheduleButton.Location = new System.Drawing.Point(20, 68);
             this.roundScheduleButton.Name = "roundScheduleButton";
             this.roundScheduleButton.Size = new System.Drawing.Size(124, 33);
-            this.roundScheduleButton.TabIndex = 2;
+            this.roundScheduleButton.TabIndex = 18;
             this.roundScheduleButton.Text = "Eräaikataulu";
             this.roundScheduleButton.UseVisualStyleBackColor = true;
             this.roundScheduleButton.Click += new System.EventHandler(this.roundScheduleButton_Click);
@@ -513,7 +516,7 @@
             this.scoreInputViewButton.Location = new System.Drawing.Point(20, 117);
             this.scoreInputViewButton.Name = "scoreInputViewButton";
             this.scoreInputViewButton.Size = new System.Drawing.Size(124, 33);
-            this.scoreInputViewButton.TabIndex = 4;
+            this.scoreInputViewButton.TabIndex = 19;
             this.scoreInputViewButton.Text = "Tulosten kirjaus";
             this.scoreInputViewButton.UseVisualStyleBackColor = true;
             this.scoreInputViewButton.Click += new System.EventHandler(this.scoreInputViewButton_Click);
@@ -536,13 +539,13 @@
             this.avaaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.suljeSovellusToolStripMenuItem1});
             this.avaaToolStripMenuItem.Name = "avaaToolStripMenuItem";
-            this.avaaToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.avaaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.avaaToolStripMenuItem.Text = "Tiedosto";
             // 
             // suljeSovellusToolStripMenuItem1
             // 
             this.suljeSovellusToolStripMenuItem1.Name = "suljeSovellusToolStripMenuItem1";
-            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.suljeSovellusToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
             this.suljeSovellusToolStripMenuItem1.Text = "Sulje sovellus";
             this.suljeSovellusToolStripMenuItem1.Click += new System.EventHandler(this.suljeSovellusToolStripMenuItem1_Click);
             // 
@@ -554,27 +557,27 @@
             this.sarjatToolStripMenuItem,
             this.kilpailumuotoToolStripMenuItem});
             this.asetuksetToolStripMenuItem.Name = "asetuksetToolStripMenuItem";
-            this.asetuksetToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.asetuksetToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.asetuksetToolStripMenuItem.Text = "Asetukset";
             // 
             // joukkueetToolStripMenuItem
             // 
             this.joukkueetToolStripMenuItem.Name = "joukkueetToolStripMenuItem";
-            this.joukkueetToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.joukkueetToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.joukkueetToolStripMenuItem.Text = "Joukkueet";
             this.joukkueetToolStripMenuItem.Click += new System.EventHandler(this.joukkueetToolStripMenuItem_Click);
             // 
             // seuratToolStripMenuItem
             // 
             this.seuratToolStripMenuItem.Name = "seuratToolStripMenuItem";
-            this.seuratToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.seuratToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.seuratToolStripMenuItem.Text = "Seurat";
             this.seuratToolStripMenuItem.Click += new System.EventHandler(this.seuratToolStripMenuItem_Click);
             // 
             // sarjatToolStripMenuItem
             // 
             this.sarjatToolStripMenuItem.Name = "sarjatToolStripMenuItem";
-            this.sarjatToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.sarjatToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.sarjatToolStripMenuItem.Text = "Sarjat";
             // 
             // kilpailumuotoToolStripMenuItem
@@ -583,19 +586,19 @@
             this.skeetToolStripMenuItem1,
             this.trapToolStripMenuItem1});
             this.kilpailumuotoToolStripMenuItem.Name = "kilpailumuotoToolStripMenuItem";
-            this.kilpailumuotoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.kilpailumuotoToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.kilpailumuotoToolStripMenuItem.Text = "Kilpailumuoto";
             // 
             // skeetToolStripMenuItem1
             // 
             this.skeetToolStripMenuItem1.Name = "skeetToolStripMenuItem1";
-            this.skeetToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.skeetToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.skeetToolStripMenuItem1.Text = "Skeet";
             // 
             // trapToolStripMenuItem1
             // 
             this.trapToolStripMenuItem1.Name = "trapToolStripMenuItem1";
-            this.trapToolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.trapToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.trapToolStripMenuItem1.Text = "Trap";
             // 
             // tulostuksetToolStripMenuItem
@@ -607,19 +610,19 @@
             this.tulostaTuloksetToolStripMenuItem,
             this.väliaikatuloksetToolStripMenuItem});
             this.tulostuksetToolStripMenuItem.Name = "tulostuksetToolStripMenuItem";
-            this.tulostuksetToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.tulostuksetToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.tulostuksetToolStripMenuItem.Text = "Tulostukset";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItem1.Text = "Kaikki tulostukset";
             // 
             // tulostaKaikkiSelkälaputToolStripMenuItem
             // 
             this.tulostaKaikkiSelkälaputToolStripMenuItem.Name = "tulostaKaikkiSelkälaputToolStripMenuItem";
-            this.tulostaKaikkiSelkälaputToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.tulostaKaikkiSelkälaputToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.tulostaKaikkiSelkälaputToolStripMenuItem.Text = "Tulosta kaikki selkälaput";
             // 
             // toolStripMenuItem2
@@ -628,13 +631,13 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItem2.Text = "Selkälaput";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(217, 22);
             this.toolStripMenuItem7.Text = "Tulosta kaikki selkälaput";
             // 
             // toolStripMenuItem8
@@ -642,13 +645,13 @@
             this.toolStripMenuItem8.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mattiMeikäläinenToolStripMenuItem});
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(217, 22);
             this.toolStripMenuItem8.Text = "Tulosta yksittäinen selkälappu";
             // 
             // mattiMeikäläinenToolStripMenuItem
             // 
             this.mattiMeikäläinenToolStripMenuItem.Name = "mattiMeikäläinenToolStripMenuItem";
-            this.mattiMeikäläinenToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.mattiMeikäläinenToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.mattiMeikäläinenToolStripMenuItem.Text = "1. Matti Meikäläinen";
             // 
             // tulostaTuloksetToolStripMenuItem
@@ -659,19 +662,19 @@
             this.sarjaYToolStripMenuItem,
             this.päivä2ToolStripMenuItem});
             this.tulostaTuloksetToolStripMenuItem.Name = "tulostaTuloksetToolStripMenuItem";
-            this.tulostaTuloksetToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.tulostaTuloksetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.tulostaTuloksetToolStripMenuItem.Text = "Ratapöytäkirjat";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(170, 22);
             this.toolStripMenuItem3.Text = "Tulosta kaikki päivät";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
             // 
             // sarjaYToolStripMenuItem
             // 
@@ -681,19 +684,19 @@
             this.rata1ToolStripMenuItem,
             this.rataNToolStripMenuItem});
             this.sarjaYToolStripMenuItem.Name = "sarjaYToolStripMenuItem";
-            this.sarjaYToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.sarjaYToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.sarjaYToolStripMenuItem.Text = "Päivä 1";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(176, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItem4.Text = "Tulosta kaikki radat";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
             // 
             // rata1ToolStripMenuItem
             // 
@@ -705,48 +708,48 @@
             this.erä3ToolStripMenuItem,
             this.eräNToolStripMenuItem});
             this.rata1ToolStripMenuItem.Name = "rata1ToolStripMenuItem";
-            this.rata1ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.rata1ToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.rata1ToolStripMenuItem.Text = "Rata 1";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(169, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(160, 22);
             this.toolStripMenuItem5.Text = "Tulosta kaikki erät";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
             // 
             // erä1ToolStripMenuItem
             // 
             this.erä1ToolStripMenuItem.Name = "erä1ToolStripMenuItem";
-            this.erä1ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.erä1ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.erä1ToolStripMenuItem.Text = "Erä 1";
             // 
             // erä2ToolStripMenuItem
             // 
             this.erä2ToolStripMenuItem.Name = "erä2ToolStripMenuItem";
-            this.erä2ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.erä2ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.erä2ToolStripMenuItem.Text = "Erä 2";
             // 
             // erä3ToolStripMenuItem
             // 
             this.erä3ToolStripMenuItem.Name = "erä3ToolStripMenuItem";
-            this.erä3ToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.erä3ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.erä3ToolStripMenuItem.Text = "Erä 3";
             // 
             // eräNToolStripMenuItem
             // 
             this.eräNToolStripMenuItem.Name = "eräNToolStripMenuItem";
-            this.eräNToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.eräNToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.eräNToolStripMenuItem.Text = "Erä n";
             // 
             // rataNToolStripMenuItem
             // 
             this.rataNToolStripMenuItem.Name = "rataNToolStripMenuItem";
-            this.rataNToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.rataNToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.rataNToolStripMenuItem.Text = "Rata n";
             // 
             // päivä2ToolStripMenuItem
@@ -754,13 +757,13 @@
             this.päivä2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rataNToolStripMenuItem1});
             this.päivä2ToolStripMenuItem.Name = "päivä2ToolStripMenuItem";
-            this.päivä2ToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.päivä2ToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.päivä2ToolStripMenuItem.Text = "Päivä 2";
             // 
             // rataNToolStripMenuItem1
             // 
             this.rataNToolStripMenuItem1.Name = "rataNToolStripMenuItem1";
-            this.rataNToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.rataNToolStripMenuItem1.Size = new System.Drawing.Size(106, 22);
             this.rataNToolStripMenuItem1.Text = "Rata n";
             // 
             // väliaikatuloksetToolStripMenuItem
@@ -771,30 +774,30 @@
             this.sarjaYToolStripMenuItem1,
             this.sarjaNToolStripMenuItem});
             this.väliaikatuloksetToolStripMenuItem.Name = "väliaikatuloksetToolStripMenuItem";
-            this.väliaikatuloksetToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.väliaikatuloksetToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.väliaikatuloksetToolStripMenuItem.Text = "Väliaikatulokset";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(168, 22);
             this.toolStripMenuItem6.Text = "Tulosta kaikki sarjat";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(174, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(165, 6);
             // 
             // sarjaYToolStripMenuItem1
             // 
             this.sarjaYToolStripMenuItem1.Name = "sarjaYToolStripMenuItem1";
-            this.sarjaYToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.sarjaYToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.sarjaYToolStripMenuItem1.Text = "Sarja Y";
             // 
             // sarjaNToolStripMenuItem
             // 
             this.sarjaNToolStripMenuItem.Name = "sarjaNToolStripMenuItem";
-            this.sarjaNToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.sarjaNToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sarjaNToolStripMenuItem.Text = "Sarja n";
             // 
             // ohjeToolStripMenuItem
@@ -802,13 +805,13 @@
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tietojaHauliTulospalvelustaToolStripMenuItem});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
-            this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
             // 
             // tietojaHauliTulospalvelustaToolStripMenuItem
             // 
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Name = "tietojaHauliTulospalvelustaToolStripMenuItem";
-            this.tietojaHauliTulospalvelustaToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.tietojaHauliTulospalvelustaToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Text = "Tietoja Hauli - tulospalvelusta";
             this.tietojaHauliTulospalvelustaToolStripMenuItem.Click += new System.EventHandler(this.tietojaHauliTulospalvelustaToolStripMenuItem_Click);
             // 
@@ -820,7 +823,7 @@
             this.groupBox3.Location = new System.Drawing.Point(335, 33);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(161, 161);
-            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Toiminnot";
             // 

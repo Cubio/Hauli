@@ -186,6 +186,7 @@
             this.saveSettings.TabIndex = 15;
             this.saveSettings.Text = "Tallenna";
             this.saveSettings.UseVisualStyleBackColor = true;
+            this.saveSettings.Click += new System.EventHandler(this.saveSettings_Click);
             // 
             // comboBox1
             // 
@@ -276,9 +277,12 @@
             this.day2Calendar.Enabled = false;
             this.day2Calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.day2Calendar.Location = new System.Drawing.Point(91, 39);
+            this.day2Calendar.MaxDate = new System.DateTime(2112, 12, 31, 0, 0, 0, 0);
+            this.day2Calendar.MinDate = new System.DateTime(2012, 6, 25, 0, 0, 0, 0);
             this.day2Calendar.Name = "day2Calendar";
             this.day2Calendar.Size = new System.Drawing.Size(115, 20);
             this.day2Calendar.TabIndex = 12;
+            this.day2Calendar.ValueChanged += new System.EventHandler(this.day2Calendar_ValueChanged);
             // 
             // day2min
             // 
@@ -382,9 +386,12 @@
             this.day1Calendar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.day1Calendar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.day1Calendar.Location = new System.Drawing.Point(91, 39);
+            this.day1Calendar.MaxDate = new System.DateTime(2112, 12, 31, 0, 0, 0, 0);
+            this.day1Calendar.MinDate = new System.DateTime(2012, 6, 25, 0, 0, 0, 0);
             this.day1Calendar.Name = "day1Calendar";
             this.day1Calendar.Size = new System.Drawing.Size(115, 20);
             this.day1Calendar.TabIndex = 7;
+            this.day1Calendar.ValueChanged += new System.EventHandler(this.day1Calendar_ValueChanged);
             // 
             // day1min
             // 

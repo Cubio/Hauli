@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AddContestGroupBox = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -101,6 +102,7 @@
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaHauliTulospalvelustaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -152,6 +154,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "15",
@@ -185,11 +188,13 @@
             this.saveSettings.Size = new System.Drawing.Size(75, 23);
             this.saveSettings.TabIndex = 15;
             this.saveSettings.Text = "Tallenna";
+            this.toolTip1.SetToolTip(this.saveSettings, "Tallenna kilpailutapahtuman tiedot");
             this.saveSettings.UseVisualStyleBackColor = true;
             this.saveSettings.Click += new System.EventHandler(this.saveSettings_Click);
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "1",
@@ -268,6 +273,7 @@
             this.activeDay2Selection.Size = new System.Drawing.Size(62, 17);
             this.activeDay2Selection.TabIndex = 11;
             this.activeDay2Selection.Text = "Päivä 2";
+            this.toolTip1.SetToolTip(this.activeDay2Selection, "Aktivoi jos kilpailu on kaksipäiväinen");
             this.activeDay2Selection.UseVisualStyleBackColor = true;
             this.activeDay2Selection.CheckedChanged += new System.EventHandler(this.activeDay2Selection_CheckedChanged);
             // 
@@ -286,10 +292,12 @@
             // 
             // day2min
             // 
+            this.day2min.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.day2min.Enabled = false;
             this.day2min.FormattingEnabled = true;
             this.day2min.Items.AddRange(new object[] {
             "00",
+            "05",
             "10",
             "15",
             "20",
@@ -307,6 +315,7 @@
             // 
             // day2h
             // 
+            this.day2h.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.day2h.Enabled = false;
             this.day2h.FormattingEnabled = true;
             this.day2h.Items.AddRange(new object[] {
@@ -395,9 +404,11 @@
             // 
             // day1min
             // 
+            this.day1min.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.day1min.FormattingEnabled = true;
             this.day1min.Items.AddRange(new object[] {
             "00",
+            "05",
             "10",
             "15",
             "20",
@@ -416,6 +427,7 @@
             // 
             // day1h
             // 
+            this.day1h.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.day1h.FormattingEnabled = true;
             this.day1h.Items.AddRange(new object[] {
             "1",
@@ -503,6 +515,7 @@
             this.contestantListButton.Size = new System.Drawing.Size(124, 33);
             this.contestantListButton.TabIndex = 17;
             this.contestantListButton.Text = "Osallistujaluettelo";
+            this.toolTip1.SetToolTip(this.contestantListButton, "Siirry lisäämään kilpailijoita");
             this.contestantListButton.UseVisualStyleBackColor = true;
             this.contestantListButton.Click += new System.EventHandler(this.contestantListButton_Click);
             // 
@@ -514,6 +527,7 @@
             this.roundScheduleButton.Size = new System.Drawing.Size(124, 33);
             this.roundScheduleButton.TabIndex = 18;
             this.roundScheduleButton.Text = "Eräaikataulu";
+            this.toolTip1.SetToolTip(this.roundScheduleButton, "Siirry muodostamaan kilpailun aikataulu");
             this.roundScheduleButton.UseVisualStyleBackColor = true;
             this.roundScheduleButton.Click += new System.EventHandler(this.roundScheduleButton_Click);
             // 
@@ -525,6 +539,7 @@
             this.scoreInputViewButton.Size = new System.Drawing.Size(124, 33);
             this.scoreInputViewButton.TabIndex = 19;
             this.scoreInputViewButton.Text = "Tulosten kirjaus";
+            this.toolTip1.SetToolTip(this.scoreInputViewButton, "Siirry kirjaamaan kilpailijoiden tuloksia");
             this.scoreInputViewButton.UseVisualStyleBackColor = true;
             this.scoreInputViewButton.Click += new System.EventHandler(this.scoreInputViewButton_Click);
             // 
@@ -834,6 +849,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Toiminnot";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 1000;
+            this.toolTip1.AutoPopDelay = 10000;
+            this.toolTip1.InitialDelay = 1000;
+            this.toolTip1.ReshowDelay = 300;
+            // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -935,6 +957,7 @@
         private System.Windows.Forms.ToolStripMenuItem kilpailumuotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skeetToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem trapToolStripMenuItem1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

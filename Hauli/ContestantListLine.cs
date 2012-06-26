@@ -120,8 +120,8 @@ namespace Hauli
 
         public string LastName
         {
-            get { return null; }
-            set {}
+            get { return name; }
+            set { name = value; }
         }
 
         public string FullName

@@ -12,7 +12,6 @@ namespace Hauli
     public partial class ContestantRowEditForm : Form
     {
         private Contestant contestant;
-        private Contestant updatedContestant;
         private ContestantListForm clf;
 
         public ContestantRowEditForm(ContestantListForm f, Contestant c)

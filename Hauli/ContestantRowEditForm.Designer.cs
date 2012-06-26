@@ -56,7 +56,7 @@
             this.sarjaComboBox.FormattingEnabled = true;
             this.sarjaComboBox.Location = new System.Drawing.Point(68, 109);
             this.sarjaComboBox.Name = "sarjaComboBox";
-            this.sarjaComboBox.Size = new System.Drawing.Size(135, 21);
+            this.sarjaComboBox.Size = new System.Drawing.Size(43, 21);
             this.sarjaComboBox.TabIndex = 16;
             // 
             // seuraComboBox

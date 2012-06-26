@@ -51,7 +51,7 @@ namespace Hauli
             {
                 this.day2min.Enabled = true;
                 this.day2h.Enabled = true;
-                this.day2Calendar.Enabled = true;
+                this.day2Calendar.Enabled = true;               
             }
             else
             {
@@ -90,6 +90,40 @@ namespace Hauli
         private void seuratToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new SeriesListForm(dbHandler).ShowDialog();
+        }
+
+        private void day1min_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void day1Calendar_ValueChanged(object sender, EventArgs e)
+        {
+                day1Calendar.MinDate = DateTime.Now;
+                day2Calendar.Value = day1Calendar.Value.AddDays(1);
+        }
+
+        private void day2Calendar_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void saveSettings_Click(object sender, EventArgs e)
+        {
+            if (activeDay2Selection.Checked == true)
+            {
+                if (day2Calendar.Value <= day1Calendar.Value)
+                {
+                    DateErrorMessageBox();
+                }
+                else { }
+            }
+            else { }
+        }
+
+        private void DateErrorMessageBox()
+        {
+            MessageBox.Show("Tarkista päivän 2 päivämäärä!");
         }
     }
 }

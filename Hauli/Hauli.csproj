@@ -177,7 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HauliDB.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\editIcon.png" />
   </ItemGroup>

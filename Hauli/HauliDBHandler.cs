@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Hauli
 {
@@ -30,32 +31,48 @@ namespace Hauli
         internal void addFile(List<string[]> lines)
         {
             String lyhenne;
-            String nimi;
+            String seura;
             String alue;
-            String idNumber;
+            int idNumber;
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
             try
             {
 
-               // SqlCeCommand command = new SqlCeCommand();
-               // command.Connection = _connection;
 
                 for (int i = 0; i < lines.Count; i++)
                 {
                     lyhenne = lines[i][0];
-                    nimi = lines[i][1];
+                    seura = lines[i][1];
                     alue = lines[i][2];
 
                     idNumber = generateId("Seura");
 
-                   // _connection.Open();
-                   // command.CommandText = "SELECT * FORM @taulu WHERE SeuraID = @randomID";
-                  //  command.Parameters.AddWithValue("@taulu", taulu);
+                    Console.WriteLine("NRO:" + idNumber);
 
-                  //  command.ExecuteNonQuery();
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                   // string Sql = String.Format(@" SELECT * FROM {0} WHERE seuraID = @numero", "Seura");
+                    //cmd = new SqlCeCommand(Sql, con);
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+
+                    cmd.Parameters.AddWithValue("idNumero", idNumber);
+                    cmd.Parameters.AddWithValue("seura", seura);
+                    cmd.Parameters.AddWithValue("lyhenne", lyhenne);
+                    cmd.Parameters.AddWithValue("alue", alue);
+
+                    cmd.ExecuteNonQuery();
+
+                    //Console.WriteLine("RIVAREITA:" + RowsAffected);
+
+
                 }
 
-               // _connection.Close();
-
 
             }
             catch (SqlCeException e)
@@ -63,56 +80,73 @@ namespace Hauli
                 //ShowErrors(e);
                 Console.WriteLine(e.Message);
             }
-            
-
-
-
-
-
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
         }
 
-        private string generateId(String taulu)
+        private int generateId(String taulu)
         {
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
             bool ok = false;
             Random random = new Random();
-            int id = 0;
-            id = random.Next(10000, 99999);
+            int idNro = 0;
+            idNro = random.Next(10000, 99999);
 
-            try
+         
+            // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
+            do
             {
-                SqlCeCommand command = new SqlCeCommand();
-                command.Connection = _connection;
-                command.CommandText = "SELECT * FORM @taulu WHERE SeuraID = @randomID";
-                command.Parameters.AddWithValue("@taulu", taulu);
-                _connection.Open();
 
-                SqlCeDataReader reader = command.ExecuteReader();
-                StringBuilder line = new StringBuilder();
-                List<string> resultSet = new List<string>();
-
-                do
+            SqlCeConnection con =_connection;
+                try
                 {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
 
 
-                    Console.WriteLine(reader.GetString(0));
+                    string Sql = String.Format(@" SELECT * FROM {0} WHERE seuraID = @numero", taulu);
+                    cmd = new SqlCeCommand(Sql, con);
 
+                    //2 tapa muodostaa yhteys niin että korvataan taulunnimi. Työläs ja hidas tapa.
+                    //cmd = new SqlCeCommand("SELECT * FROM _#table#_ WHERE seuraID = @numero ", con);
+                    //cmd.CommandText = cmd.CommandText.Replace("_#table#_", taulu);
+                    cmd.Parameters.AddWithValue("numero", idNro);
+                    
 
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        Console.WriteLine(rdr.GetString(1));
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(e);
+                    Console.WriteLine("VIRHEILMOITUS"); 
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
 
-                    //if (!idList.Contains(id.ToString()))
-                        ok = true;
-                  //  else
-                   //     id = random.Next(10000, 99999);
-                } while (!ok);
+            } while (!ok);
+            
 
-                reader.Close();
-                _connection.Close();
-            }
-            catch (SqlCeException e)
-            {
-                //ShowErrors(e);
-                Console.WriteLine(e.Message);
-            }
-            return id.ToString();
+            return idNro;
         }
 
     }

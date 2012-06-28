@@ -76,6 +76,7 @@
     <Compile Include="AboutHauli.Designer.cs">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
+    <Compile Include="HauliExtension.cs" />
     <Compile Include="ContestantListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,7 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HauliDB.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\editIcon.png" />
     <Content Include="Resources\move.cur">

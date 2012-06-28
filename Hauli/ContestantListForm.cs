@@ -13,7 +13,7 @@ namespace Hauli
 {
     public partial class ContestantListForm : Form
     {
-        private readonly int MaximumRoundSize = 10;
+        private readonly int MaximumRoundSize = 6;
         private HauliDBHandler dbHandler;
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;

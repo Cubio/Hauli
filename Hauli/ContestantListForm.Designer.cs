@@ -130,6 +130,7 @@
             this.objectListView1.Size = new System.Drawing.Size(493, 570);
             this.objectListView1.SmallImageList = this.imageList1;
             this.objectListView1.TabIndex = 4;
+            this.objectListView1.TabStop = false;
             this.objectListView1.UseAlternatingBackColors = true;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.UseOverlays = false;
@@ -359,6 +360,7 @@
             this.addNewRoundButton.Name = "addNewRoundButton";
             this.addNewRoundButton.Size = new System.Drawing.Size(173, 23);
             this.addNewRoundButton.TabIndex = 14;
+            this.addNewRoundButton.TabStop = false;
             this.addNewRoundButton.Text = "Lisää erä";
             this.addNewRoundButton.UseVisualStyleBackColor = true;
             this.addNewRoundButton.Click += new System.EventHandler(this.addNewRoundButton_Click);
@@ -369,6 +371,7 @@
             this.addEmptyRowButton.Name = "addEmptyRowButton";
             this.addEmptyRowButton.Size = new System.Drawing.Size(173, 23);
             this.addEmptyRowButton.TabIndex = 13;
+            this.addEmptyRowButton.TabStop = false;
             this.addEmptyRowButton.Text = "Lisää jälki-ilmoittautumispaikka";
             this.addEmptyRowButton.UseVisualStyleBackColor = true;
             this.addEmptyRowButton.Click += new System.EventHandler(this.addEmptyRowButton_Click);
@@ -379,6 +382,7 @@
             this.addEmptyRowsButton.Name = "addEmptyRowsButton";
             this.addEmptyRowsButton.Size = new System.Drawing.Size(173, 37);
             this.addEmptyRowsButton.TabIndex = 9;
+            this.addEmptyRowsButton.TabStop = false;
             this.addEmptyRowsButton.Text = "Täytä vajaat erät jälki-ilmoittautumispaikoilla";
             this.addEmptyRowsButton.UseVisualStyleBackColor = true;
             this.addEmptyRowsButton.Click += new System.EventHandler(this.addEmptyRowsButton_Click);
@@ -389,6 +393,7 @@
             this.evenOutRounds.Name = "evenOutRounds";
             this.evenOutRounds.Size = new System.Drawing.Size(173, 23);
             this.evenOutRounds.TabIndex = 8;
+            this.evenOutRounds.TabStop = false;
             this.evenOutRounds.Text = "Tasaa erät";
             this.evenOutRounds.UseVisualStyleBackColor = true;
             this.evenOutRounds.Click += new System.EventHandler(this.evenOutRounds_Click);
@@ -399,6 +404,7 @@
             this.mixListOrderButton.Name = "mixListOrderButton";
             this.mixListOrderButton.Size = new System.Drawing.Size(173, 24);
             this.mixListOrderButton.TabIndex = 7;
+            this.mixListOrderButton.TabStop = false;
             this.mixListOrderButton.Text = "Sekoita järjestys";
             this.mixListOrderButton.UseVisualStyleBackColor = true;
             this.mixListOrderButton.Click += new System.EventHandler(this.mixListOrderButton_Click);
@@ -422,6 +428,7 @@
             this.importContestantsButton.Name = "importContestantsButton";
             this.importContestantsButton.Size = new System.Drawing.Size(97, 23);
             this.importContestantsButton.TabIndex = 12;
+            this.importContestantsButton.TabStop = false;
             this.importContestantsButton.Text = "Lisää";
             this.importContestantsButton.UseVisualStyleBackColor = true;
             this.importContestantsButton.Click += new System.EventHandler(this.importContestantsButton_Click);
@@ -432,6 +439,7 @@
             this.openPathButton.Name = "openPathButton";
             this.openPathButton.Size = new System.Drawing.Size(34, 23);
             this.openPathButton.TabIndex = 11;
+            this.openPathButton.TabStop = false;
             this.openPathButton.Text = "...";
             this.openPathButton.UseVisualStyleBackColor = true;
             this.openPathButton.Click += new System.EventHandler(this.openPathButton_Click);
@@ -442,6 +450,7 @@
             this.importFilePathTextBox.Name = "importFilePathTextBox";
             this.importFilePathTextBox.Size = new System.Drawing.Size(162, 20);
             this.importFilePathTextBox.TabIndex = 10;
+            this.importFilePathTextBox.TabStop = false;
             // 
             // saveButton
             // 
@@ -449,6 +458,7 @@
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 15;
+            this.saveButton.TabStop = false;
             this.saveButton.Text = "Tallenna";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -460,6 +470,7 @@
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 14;
+            this.closeButton.TabStop = false;
             this.closeButton.Text = "Sulje";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -550,6 +561,7 @@
             // 
             // ContestantListForm
             // 
+            this.AcceptButton = this.addContestantButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 643);

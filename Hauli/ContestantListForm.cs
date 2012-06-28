@@ -13,6 +13,7 @@ namespace Hauli
 {
     public partial class ContestantListForm : Form
     {
+        private readonly int MaximumRoundSize = 10;
         private HauliDBHandler dbHandler;
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;
@@ -265,7 +266,14 @@ namespace Hauli
         private void deleteLine(ListViewItem item)
         {
             DialogResult result;
-            result = MessageBox.Show("Haluatko varmasti poistaa osallistujan?", "Hauli", MessageBoxButtons.YesNo);
+            string message;
+
+            if (item.SubItems[0].Text.Contains("round"))
+                message = "Haluatko varmasti poistaa erän?\nErän osallistujat liitetään edelliseen erään";
+            else
+                message = "Haluatko varmasti poistaa osallistujan?";
+
+            result = MessageBox.Show(message, "Hauli", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -298,10 +306,17 @@ namespace Hauli
         private void refreshContestantListView()
         {
             Console.WriteLine("refreshContestantListView");
+                
+            int topItemIndex = objectListView1.TopItemIndex;
 
             objectListView1.SetObjects(contestantList);
             countRoundSizes();
             objectListView1.SetObjects(contestantList);
+
+            if (topItemIndex >= 0 && topItemIndex < objectListView1.Items.Count)
+                objectListView1.TopItem = objectListView1.Items[topItemIndex];
+            else
+                objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
         }
 
         private void objectListView1_FormatRow(object sender, FormatRowEventArgs e)
@@ -380,7 +395,7 @@ namespace Hauli
             {
                 if (row.SubItems[0].Text.Contains("round"))
                 {
-                    row.SubItems[2].Text = "Erä " + round + " (" + roundContestantCounts[round - 1] + "/6)";
+                    row.SubItems[2].Text = "Erä " + round + " (" + roundContestantCounts[round - 1] + "/" + MaximumRoundSize + ")";
                     round++;
                 }
             }
@@ -388,7 +403,7 @@ namespace Hauli
             for (int i = 0; i < roundDividerIndices.Count; i++)
             {
                 contestantList[roundDividerIndices[i]].FullName = "Erä " + (i + 1).ToString() +
-                " (" + roundContestantCounts[i] + "/6)";
+                " (" + roundContestantCounts[i] + "/" + MaximumRoundSize + ")";
             }
 
             nameColumn.ImageGetter = delegate(object row)
@@ -399,7 +414,7 @@ namespace Hauli
 
                     string[] id = ((ContestantListLine)row).Id.Split(';');
 
-                    if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > 6)
+                    if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > MaximumRoundSize)
                     {
                         return 4;
                     }
@@ -450,7 +465,7 @@ namespace Hauli
 
             if (firstNameTextBox.Text.Trim() != "" && lastNameTextBox.Text.Trim() != "" && seuraComboBox.Text.Trim() != "")
             {
-                if (roundContestantCounts[roundContestantCounts.Count - 1] >= 6)
+                if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
                     addNewRound();
 
                 contestantList.Add(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
@@ -461,6 +476,7 @@ namespace Hauli
                 lastNameTextBox.Clear();
                 seuraComboBox.Text = "";
                 joukkueComboBox.Text = "";
+                objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
             }
             else
             {
@@ -564,7 +580,7 @@ namespace Hauli
         {
             List<ContestantListLine> newList = new List<ContestantListLine>();
             bool done = false;
-            int index = 7;
+            int index = MaximumRoundSize + 1;
 
             foreach (ListViewItem row in objectListView1.Items)
             {
@@ -591,9 +607,9 @@ namespace Hauli
             {
                 if (newList.Count > index)
                 {
-                    double roundNumber = Math.Ceiling((double)newList.Count / 7);
+                    double roundNumber = Math.Ceiling((double)newList.Count / (MaximumRoundSize+1));
                     newList.Insert(index, new RoundDivider("roundCold;" + roundNumber.ToString(), "Erä"));
-                    index += 7;
+                    index += (MaximumRoundSize + 1);
                 }
                 else
                     done = true;
@@ -665,7 +681,7 @@ namespace Hauli
             if (e.Item.SubItems[0].Text.Contains("round"))
             {
                 string[] id = e.Item.SubItems[0].Text.Split(';');
-                if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > 6)
+                if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > MaximumRoundSize)
                 {
                     e.Title = "Varoitus";
                     e.StandardIcon = ToolTipControl.StandardIcons.Warning;
@@ -688,11 +704,13 @@ namespace Hauli
 
         private void addEmptyRowButton_Click(object sender, EventArgs e)
         {
-            if (roundContestantCounts[roundContestantCounts.Count - 1] >= 6)
+            if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
                 addNewRound();
 
             contestantList.Add(new Contestant(generateId(), "", "", "", "", ""));
             refreshContestantListView();
+
+            objectListView1.EnsureVisible(objectListView1.Items.Count-1);
         }
 
         private void addEmptyRowsButton_Click(object sender, EventArgs e)
@@ -700,9 +718,9 @@ namespace Hauli
 
             for (int i = 0; i < roundContestantCounts.Count; i++)
             {
-                if (roundContestantCounts[i] < 6)
+                if (roundContestantCounts[i] < MaximumRoundSize)
                 {
-                    int emptySlots = 6 - roundContestantCounts[i];
+                    int emptySlots = MaximumRoundSize - roundContestantCounts[i];
 
                     while (emptySlots > 0)
                     {
@@ -714,17 +732,16 @@ namespace Hauli
                         emptySlots--;
                     }
                     updateDividerIndicesAndContestantCounts();
-                }
-
-                refreshContestantListView();
+                }                
             }
-
+            refreshContestantListView();
         }
 
         private void addNewRoundButton_Click(object sender, EventArgs e)
         {
             addNewRound();
             refreshContestantListView();
+            objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
         }
 
         private void objectListView1_CellRightClick(object sender, CellRightClickEventArgs e)

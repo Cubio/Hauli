@@ -89,6 +89,7 @@
     <Compile Include="ContestantRowEditForm.Designer.cs">
       <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="eräKierrosListLine_2.cs" />
     <Compile Include="HauliDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -155,6 +156,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="HauliDBDataSet.xsc">
       <DependentUpon>HauliDBDataSet.xsd</DependentUpon>
     </None>

@@ -242,6 +242,51 @@ namespace Hauli
             }
         }
 
+        internal void setContestant(List<ContestantListLine> contestantList) 
+        {
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                for (int i = 0; i < contestantList.Count; i++)
+                {
+
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlCeException e)
+            {
+                //ShowErrors(e);
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+
+
+
+
+        }
+
+
+
         internal void setSeura(List<SeuraListLine> seuraList)
         {
 

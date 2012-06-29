@@ -199,13 +199,15 @@ namespace Hauli
         private void Close_Click(object sender, EventArgs e)
         {
 
-            var result = seuraList.Except(seuraListOrginal);
+            // var result = seuraList.Except(seuraListOrginal);
 
+            IEnumerable<SeuraListLine> result = seuraList.Except(seuraList);
 
+            Console.WriteLine("TEA: " + result);
 
          //   bool result = seuraList.Equals(seuraListOrginal);
-           Console.WriteLine("ONKO: " + result);
-
+            foreach (var seura in result)
+               Console.WriteLine(seura.Lyhenne + " " + seura.Id);
             
 
 

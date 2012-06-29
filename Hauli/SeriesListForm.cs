@@ -198,8 +198,13 @@ namespace Hauli
 
         private void Close_Click(object sender, EventArgs e)
         {
-            bool result = seuraList.Equals(seuraListOrginal);
-            Console.WriteLine("ONKO: " + result);
+
+            var result = seuraList.Except(seuraListOrginal);
+
+
+
+         //   bool result = seuraList.Equals(seuraListOrginal);
+           Console.WriteLine("ONKO: " + result);
 
             
 

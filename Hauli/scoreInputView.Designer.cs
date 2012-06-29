@@ -33,7 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.EräComboBox = new System.Windows.Forms.ComboBox();
             this.scoreNormal = new BrightIdeasSoftware.ObjectListView();
             this.nro = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -52,7 +52,7 @@
             this.scoreFinal25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.solvingFinal = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.sarjaComboBox = new System.Windows.Forms.ComboBox();
             this.scores = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -108,14 +108,14 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.EräComboBox);
             this.groupBox1.Controls.Add(this.scoreNormal);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(574, 257);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Kilpailupisteytys";
+            this.groupBox1.Text = "Kilpailun pisteytys";
             // 
             // label1
             // 
@@ -126,13 +126,13 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Erä";
             // 
-            // comboBox1
+            // EräComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.EräComboBox.FormattingEnabled = true;
+            this.EräComboBox.Location = new System.Drawing.Point(6, 30);
+            this.EräComboBox.Name = "EräComboBox";
+            this.EräComboBox.Size = new System.Drawing.Size(121, 21);
+            this.EräComboBox.TabIndex = 2;
             // 
             // scoreNormal
             // 
@@ -203,13 +203,13 @@
             // 
             this.groupBox2.Controls.Add(this.ScoreFinal);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.sarjaComboBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 288);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(574, 254);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Finaalipisteytys";
+            this.groupBox2.Text = "Finaalin pisteytys";
             // 
             // ScoreFinal
             // 
@@ -261,13 +261,13 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Sarja";
             // 
-            // comboBox3
+            // sarjaComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(6, 30);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 2;
+            this.sarjaComboBox.FormattingEnabled = true;
+            this.sarjaComboBox.Location = new System.Drawing.Point(6, 30);
+            this.sarjaComboBox.Name = "sarjaComboBox";
+            this.sarjaComboBox.Size = new System.Drawing.Size(121, 21);
+            this.sarjaComboBox.TabIndex = 2;
             // 
             // scores
             // 
@@ -299,13 +299,13 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // scoreInputView
+            // ScoreInputView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 607);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "scoreInputView";
+            this.Name = "ScoreInputView";
             this.Text = "scoreInputView";
             this.Load += new System.EventHandler(this.scoreInputView_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -330,7 +330,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox EräComboBox;
         private BrightIdeasSoftware.ObjectListView scoreNormal;
         private BrightIdeasSoftware.OLVColumn nro;
         private BrightIdeasSoftware.OLVColumn name;
@@ -349,7 +349,7 @@
         private BrightIdeasSoftware.OLVColumn scoreFinal25;
         private BrightIdeasSoftware.OLVColumn solvingFinal;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox sarjaComboBox;
         private System.Windows.Forms.TabControl scores;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

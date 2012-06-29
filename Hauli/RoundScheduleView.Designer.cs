@@ -61,7 +61,7 @@
             this.tabControl1.Location = new System.Drawing.Point(171, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(388, 469);
+            this.tabControl1.Size = new System.Drawing.Size(669, 469);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -70,7 +70,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(380, 443);
+            this.tabPage1.Size = new System.Drawing.Size(661, 443);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Päivä 1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             this.RoundTable.Location = new System.Drawing.Point(6, 3);
             this.RoundTable.Name = "RoundTable";
             this.RoundTable.OwnerDraw = true;
-            this.RoundTable.Size = new System.Drawing.Size(367, 428);
+            this.RoundTable.Size = new System.Drawing.Size(650, 428);
             this.RoundTable.TabIndex = 0;
             this.RoundTable.UseCompatibleStateImageBehavior = false;
             this.RoundTable.UseTranslucentSelection = true;
@@ -214,7 +214,7 @@
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(487, 487);
+            this.closeButton.Location = new System.Drawing.Point(772, 492);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(68, 25);
             this.closeButton.TabIndex = 4;
@@ -226,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 529);
+            this.ClientSize = new System.Drawing.Size(852, 529);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.actionsGroup);
             this.Controls.Add(this.tabControl1);

@@ -30,6 +30,7 @@ namespace Hauli
             RearrangingDropSink dropsink = new RearrangingDropSink(true);
             dropsink.FeedbackColor = Color.Black;
             RoundTable.DropSink = dropsink;
+          //  dropsink.CanDropOnSubItem = true;
 
             eräKierrosList = new List<eräKierrosListLine>();
             eräKierrosList.Add(new Erä(/*generateId(), */"9:00", "Erä 1/1", "Erä 2/1", "Erä 3/1", "", "", ""));
@@ -99,15 +100,55 @@ namespace Hauli
             RoundTable.SetObjects(eräKierrosList);
         }
 
-        private void RoundTable_ItemDrag(Object sender, ItemDragEventArgs e)
+   /*     private void RoundTable_ItemDrag(Object sender, ItemDragEventArgs e)
         {
+        /*    Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
 
-        }
+            int x = cursor.X - RoundTable.Location.X - 2;
+            int y = cursor.Y - RoundTable.Location.Y - 2;
+
+            ListViewItem draggedItem = RoundTable.GetItemAt(x, y);
+            */
+      //  }  
 
         private void RoundTable_Dropped(object sender, OlvDropEventArgs e)
         {
             refreshEräKierrosListView();
-        }        
+        }
 
+
+        // Moves the insertion mark as the item is dragged.
+        private void RoundTable_DragOver(object sender, DragEventArgs e)
+        {
+            // Retrieve the client coordinates of the mouse pointer.
+            Point targetPoint =
+                RoundTable.PointToClient(new Point(e.X, e.Y));
+
+            // Retrieve the index of the item closest to the mouse pointer.
+            int targetIndex = RoundTable.InsertionMark.NearestIndex(targetPoint);
+
+            // Confirm that the mouse pointer is not over the dragged item.
+            if (targetIndex > -1)
+            {
+                // Determine whether the mouse pointer is to the left or
+                // the right of the midpoint of the closest item and set
+                // the InsertionMark.AppearsAfterItem property accordingly.
+                Rectangle itemBounds = RoundTable.GetItemRect(targetIndex);
+                if (targetPoint.X > itemBounds.Left + (itemBounds.Width / 2))
+                {
+                    RoundTable.InsertionMark.AppearsAfterItem = true;
+                }
+                else
+                {
+                    RoundTable.InsertionMark.AppearsAfterItem = false;
+                }
+            }
+
+            // Set the location of the insertion mark. If the mouse is
+            // over the dragged item, the targetIndex value is -1 and
+            // the insertion mark disappears.
+            RoundTable.InsertionMark.Index = targetIndex;
+        }
     }
 }

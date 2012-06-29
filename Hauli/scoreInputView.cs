@@ -16,7 +16,7 @@ namespace Hauli
             InitializeComponent();
 
 
-            //Laitetaan socers taulukkoon uusi välilehti
+            //Laitetaan scores taulukkoon uusi välilehti
             //Infoa: http://msdn.microsoft.com/en-us/library/system.windows.forms.tabcontrol.aspx
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.Text = "teeesti";

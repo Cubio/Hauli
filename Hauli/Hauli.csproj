@@ -76,6 +76,7 @@
     <Compile Include="AboutHauli.Designer.cs">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
+    <Compile Include="HauliExtension.cs" />
     <Compile Include="ContestantListForm.cs">
       <SubType>Form</SubType>
     </Compile>

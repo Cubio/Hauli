@@ -13,13 +13,14 @@ namespace Hauli
 {
     public partial class ContestantListForm : Form
     {
+        private readonly int MaximumRoundSize = 6;
         private HauliDBHandler dbHandler;
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;
         private List<string> sarjaList;
-        //private bool rowMoved = false;
         private Cursor moveHandCursor;
-        private List<int> roundContestantAmounts;
+        private List<int> roundContestantCounts;
+        private List<int> roundDividerIndices;
 
         public ContestantListForm(HauliDBHandler dbHandler)
         {
@@ -69,11 +70,11 @@ namespace Hauli
             RearrangingDropSink dropsink = new RearrangingDropSink(true);
             dropsink.FeedbackColor = Color.Black;
             objectListView1.DropSink = dropsink;
-            //objectListView1.ItemDrag += objectListView1_ItemDrag;
 
             contestantList = new List<ContestantListLine>();
-
+            
             contestantList.Add(new RoundDivider("roundCold;1", "Erä"));
+            
             contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
             contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
             contestantList.Add(new Contestant(generateId(), "Beppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
@@ -90,9 +91,8 @@ namespace Hauli
             contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
             contestantList.Add(new RoundDivider("roundCold;4", "Erä"));
             contestantList.Add(new Contestant(generateId(), "Zeppo", "Töppönen", "OSH", "Y", ""));
-
+            
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
-            //idColumn.AspectPutter = delegate(object x, object newValue) { ((ContestantListLine)x).Id = newValue.ToString(); };
 
             grabColumn.AspectGetter = delegate(object x) { return " "; };
 
@@ -131,15 +131,15 @@ namespace Hauli
 
             buttonColumn2.ImageGetter = delegate(object row)
             {
-                if (!((ContestantListLine)row).Id.Contains("round"))
+                string[] id = ((ContestantListLine)row).Id.Split(';');
+                if (!((ContestantListLine)row).Id.Contains("round") || (id[1] != "1"))
                     return 1;
                 else
-                    return null;
+                    return -1;
             };
             buttonColumn2.Tag = "buttonColumn2";
 
             refreshContestantListView();
-            countRoundSizes();
         }
 
         public List<string> GetSarjaList()
@@ -208,7 +208,7 @@ namespace Hauli
 
                     if (listIdColumnText[0] == "roundHot")
                     {
-                        Console.WriteLine("hot->cold");
+                        //Console.WriteLine("hot->cold");
 
                         foreach (ContestantListLine line in contestantList)
                         {
@@ -224,7 +224,7 @@ namespace Hauli
                     }
                     else if (listIdColumnText[0] == "roundCold")
                     {
-                        Console.WriteLine("cold->hot");
+                        //Console.WriteLine("cold->hot");
 
                         foreach (ContestantListLine line in contestantList)
                         {
@@ -255,7 +255,10 @@ namespace Hauli
                 }
                 else if (hitColumn.Tag.ToString() == "buttonColumn2")
                 {
-                    deleteLine(clickedItem);
+
+                    string[] id = clickedItem.SubItems[0].Text.Split(';');
+                    if (!(clickedItem.SubItems[0].Text.Contains("round")) || (id[1] != "1"))
+                        deleteLine(clickedItem);
                 }
             }
         }
@@ -263,7 +266,14 @@ namespace Hauli
         private void deleteLine(ListViewItem item)
         {
             DialogResult result;
-            result = MessageBox.Show("Haluatko varmasti poistaa osallistujan?", "Hauli", MessageBoxButtons.YesNo);
+            string message;
+
+            if (item.SubItems[0].Text.Contains("round"))
+                message = "Haluatko varmasti poistaa erän?\nErän osallistujat liitetään edelliseen erään";
+            else
+                message = "Haluatko varmasti poistaa osallistujan?";
+
+            result = MessageBox.Show(message, "Hauli", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -271,16 +281,42 @@ namespace Hauli
                     if (contestantList[i].Id == item.SubItems[0].Text.ToString())
                         contestantList.RemoveAt(i);
 
-                countRoundSizes();
+                if (item.SubItems[0].Text.Contains("round"))
+                    validateRoundDividerIDs();
+
                 refreshContestantListView();
+                countRoundSizes();
+            }
+        }
+
+        private void validateRoundDividerIDs()
+        {
+            int round = 1;
+            for (int i = 0; i < contestantList.Count; i++)
+            {
+                if (contestantList[i].Id.Contains("round"))
+                {
+                    string[] id = contestantList[i].Id.Split(';');
+                    contestantList[i].Id = id[0] + ";" + round;
+                    round++;
+                }
             }
         }
 
         private void refreshContestantListView()
         {
             Console.WriteLine("refreshContestantListView");
+                
+            int topItemIndex = objectListView1.TopItemIndex;
 
             objectListView1.SetObjects(contestantList);
+            countRoundSizes();
+            objectListView1.SetObjects(contestantList);
+
+            if (topItemIndex >= 0 && topItemIndex < objectListView1.Items.Count)
+                objectListView1.TopItem = objectListView1.Items[topItemIndex];
+            else
+                objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
         }
 
         private void objectListView1_FormatRow(object sender, FormatRowEventArgs e)
@@ -295,6 +331,26 @@ namespace Hauli
                         row.BackColor = Color.LightGray;
                     else if (row.SubItems[0].Text.Contains("roundHot"))
                         row.BackColor = Color.LightPink;
+                }
+
+                if (row.Index == 0 && !row.SubItems[0].Text.Contains("round"))
+                {
+                    for (int i = 0; i < objectListView1.Items.Count; i++)
+                    {
+                        if (objectListView1.Items[i].SubItems[0].Text.Contains("round"))
+                        {
+                            string[] id = objectListView1.Items[i].SubItems[0].Text.Split(';');
+
+                            if (id[1] == "1")
+                            {
+                                ListViewItem item = objectListView1.Items[i];
+                                objectListView1.Items.RemoveAt(i);
+                                objectListView1.Items.Insert(0, item);
+                                
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -331,50 +387,34 @@ namespace Hauli
         {
             Console.WriteLine("Count");
 
-            List<int> roundDividerIndices = new List<int>();
-            roundContestantAmounts = new List<int>();
             int round = 1;
 
-            for (int i = 0; i < contestantList.Count; i++)
-            {
-                if (contestantList[i].Id.Contains("round"))
-                    roundDividerIndices.Add(i + 1);
-            }
-
-            for (int i = 0; i < roundDividerIndices.Count; i++)
-            {
-                if (i != roundDividerIndices.Count - 1)
-                {
-                    roundContestantAmounts.Add((roundDividerIndices[i + 1] - roundDividerIndices[i]) - 1);
-                }
-                else
-                {
-                    roundContestantAmounts.Add(contestantList.Count - roundDividerIndices[i]);
-                }
-            }
+            updateDividerIndicesAndContestantCounts();
 
             foreach (ListViewItem row in objectListView1.Items)
             {
                 if (row.SubItems[0].Text.Contains("round"))
                 {
-                    row.SubItems[2].Text = "Erä " + round + " (" + roundContestantAmounts[round - 1] + "/6)";
+                    row.SubItems[2].Text = "Erä " + round + " (" + roundContestantCounts[round - 1] + "/" + MaximumRoundSize + ")";
                     round++;
                 }
             }
 
-
             for (int i = 0; i < roundDividerIndices.Count; i++)
             {
-                contestantList[roundDividerIndices[i] - 1].FullName = "Erä " + (i + 1).ToString() +
-                " (" + roundContestantAmounts[i] + "/6)";
+                contestantList[roundDividerIndices[i]].FullName = "Erä " + (i + 1).ToString() +
+                " (" + roundContestantCounts[i] + "/" + MaximumRoundSize + ")";
             }
 
             nameColumn.ImageGetter = delegate(object row)
             {
                 if (((ContestantListLine)row).Id.Contains("round"))
                 {
+                    updateDividerIndicesAndContestantCounts();
+
                     string[] id = ((ContestantListLine)row).Id.Split(';');
-                    if (roundContestantAmounts[Convert.ToInt32(id[1]) - 1] > 6)
+
+                    if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > MaximumRoundSize)
                     {
                         return 4;
                     }
@@ -382,6 +422,32 @@ namespace Hauli
 
                 return -1;
             };
+        }
+
+        private void updateDividerIndicesAndContestantCounts()
+        {
+            roundDividerIndices = new List<int>();
+            roundContestantCounts = new List<int>();
+
+            for (int i = 0; i < contestantList.Count; i++)
+            {
+                if (contestantList[i].Id.Contains("round"))
+                {
+                    roundDividerIndices.Add(i);
+                }
+            }
+
+            for (int i = 0; i < roundDividerIndices.Count; i++)
+            {
+                if (i != roundDividerIndices.Count - 1)
+                {
+                    roundContestantCounts.Add((roundDividerIndices[i + 1] - roundDividerIndices[i]) - 1);
+                }
+                else
+                {
+                    roundContestantCounts.Add(contestantList.Count - (roundDividerIndices[i] + 1));
+                }
+            }
         }
 
         private void openPathButton_Click(object sender, EventArgs e)
@@ -396,14 +462,36 @@ namespace Hauli
 
         private void addContestantButton_Click(object sender, EventArgs e)
         {
-            contestantList.Add(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
-            countRoundSizes();
-            refreshContestantListView();
 
-            firstNameTextBox.Clear();
-            lastNameTextBox.Clear();
-            seuraComboBox.Text = "";
-            joukkueComboBox.Text = "";
+            if (firstNameTextBox.Text.Trim() != "" && lastNameTextBox.Text.Trim() != "" && seuraComboBox.Text.Trim() != "")
+            {
+                if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
+                    addNewRound();
+
+                contestantList.Add(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
+
+                refreshContestantListView();
+
+                firstNameTextBox.Clear();
+                lastNameTextBox.Clear();
+                seuraComboBox.Text = "";
+                joukkueComboBox.Text = "";
+                objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
+            }
+            else
+            {
+                MessageBox.Show("Osallistujalla täytyy olla etunimi, sukunimi ja seura", "Varoitus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void addNewRound()
+        {
+            if (roundDividerIndices != null || roundDividerIndices.Count > 0)
+                contestantList.Add(new RoundDivider("roundCold;" + (roundDividerIndices.Count + 1).ToString(), "Erä"));
+            else
+                contestantList.Add(new RoundDivider("roundCold;1", "Erä"));
+
+            updateDividerIndicesAndContestantCounts();
         }
 
         private string generateId()
@@ -450,22 +538,86 @@ namespace Hauli
 
         private void mixListOrderButton_Click(object sender, EventArgs e)
         {
-            //todo
+            List<int> indexList = new List<int>();
+            List<ContestantListLine> newList = new List<ContestantListLine>();
+            int index = 0;
+            int newIndex = 0;
 
-            Console.WriteLine("Model:");
+            foreach (ContestantListLine line in contestantList)
+            {
+                if (!line.Id.Contains("round") && line.FullName.Trim() != "")
+                {
+                    indexList.Add(index);
+                }
+                index++;
+            }
 
-            for (int i = 0; i < contestantList.Count; i++)
-                Console.WriteLine(contestantList[i].FullName);
+            indexList.Shuffle();
 
-            Console.WriteLine("View:");
-            for (int i = 0; i < objectListView1.Items.Count; i++)
-                Console.WriteLine(objectListView1.Items[i].SubItems[2]);
+            index = 0;
+            newIndex = 0;
+
+            foreach (ContestantListLine line in contestantList)
+            {
+                if (line.Id.Contains("round") || line.FullName.Trim() == "")
+                {
+                    newList.Insert(index, contestantList[index]);
+                }
+                else
+                {
+                    newList.Insert(index, contestantList[indexList[newIndex]]);
+                    newIndex++;
+                    Console.Write(".");
+                }
+                index++;
+            }
+
+            contestantList = newList;
+            refreshContestantListView();
         }
-
 
         private void evenOutRounds_Click(object sender, EventArgs e)
         {
-            //todo
+            List<ContestantListLine> newList = new List<ContestantListLine>();
+            bool done = false;
+            int index = MaximumRoundSize + 1;
+
+            foreach (ListViewItem row in objectListView1.Items)
+            {
+                string[] id = row.SubItems[0].Text.Split(';');
+
+                if (!row.SubItems[0].Text.Contains("round") && row.SubItems[2].Text.Trim() != "")
+                {
+                    for (int i = 0; i < contestantList.Count; i++)
+                    {
+                        if (contestantList[i].Id.ToString() == row.SubItems[0].Text.ToString())
+                        {
+                            newList.Add(new Contestant(contestantList[i].Id, contestantList[i].FirstName, contestantList[i].LastName, contestantList[i].Seura, contestantList[i].Sarja, contestantList[i].Team));
+                            break;
+                        }
+                    }
+                }
+                else if (row.SubItems[0].Text.Contains("round") && id[1] == "1")
+                {
+                    newList.Add(new RoundDivider(row.SubItems[0].Text.ToString(), row.SubItems[2].Text.ToString()));
+                }
+            }
+
+            while (!done)
+            {
+                if (newList.Count > index)
+                {
+                    double roundNumber = Math.Ceiling((double)newList.Count / (MaximumRoundSize+1));
+                    newList.Insert(index, new RoundDivider("roundCold;" + roundNumber.ToString(), "Erä"));
+                    index += (MaximumRoundSize + 1);
+                }
+                else
+                    done = true;
+            }
+
+            contestantList = newList;
+            
+            refreshContestantListView();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -489,9 +641,8 @@ namespace Hauli
         private void objectListView1_Dropped(object sender, OlvDropEventArgs e)
         {
             Console.WriteLine("dropped");
-            countRoundSizes();
+
             updateModelList();
-            countRoundSizes();
             refreshContestantListView();
         }
 
@@ -530,13 +681,97 @@ namespace Hauli
             if (e.Item.SubItems[0].Text.Contains("round"))
             {
                 string[] id = e.Item.SubItems[0].Text.Split(';');
-                if (roundContestantAmounts[Convert.ToInt32(id[1]) - 1] > 6)
+                if (roundContestantCounts[Convert.ToInt32(id[1]) - 1] > MaximumRoundSize)
                 {
                     e.Title = "Varoitus";
                     e.StandardIcon = ToolTipControl.StandardIcons.Warning;
                     e.Text = "Erässä on liikaa kilpailijoita";
                 }
             }
+        }
+
+        private void objectListView1_FormatCell(object sender, FormatCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.SubItem.Text.Trim() == "")
+            {
+                TextDecoration decoration = new TextDecoration("Jälki-ilmoittautumispaikka", 200);
+                decoration.Alignment = ContentAlignment.MiddleLeft;
+                decoration.Font = new Font(this.Font.Name, this.Font.SizeInPoints + 1);
+                decoration.TextColor = Color.Gray;
+                e.SubItem.Decoration = decoration;
+            }
+        }
+
+        private void addEmptyRowButton_Click(object sender, EventArgs e)
+        {
+            if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
+                addNewRound();
+
+            contestantList.Add(new Contestant(generateId(), "", "", "", "", ""));
+            refreshContestantListView();
+
+            objectListView1.EnsureVisible(objectListView1.Items.Count-1);
+        }
+
+        private void addEmptyRowsButton_Click(object sender, EventArgs e)
+        {
+
+            for (int i = 0; i < roundContestantCounts.Count; i++)
+            {
+                if (roundContestantCounts[i] < MaximumRoundSize)
+                {
+                    int emptySlots = MaximumRoundSize - roundContestantCounts[i];
+
+                    while (emptySlots > 0)
+                    {
+                        if (i < roundDividerIndices.Count - 1)
+                            contestantList.Insert(roundDividerIndices[i + 1], new Contestant(generateId(), "", "", "", "", ""));
+                        else
+                            contestantList.Add(new Contestant(generateId(), "", "", "", "", ""));
+
+                        emptySlots--;
+                    }
+                    updateDividerIndicesAndContestantCounts();
+                }                
+            }
+            refreshContestantListView();
+        }
+
+        private void addNewRoundButton_Click(object sender, EventArgs e)
+        {
+            addNewRound();
+            refreshContestantListView();
+            objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
+        }
+
+        private void objectListView1_CellRightClick(object sender, CellRightClickEventArgs e)
+        {
+
+            if (e.Item.SubItems[0].Text.Contains("round"))
+            {
+                e.MenuStrip = roundDividerContextMenuStrip;
+            }
+            else
+            {
+                e.MenuStrip = contestantRowContextMenuStrip;
+            }
+        }
+
+        private void deleteContestantItem_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine("Model:");
+
+            //for (int i = 0; i < contestantList.Count; i++)
+            //    //Console.WriteLine(contestantList[i].FullName);
+
+            //Console.WriteLine("View:");
+            //for (int i = 0; i < objectListView1.Items.Count; i++)
+            //    //Console.WriteLine(objectListView1.Items[i].SubItems[2]);
         }
     }
 }

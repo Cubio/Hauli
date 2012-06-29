@@ -33,24 +33,26 @@ namespace Hauli
             seuraComboBox.Text = contestant.Seura;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void okButton_Click(object sender, EventArgs e)
         {
+            if (firstNameTextBox.Text.Trim() != "" && lastNameTextBox.Text.Trim() != "" && seuraComboBox.Text.Trim() != "" && sarjaComboBox.Text.Trim() != "")
+            {
+                
+                contestant.FirstName = firstNameTextBox.Text;
+                contestant.LastName = lastNameTextBox.Text;
+                contestant.FullName = firstNameTextBox.Text + " " + lastNameTextBox.Text;
+                contestant.Team = joukkueComboBox.Text;
+                contestant.Sarja = sarjaComboBox.Text;
+                contestant.Seura = seuraComboBox.Text;
 
-            Console.WriteLine("Click: " + firstNameTextBox.Text + " " + lastNameTextBox.Text);
+                clf.UpdateContestantLine(contestant);
 
-            contestant.FirstName = firstNameTextBox.Text;
-            contestant.LastName = lastNameTextBox.Text;
-            contestant.FullName = firstNameTextBox.Text + " " + lastNameTextBox.Text;
-
-            Console.WriteLine("Click 2: " + contestant.FirstName + " " + contestant.LastName + " " + contestant.FullName);
-
-            contestant.Team = joukkueComboBox.Text;
-            contestant.Sarja = sarjaComboBox.Text;
-            contestant.Seura = seuraComboBox.Text;
-
-            clf.UpdateContestantLine(contestant);
-
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Osallistujalla täytyy olla etunimi, sukunimi, seura ja sarja", "Varoitus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

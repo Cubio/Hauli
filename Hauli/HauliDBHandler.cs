@@ -12,6 +12,7 @@ namespace Hauli
     public class HauliDBHandler
     {
         private SqlCeConnection _connection;
+        
 
         public HauliDBHandler()
         {
@@ -90,7 +91,68 @@ namespace Hauli
             }
         }
 
-        private int generateId(String taulu)
+
+
+
+        public List<SeuraListLine> getSeuraList()
+        {
+            List<SeuraListLine> seuraList;
+            seuraList = new List<SeuraListLine>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
+            do
+            {
+
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+
+                    string Sql = String.Format(" SELECT * FROM Seura");
+                    cmd = new SqlCeCommand(Sql, con);
+
+
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        seuraList.Add(new Seura( rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3) ));
+
+                        Console.WriteLine(rdr.GetInt32(0));
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return seuraList;
+        }
+
+
+
+
+        // Palauttaa ID numeron, jota ei ole olemassa kyseisessä taulussa.
+        public int generateId(String taulu)
         {
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
@@ -149,5 +211,94 @@ namespace Hauli
             return idNro;
         }
 
+        public void delDBTable(String taulu)
+        {
+
+
+            SqlCeCommand cmd = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" DELETE FROM {0}", taulu);
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlCeException e)
+            {
+                //ShowErrors(e);
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+        }
+
+        internal void setSeura(List<SeuraListLine> seuraList)
+        {
+
+
+            String lyhenne;
+            String seura;
+            String alue;
+            int idNumber;
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+
+
+                for (int i = 0; i < seuraList.Count; i++)
+                {
+                    idNumber = seuraList[i].Id;
+                    lyhenne = seuraList[i].Lyhenne;
+                    seura = seuraList[i].KokoNimi;
+                    alue = seuraList[i].Alue;
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+
+                    cmd.Parameters.AddWithValue("idNumero", idNumber);
+                    cmd.Parameters.AddWithValue("seura", seura);
+                    cmd.Parameters.AddWithValue("lyhenne", lyhenne);
+                    cmd.Parameters.AddWithValue("alue", alue);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlCeException e)
+            {
+                //ShowErrors(e);
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+
+
+        }
     }
+
+
+    
 }

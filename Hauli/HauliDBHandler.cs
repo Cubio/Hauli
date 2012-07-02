@@ -122,8 +122,6 @@ namespace Hauli
                     while (rdr.Read())
                     {
                         seuraList.Add(new Seura( rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3) ));
-
-                        Console.WriteLine(rdr.GetInt32(0));
                     }
                 }
                 catch (SqlCeException ex)

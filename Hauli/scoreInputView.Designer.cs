@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ScoringCloseButton = new System.Windows.Forms.Button();
+            this.ScoringSaveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.EräComboBox = new System.Windows.Forms.ComboBox();
@@ -75,8 +75,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.ScoringCloseButton);
+            this.splitContainer1.Panel1.Controls.Add(this.ScoringSaveButton);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             // 
@@ -87,23 +87,23 @@
             this.splitContainer1.SplitterDistance = 597;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button2
+            // ScoringCloseButton
             // 
-            this.button2.Location = new System.Drawing.Point(18, 564);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Peruuta";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ScoringCloseButton.Location = new System.Drawing.Point(511, 561);
+            this.ScoringCloseButton.Name = "ScoringCloseButton";
+            this.ScoringCloseButton.Size = new System.Drawing.Size(75, 23);
+            this.ScoringCloseButton.TabIndex = 7;
+            this.ScoringCloseButton.Text = "Sulje";
+            this.ScoringCloseButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ScoringSaveButton
             // 
-            this.button1.Location = new System.Drawing.Point(501, 564);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Tallenna";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ScoringSaveButton.Location = new System.Drawing.Point(430, 561);
+            this.ScoringSaveButton.Name = "ScoringSaveButton";
+            this.ScoringSaveButton.Size = new System.Drawing.Size(75, 23);
+            this.ScoringSaveButton.TabIndex = 6;
+            this.ScoringSaveButton.Text = "Tallenna";
+            this.ScoringSaveButton.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -218,12 +218,16 @@
             this.ScoreFinal.AllColumns.Add(this.lastnameFinal);
             this.ScoreFinal.AllColumns.Add(this.scoreFinal25);
             this.ScoreFinal.AllColumns.Add(this.solvingFinal);
+            this.ScoreFinal.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.SingleClick;
+            this.ScoreFinal.CellEditEnterChangesRows = true;
+            this.ScoreFinal.CellEditTabChangesRows = true;
             this.ScoreFinal.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nroFinaali,
             this.nameFinal,
             this.lastnameFinal,
             this.scoreFinal25,
             this.solvingFinal});
+            this.ScoreFinal.GridLines = true;
             this.ScoreFinal.Location = new System.Drawing.Point(6, 57);
             this.ScoreFinal.Name = "ScoreFinal";
             this.ScoreFinal.Size = new System.Drawing.Size(558, 176);
@@ -233,20 +237,26 @@
             // 
             // nroFinaali
             // 
+            this.nroFinaali.IsEditable = false;
             this.nroFinaali.Text = "NroFinaali";
+            this.nroFinaali.Width = 69;
             // 
             // nameFinal
             // 
+            this.nameFinal.IsEditable = false;
             this.nameFinal.Text = "Nimi";
+            this.nameFinal.Width = 73;
             // 
             // lastnameFinal
             // 
+            this.lastnameFinal.IsEditable = false;
             this.lastnameFinal.Text = "Sukunimi";
+            this.lastnameFinal.Width = 90;
             // 
             // scoreFinal25
             // 
             this.scoreFinal25.Text = "Tulokset";
-            this.scoreFinal25.Width = 73;
+            this.scoreFinal25.Width = 59;
             // 
             // solvingFinal
             // 
@@ -326,8 +336,8 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ScoringCloseButton;
+        private System.Windows.Forms.Button ScoringSaveButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox EräComboBox;

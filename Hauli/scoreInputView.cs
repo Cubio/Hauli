@@ -11,11 +11,14 @@ namespace Hauli
 {
     public partial class ScoreInputView : Form
     {
-        public ScoreInputView()
+        private HauliDBHandler dbHandler;
+
+        public ScoreInputView(HauliDBHandler dbHandler)
         {
             InitializeComponent();
-
-
+            this.dbHandler = dbHandler;
+            dbHandler.LoadSarjaBox(sarjaComboBox);
+            
             //Laitetaan scores taulukkoon uusi välilehti
             //Infoa: http://msdn.microsoft.com/en-us/library/system.windows.forms.tabcontrol.aspx
             tabPage1 = new System.Windows.Forms.TabPage();

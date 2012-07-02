@@ -8,7 +8,6 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.SqlServerCe;
 using BrightIdeasSoftware;
 
 namespace Hauli
@@ -31,7 +30,7 @@ namespace Hauli
             dropsink.FeedbackColor = Color.Black;
             RoundTable.DropSink = dropsink;
           //  dropsink.CanDropOnSubItem = true;
-
+           
             eräKierrosList = new List<eräKierrosListLine>();
             eräKierrosList.Add(new Erä(/*generateId(), */"9:00", "Erä 1/1", "Erä 2/1", "Erä 3/1", "", "", ""));
             eräKierrosList.Add(new Erä(/*generateId(), */"9:30", "Erä 3/2", "Erä 1/2", "Erä 2/2", "", "", ""));

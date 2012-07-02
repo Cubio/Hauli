@@ -379,6 +379,45 @@ namespace Hauli
             }
         }
 
+*/
+        public void LoadSeuraBox(ComboBox seuraBox)
+        {
+            // hakee tietokannasta comboboxissa esitettävät kentät
+
+            SqlCeCommand cmd = null;
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" SELECT seura FROM Seura ORDER BY seura ASC");
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.ExecuteNonQuery();
+
+                try
+                {
+                    SqlCeDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        seuraBox.Items.Add(dr["seura"]);
+                    }
+                }
+                catch (SqlCeException e)
+                {
+                    //show errors
+                    Console.WriteLine(e.Message);
+                }
+
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public void LoadSarjaBox(ComboBox sarjaBox)
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -455,7 +494,7 @@ namespace Hauli
             }
         }
 
-
+/*
 
            
            String lyhenne;

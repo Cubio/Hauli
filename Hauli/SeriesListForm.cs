@@ -21,18 +21,16 @@ namespace Hauli
 
         public SeriesListForm(HauliDBHandler dbHandler)
         {
-            // TODO: Complete member initialization
-            this.dbHandler = dbHandler;
-
             InitializeComponent();
 
+            // TODO: Complete member initialization
+            this.dbHandler = dbHandler;
 
             seuraList = new List<SeuraListLine>();
             seuraListOrginal = new List<SeuraListLine>();
 
-
-
             seuraList = dbHandler.getSeuraList();
+            seuraListOrginal = dbHandler.getSeuraList();
 
 
             idColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).Id; };
@@ -62,6 +60,9 @@ namespace Hauli
         {
             Console.WriteLine("refreshContestantListView");
             SeriesList.SetObjects(seuraList);
+
+            SeriesList.RefreshObject(seuraList);
+            
         }
 
 
@@ -198,13 +199,38 @@ namespace Hauli
 
         private void Close_Click(object sender, EventArgs e)
         {
-            bool result = seuraList.Equals(seuraListOrginal);
-            Console.WriteLine("ONKO: " + result);
 
             
 
+            seuraComparer SeuraComparer = new seuraComparer();
+            IEnumerable<SeuraListLine> differences3 = seuraList.Except(seuraListOrginal, SeuraComparer);
 
-            this.Close();
+            int onko = differences3.Count();
+            int pituus = seuraList.Count() - seuraListOrginal.Count();
+
+            if (onko != 0 || pituus != 0)
+            {
+
+                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
+                            "Seurojen tallennus",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        dbHandler.delDBTable("Seura");
+                        dbHandler.setSeura(seuraList);
+                        refreshContestantListView();
+                        this.Close();
+                        break;
+
+                    case DialogResult.No:
+                        this.Close();
+                        break;
+
+                    case DialogResult.Cancel:
+                        break;
+                }
+            }  
         }
     }
 }

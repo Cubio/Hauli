@@ -125,6 +125,13 @@
     <Compile Include="SeriesListForm.Designer.cs">
       <DependentUpon>SeriesListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamListForm.Designer.cs">
+      <DependentUpon>TeamListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamListLine.cs" />
     <EmbeddedResource Include="AboutHauli.resx">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SeriesListForm.resx">
       <DependentUpon>SeriesListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamListForm.resx">
+      <DependentUpon>TeamListForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />

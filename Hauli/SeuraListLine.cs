@@ -60,5 +60,26 @@ namespace Hauli
             get { return alue; }
             set { alue = value; }
         }
+
     }
+
+    public class seuraComparer : IEqualityComparer<SeuraListLine>
+    {
+            public bool Equals(SeuraListLine x, SeuraListLine y)
+            {
+                return (x.Alue == y.Alue &&
+                        x.KokoNimi == y.KokoNimi &&
+                        x.Lyhenne == y.Lyhenne &&
+                        x.Id == y.Id);
+            }
+ 
+            public int GetHashCode(SeuraListLine obj)
+            {
+                return obj.Alue.GetHashCode() ^
+                    obj.Id ^
+                    obj.Lyhenne.GetHashCode() ^
+                    obj.KokoNimi.GetHashCode();
+            }
+    }
+
 }

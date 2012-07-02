@@ -122,8 +122,6 @@ namespace Hauli
                     while (rdr.Read())
                     {
                         seuraList.Add(new Seura( rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3) ));
-
-                        Console.WriteLine(rdr.GetInt32(0));
                     }
                 }
                 catch (SqlCeException ex)
@@ -242,6 +240,51 @@ namespace Hauli
             }
         }
 
+        internal void setContestant(List<ContestantListLine> contestantList) 
+        {
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                for (int i = 0; i < contestantList.Count; i++)
+                {
+
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlCeException e)
+            {
+                //ShowErrors(e);
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+
+
+
+
+        }
+
+
+
         internal void setSeura(List<SeuraListLine> seuraList)
         {
 
@@ -298,9 +341,9 @@ namespace Hauli
 
         }
 
-        public void LoadSeuraBox(ComboBox seuraBox)
-        {
-            // hakee tietokannasta comboboxissa esitettävät kentät
+        /*
+       internal void setTeam(List<TeamListLine> teamList)
+       {
 
             SqlCeCommand cmd = null;
             SqlCeConnection con = _connection;
@@ -413,8 +456,66 @@ namespace Hauli
         }
 
 
-    }
+
+           
+           String lyhenne;
+           String seura;
+           String alue;
+           int idNumber;
+
+           SqlCeCommand cmd = null;
+           SqlCeDataReader rdr = null;
+
+           SqlCeConnection con = _connection;
+           try
+           {
 
 
-    
-}
+               for (int i = 0; i < seuraList.Count; i++)
+               {
+                   idNumber = seuraList[i].Id;
+                   lyhenne = seuraList[i].Lyhenne;
+                   seura = seuraList[i].KokoNimi;
+                   alue = seuraList[i].Alue;
+
+
+                   if (con.State == ConnectionState.Closed)
+                       con.Open();
+
+                   cmd = con.CreateCommand();
+                   cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+
+                   cmd.Parameters.AddWithValue("idNumero", idNumber);
+                   cmd.Parameters.AddWithValue("seura", seura);
+                   cmd.Parameters.AddWithValue("lyhenne", lyhenne);
+                   cmd.Parameters.AddWithValue("alue", alue);
+
+                   cmd.ExecuteNonQuery();
+               }
+           }
+           catch (SqlCeException e)
+           {
+               //ShowErrors(e);
+               Console.WriteLine(e.Message);
+           }
+           finally
+           {
+               if (con.State == ConnectionState.Open)
+               {
+                   con.Close();
+               }
+               cmd.Dispose();
+           }
+
+
+       }
+
+*/
+
+
+
+
+
+
+    }//End db
+} //end db class

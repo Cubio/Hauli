@@ -26,6 +26,7 @@ namespace Hauli
             tabPage1.Size = new System.Drawing.Size(256, 214);
             tabPage1.TabIndex = 0;
             scores.Controls.Add(tabPage1);
+            
         }
 
         private void scoreInputView_Load(object sender, EventArgs e)

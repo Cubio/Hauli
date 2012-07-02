@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
+using BrightIdeasSoftware;
 
 namespace Hauli
 {
@@ -15,8 +15,9 @@ namespace Hauli
     {
         private HauliDBHandler dbHandler;
         private StreamReader file;
-        Boolean virhe = false;
-
+        private Boolean virhe = false;
+        private List<SeuraListLine> seuraList;
+        private List<SeuraListLine> seuraListOrginal;
 
         public SeriesListForm(HauliDBHandler dbHandler)
         {
@@ -24,7 +25,88 @@ namespace Hauli
             this.dbHandler = dbHandler;
 
             InitializeComponent();
+
+
+            seuraList = new List<SeuraListLine>();
+            seuraListOrginal = new List<SeuraListLine>();
+
+
+
+            seuraList = dbHandler.getSeuraList();
+
+
+            idColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).Id; };
+
+            lyhenneColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).Lyhenne; };
+            lyhenneColumn.AspectPutter = delegate(object x, object newValue) { ((SeuraListLine)x).Lyhenne = newValue.ToString(); };
+
+            kokoNimiColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).KokoNimi; };
+            kokoNimiColumn.AspectPutter = delegate(object x, object newValue) { ((SeuraListLine)x).KokoNimi = newValue.ToString(); };
+
+            alueColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).Alue; };
+            alueColumn.AspectPutter = delegate(object x, object newValue) { ((SeuraListLine)x).Alue = newValue.ToString(); };
+
+
+            buttonColumn.DisplayIndex = 4;
+            buttonColumn.ImageGetter = delegate(object row)
+            {
+                    return 1;
+            };
+            buttonColumn.Tag = "buttonColumn";
+
+
+            refreshContestantListView();
         }
+
+        private void refreshContestantListView()
+        {
+            Console.WriteLine("refreshContestantListView");
+            SeriesList.SetObjects(seuraList);
+        }
+
+
+
+        private void SeriesList_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Painallus");
+            Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
+
+            int x = cursor.X - SeriesList.Location.X - 2;
+            int y = cursor.Y - SeriesList.Location.Y - 2;
+
+            OLVColumn hitColumn;
+            ListViewItem clickedItem = SeriesList.GetItemAt(x, y, out hitColumn);
+
+            if (hitColumn != null  && hitColumn.Tag != null)
+            {
+                if (hitColumn.Tag.ToString() == "buttonColumn")
+                {
+
+                    String testi = clickedItem.SubItems[0].Text.ToString();
+                    int idNro = 0;
+                    int.TryParse(testi, out idNro);
+                    deleteLine(idNro);
+                    refreshContestantListView();
+                }
+            }
+        }
+
+        private void deleteLine(int idNro)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Haluatko varmasti poistaa seuran?", "Hauli", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                for (int i = 0; i < seuraList.Count; i++)
+                    if (seuraList[i].Id == idNro)
+                        seuraList.RemoveAt(i);
+
+                refreshContestantListView();
+            }
+        }
+
 
         private void openPathButton_Click(object sender, EventArgs e)
         {
@@ -71,18 +153,11 @@ namespace Hauli
                 {
                     file.ReadToEnd();
                     MessageBox.Show(ex.Message, "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 }
                 finally
                 {
                     file.Close();
                 }
-
-
-                
-
-               
-
                 if (virhe == false)
                 {
                     //Pistetään kantaan
@@ -94,6 +169,42 @@ namespace Hauli
         private void selectFile(object sender, CancelEventArgs e)
         {
             importFilePathTextBox.Text = openFileDialogSeurat.FileName;
+        }
+
+        private void addSeura_Click(object sender, EventArgs e)
+        {
+            if (this.lyhenneTextBox.Text == "" || this.kokoNimiTextBox.Text == "" || this.alueTextBox.Text == "")
+            {
+                MessageBox.Show("Uuden seuran tiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+            }
+            else
+            {
+                seuraList.Add(new Seura(dbHandler.generateId("Seura"), lyhenneTextBox.Text, kokoNimiTextBox.Text, alueTextBox.Text));
+
+                refreshContestantListView();
+
+                lyhenneTextBox.Clear();
+                kokoNimiTextBox.Clear();
+                alueTextBox.Clear();
+            }
+        }
+
+        private void saveSeurat_Click(object sender, EventArgs e)
+        {
+            dbHandler.delDBTable("Seura");
+            dbHandler.setSeura(seuraList);
+            refreshContestantListView();
+        }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            bool result = seuraList.Equals(seuraListOrginal);
+            Console.WriteLine("ONKO: " + result);
+
+            
+
+
+            this.Close();
         }
     }
 }

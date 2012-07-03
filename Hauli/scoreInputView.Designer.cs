@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ScoringCloseButton = new System.Windows.Forms.Button();
             this.ScoringSaveButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -36,8 +35,8 @@
             this.EräComboBox = new System.Windows.Forms.ComboBox();
             this.scoreNormal = new BrightIdeasSoftware.ObjectListView();
             this.nro = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lastname = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.round_25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.round_50 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.round_75 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -47,8 +46,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ScoreFinal = new BrightIdeasSoftware.ObjectListView();
             this.nroFinaali = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.nameFinal = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lastnameFinal = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.nameFinal = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.scoreFinal25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.solvingFinal = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.label2 = new System.Windows.Forms.Label();
@@ -70,17 +69,6 @@
             this.YscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SarjaY15Tulokset = new BrightIdeasSoftware.ObjectListView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.Y15scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y15scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y15score25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -92,6 +80,7 @@
             this.Y15scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y15scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y15scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.SarjaY17Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.Y17scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y17scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -104,6 +93,7 @@
             this.Y17scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y17scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y17scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.SarjaY20Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.Y20scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y20scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -116,6 +106,7 @@
             this.Y20scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y20scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y20scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.SarjaY55Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.Y55scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y55scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -128,6 +119,7 @@
             this.Y55scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y55scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y55scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.SarjaY65Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.Y65scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y65scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -140,6 +132,7 @@
             this.Y65scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y65scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y65scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage7 = new System.Windows.Forms.TabPage();
             this.SarjaY70Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.Y70scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y70scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -152,6 +145,7 @@
             this.Y70scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y70scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Y70scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.SarjaNTulokset = new BrightIdeasSoftware.ObjectListView();
             this.NscoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.NscoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -164,6 +158,7 @@
             this.NscoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.NscoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.NscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.SarjaN20Tulokset = new BrightIdeasSoftware.ObjectListView();
             this.N20scoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.N20scoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -176,6 +171,7 @@
             this.N20scoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.N20scoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.N20scoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage10 = new System.Windows.Forms.TabPage();
             this.SarjaATulokset = new BrightIdeasSoftware.ObjectListView();
             this.AscoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.AscoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -188,6 +184,7 @@
             this.AscoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.AscoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.AscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage11 = new System.Windows.Forms.TabPage();
             this.SarjaBTulokset = new BrightIdeasSoftware.ObjectListView();
             this.BscoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.BscoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -200,6 +197,7 @@
             this.BscoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.BscoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.BscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage12 = new System.Windows.Forms.TabPage();
             this.SarjaCTulokset = new BrightIdeasSoftware.ObjectListView();
             this.CscoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CscoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -212,6 +210,7 @@
             this.CscoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CscoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.SarjaDTulokset = new BrightIdeasSoftware.ObjectListView();
             this.DscoreSuku = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.DscoreEtu = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -224,10 +223,6 @@
             this.DscoreYht = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.DscoreFin = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.DscoreFinRat = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoreNormal)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -239,52 +234,32 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY15Tulokset)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.tabPage8.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tabPage10.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            this.tabPage12.SuspendLayout();
-            this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY17Tulokset)).BeginInit();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY20Tulokset)).BeginInit();
+            this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY55Tulokset)).BeginInit();
+            this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY65Tulokset)).BeginInit();
+            this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY70Tulokset)).BeginInit();
+            this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaNTulokset)).BeginInit();
+            this.tabPage9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaN20Tulokset)).BeginInit();
+            this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaATulokset)).BeginInit();
+            this.tabPage11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaBTulokset)).BeginInit();
+            this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaCTulokset)).BeginInit();
+            this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SarjaDTulokset)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.ScoringCloseButton);
-            this.splitContainer1.Panel1.Controls.Add(this.ScoringSaveButton);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
-            this.splitContainer1.Size = new System.Drawing.Size(1256, 607);
-            this.splitContainer1.SplitterDistance = 583;
-            this.splitContainer1.TabIndex = 0;
-            // 
             // ScoringCloseButton
             // 
-            this.ScoringCloseButton.Location = new System.Drawing.Point(334, 560);
+            this.ScoringCloseButton.Location = new System.Drawing.Point(343, 575);
             this.ScoringCloseButton.Name = "ScoringCloseButton";
             this.ScoringCloseButton.Size = new System.Drawing.Size(75, 23);
             this.ScoringCloseButton.TabIndex = 7;
@@ -293,7 +268,7 @@
             // 
             // ScoringSaveButton
             // 
-            this.ScoringSaveButton.Location = new System.Drawing.Point(253, 560);
+            this.ScoringSaveButton.Location = new System.Drawing.Point(262, 575);
             this.ScoringSaveButton.Name = "ScoringSaveButton";
             this.ScoringSaveButton.Size = new System.Drawing.Size(75, 23);
             this.ScoringSaveButton.TabIndex = 6;
@@ -305,7 +280,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.EräComboBox);
             this.groupBox1.Controls.Add(this.scoreNormal);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(24, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(398, 257);
             this.groupBox1.TabIndex = 4;
@@ -366,19 +341,19 @@
             this.nro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nro.Width = 33;
             // 
-            // name
-            // 
-            this.name.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.name.IsEditable = false;
-            this.name.Text = "Nimi";
-            this.name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // lastname
             // 
             this.lastname.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.lastname.IsEditable = false;
             this.lastname.Text = "Sukunimi";
             this.lastname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // name
+            // 
+            this.name.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.name.IsEditable = false;
+            this.name.Text = "Nimi";
+            this.name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // round_25
             // 
@@ -426,7 +401,7 @@
             this.groupBox2.Controls.Add(this.ScoreFinal);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.sarjaComboBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 288);
+            this.groupBox2.Location = new System.Drawing.Point(24, 302);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(398, 254);
             this.groupBox2.TabIndex = 5;
@@ -465,14 +440,6 @@
             this.nroFinaali.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nroFinaali.Width = 67;
             // 
-            // nameFinal
-            // 
-            this.nameFinal.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nameFinal.IsEditable = false;
-            this.nameFinal.Text = "Nimi";
-            this.nameFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nameFinal.Width = 90;
-            // 
             // lastnameFinal
             // 
             this.lastnameFinal.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -480,6 +447,14 @@
             this.lastnameFinal.Text = "Sukunimi";
             this.lastnameFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.lastnameFinal.Width = 90;
+            // 
+            // nameFinal
+            // 
+            this.nameFinal.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nameFinal.IsEditable = false;
+            this.nameFinal.Text = "Nimi";
+            this.nameFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nameFinal.Width = 90;
             // 
             // scoreFinal25
             // 
@@ -514,13 +489,13 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.scores);
-            this.groupBox3.Location = new System.Drawing.Point(21, 12);
+            this.groupBox3.Location = new System.Drawing.Point(525, 69);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(585, 530);
+            this.groupBox3.Size = new System.Drawing.Size(585, 551);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sarjan pistetilanne";
@@ -721,127 +696,6 @@
             this.SarjaY15Tulokset.UseCompatibleStateImageBehavior = false;
             this.SarjaY15Tulokset.View = System.Windows.Forms.View.Details;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.SarjaY17Tulokset);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(553, 473);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.SarjaY20Tulokset);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(553, 473);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.SarjaY55Tulokset);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(553, 473);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "tabPage5";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.SarjaY65Tulokset);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(553, 473);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.SarjaY70Tulokset);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(553, 473);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "tabPage7";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.Controls.Add(this.SarjaNTulokset);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(553, 473);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "tabPage8";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.SarjaN20Tulokset);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(553, 473);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "tabPage9";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.SarjaATulokset);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(553, 473);
-            this.tabPage10.TabIndex = 9;
-            this.tabPage10.Text = "tabPage10";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.SarjaBTulokset);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(553, 473);
-            this.tabPage11.TabIndex = 10;
-            this.tabPage11.Text = "tabPage11";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.Controls.Add(this.SarjaCTulokset);
-            this.tabPage12.Location = new System.Drawing.Point(4, 22);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(553, 473);
-            this.tabPage12.TabIndex = 11;
-            this.tabPage12.Text = "tabPage12";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.Controls.Add(this.SarjaDTulokset);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(553, 473);
-            this.tabPage13.TabIndex = 12;
-            this.tabPage13.Text = "tabPage13";
-            this.tabPage13.UseVisualStyleBackColor = true;
-            // 
             // Y15scoreSuku
             // 
             this.Y15scoreSuku.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -928,6 +782,17 @@
             this.Y15scoreFinRat.Text = "Fin Ratkonta";
             this.Y15scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y15scoreFinRat.Width = 77;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.SarjaY17Tulokset);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(553, 473);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // SarjaY17Tulokset
             // 
@@ -1049,6 +914,17 @@
             this.Y17scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y17scoreFinRat.Width = 77;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.SarjaY20Tulokset);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(553, 473);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // SarjaY20Tulokset
             // 
             this.SarjaY20Tulokset.AllColumns.Add(this.Y20scoreSuku);
@@ -1168,6 +1044,17 @@
             this.Y20scoreFinRat.Text = "Fin Ratkonta";
             this.Y20scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y20scoreFinRat.Width = 77;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.SarjaY55Tulokset);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(553, 473);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // SarjaY55Tulokset
             // 
@@ -1289,6 +1176,17 @@
             this.Y55scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y55scoreFinRat.Width = 77;
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.SarjaY65Tulokset);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(553, 473);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
             // SarjaY65Tulokset
             // 
             this.SarjaY65Tulokset.AllColumns.Add(this.Y65scoreSuku);
@@ -1408,6 +1306,17 @@
             this.Y65scoreFinRat.Text = "Fin Ratkonta";
             this.Y65scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y65scoreFinRat.Width = 77;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.SarjaY70Tulokset);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(553, 473);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "tabPage7";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // SarjaY70Tulokset
             // 
@@ -1529,6 +1438,17 @@
             this.Y70scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Y70scoreFinRat.Width = 77;
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.SarjaNTulokset);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(553, 473);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "tabPage8";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
             // SarjaNTulokset
             // 
             this.SarjaNTulokset.AllColumns.Add(this.NscoreSuku);
@@ -1648,6 +1568,17 @@
             this.NscoreFinRat.Text = "Fin Ratkonta";
             this.NscoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.NscoreFinRat.Width = 77;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.SarjaN20Tulokset);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(553, 473);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "tabPage9";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // SarjaN20Tulokset
             // 
@@ -1769,6 +1700,17 @@
             this.N20scoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.N20scoreFinRat.Width = 77;
             // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.SarjaATulokset);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(553, 473);
+            this.tabPage10.TabIndex = 9;
+            this.tabPage10.Text = "tabPage10";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
             // SarjaATulokset
             // 
             this.SarjaATulokset.AllColumns.Add(this.AscoreSuku);
@@ -1888,6 +1830,17 @@
             this.AscoreFinRat.Text = "Fin Ratkonta";
             this.AscoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.AscoreFinRat.Width = 77;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.SarjaBTulokset);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(553, 473);
+            this.tabPage11.TabIndex = 10;
+            this.tabPage11.Text = "tabPage11";
+            this.tabPage11.UseVisualStyleBackColor = true;
             // 
             // SarjaBTulokset
             // 
@@ -2009,6 +1962,17 @@
             this.BscoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.BscoreFinRat.Width = 77;
             // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.SarjaCTulokset);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(553, 473);
+            this.tabPage12.TabIndex = 11;
+            this.tabPage12.Text = "tabPage12";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
             // SarjaCTulokset
             // 
             this.SarjaCTulokset.AllColumns.Add(this.CscoreSuku);
@@ -2128,6 +2092,17 @@
             this.CscoreFinRat.Text = "Fin Ratkonta";
             this.CscoreFinRat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CscoreFinRat.Width = 77;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.SarjaDTulokset);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(553, 473);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "tabPage13";
+            this.tabPage13.UseVisualStyleBackColor = true;
             // 
             // SarjaDTulokset
             // 
@@ -2253,15 +2228,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 607);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(1284, 653);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.ScoringCloseButton);
+            this.Controls.Add(this.ScoringSaveButton);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Name = "ScoreInputView";
             this.Text = "scoreInputView";
             this.Load += new System.EventHandler(this.scoreInputView_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoreNormal)).EndInit();
@@ -2275,26 +2250,26 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY15Tulokset)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage8.ResumeLayout(false);
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY17Tulokset)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY20Tulokset)).EndInit();
+            this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY55Tulokset)).EndInit();
+            this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY65Tulokset)).EndInit();
+            this.tabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaY70Tulokset)).EndInit();
+            this.tabPage8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaNTulokset)).EndInit();
+            this.tabPage9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaN20Tulokset)).EndInit();
+            this.tabPage10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaATulokset)).EndInit();
+            this.tabPage11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaBTulokset)).EndInit();
+            this.tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaCTulokset)).EndInit();
+            this.tabPage13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SarjaDTulokset)).EndInit();
             this.ResumeLayout(false);
 
@@ -2302,7 +2277,6 @@
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button ScoringCloseButton;
         private System.Windows.Forms.Button ScoringSaveButton;
         private System.Windows.Forms.GroupBox groupBox1;

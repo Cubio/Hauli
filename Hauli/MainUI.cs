@@ -80,12 +80,12 @@ namespace Hauli
 
         private void roundScheduleButton_Click(object sender, EventArgs e)
         {
-            new RoundScheduleView().ShowDialog();
+            new RoundScheduleView(dbHandler).ShowDialog();
         }
 
         private void scoreInputViewButton_Click(object sender, EventArgs e)
         {
-            new ScoreInputView().ShowDialog();
+            new ScoreInputView(dbHandler).ShowDialog();
         }
 
 

@@ -76,6 +76,7 @@
     <Compile Include="AboutHauli.Designer.cs">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
+    <Compile Include="eräKierrosListLine.cs" />
     <Compile Include="HauliExtension.cs" />
     <Compile Include="ContestantListForm.cs">
       <SubType>Form</SubType>
@@ -178,6 +179,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="HauliDBDataSet.xsc">
       <DependentUpon>HauliDBDataSet.xsd</DependentUpon>
     </None>

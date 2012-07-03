@@ -53,15 +53,15 @@ namespace Hauli
             buttonColumn.Tag = "buttonColumn";
 
 
-            refreshContestantListView();
+            refresSeriesListView();
         }
 
-        private void refreshContestantListView()
+        private void refresSeriesListView()
         {
             Console.WriteLine("refreshContestantListView");
             SeriesList.SetObjects(seuraList);
 
-            SeriesList.RefreshObject(seuraList);
+            // WTF SeriesList.RefreshObject(seuraList);
             
         }
 
@@ -88,7 +88,7 @@ namespace Hauli
                     int idNro = 0;
                     int.TryParse(testi, out idNro);
                     deleteLine(idNro);
-                    refreshContestantListView();
+                    refresSeriesListView();
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace Hauli
                     if (seuraList[i].Id == idNro)
                         seuraList.RemoveAt(i);
 
-                refreshContestantListView();
+                refresSeriesListView();
             }
         }
 
@@ -143,7 +143,8 @@ namespace Hauli
                         string[] tiedot = line.Split(',');
                         lines.Add(tiedot);
 
-                        if (tiedot.Length != 3)
+                        //if (tiedot.Length != 3)
+                        if (tiedot.Length != 7)
                         {
                             virhe = true;
                             throw new HauliException("Tekstitiedostossa on virheellisiä merkintöjä. Rivillä:" + rivi);
@@ -162,7 +163,8 @@ namespace Hauli
                 if (virhe == false)
                 {
                     //Pistetään kantaan
-                    dbHandler.addFile(lines);
+                    //dbHandler.addFileSeurat(lines);
+                    dbHandler.addFileOsallistujat(lines);
                 }
           }
  }
@@ -180,9 +182,9 @@ namespace Hauli
             }
             else
             {
-                seuraList.Add(new Seura(dbHandler.generateId("Seura"), lyhenneTextBox.Text, kokoNimiTextBox.Text, alueTextBox.Text));
+                seuraList.Add(new Seura(dbHandler.generateId("Seura", "seuraID"), lyhenneTextBox.Text, kokoNimiTextBox.Text, alueTextBox.Text));
 
-                refreshContestantListView();
+                refresSeriesListView();
 
                 lyhenneTextBox.Clear();
                 kokoNimiTextBox.Clear();
@@ -192,16 +194,14 @@ namespace Hauli
 
         private void saveSeurat_Click(object sender, EventArgs e)
         {
+            seuraListOrginal = seuraList;
             dbHandler.delDBTable("Seura");
             dbHandler.setSeura(seuraList);
-            refreshContestantListView();
+            refresSeriesListView();
         }
 
         private void Close_Click(object sender, EventArgs e)
         {
-
-            
-
             seuraComparer SeuraComparer = new seuraComparer();
             IEnumerable<SeuraListLine> differences3 = seuraList.Except(seuraListOrginal, SeuraComparer);
 
@@ -219,7 +219,7 @@ namespace Hauli
                     case DialogResult.Yes:
                         dbHandler.delDBTable("Seura");
                         dbHandler.setSeura(seuraList);
-                        refreshContestantListView();
+                        refresSeriesListView();
                         this.Close();
                         break;
 
@@ -230,7 +230,8 @@ namespace Hauli
                     case DialogResult.Cancel:
                         break;
                 }
-            }  
+            }
+            this.Close();
         }
     }
 }

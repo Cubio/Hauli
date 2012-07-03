@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Close = new System.Windows.Forms.Button();
             this.saveSeurat = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SeriesList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,7 +139,7 @@
             // 
             // openPathButton
             // 
-            this.openPathButton.Location = new System.Drawing.Point(215, 371);
+            this.openPathButton.Location = new System.Drawing.Point(183, 362);
             this.openPathButton.Name = "openPathButton";
             this.openPathButton.Size = new System.Drawing.Size(34, 23);
             this.openPathButton.TabIndex = 12;
@@ -148,14 +149,14 @@
             // 
             // importFilePathTextBox
             // 
-            this.importFilePathTextBox.Location = new System.Drawing.Point(47, 371);
+            this.importFilePathTextBox.Location = new System.Drawing.Point(15, 362);
             this.importFilePathTextBox.Name = "importFilePathTextBox";
             this.importFilePathTextBox.Size = new System.Drawing.Size(162, 20);
             this.importFilePathTextBox.TabIndex = 13;
             // 
             // importSeriesFile
             // 
-            this.importSeriesFile.Location = new System.Drawing.Point(255, 371);
+            this.importSeriesFile.Location = new System.Drawing.Point(223, 362);
             this.importSeriesFile.Name = "importSeriesFile";
             this.importSeriesFile.Size = new System.Drawing.Size(75, 23);
             this.importSeriesFile.TabIndex = 14;
@@ -231,11 +232,21 @@
             this.saveSeurat.UseVisualStyleBackColor = true;
             this.saveSeurat.Click += new System.EventHandler(this.saveSeurat_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 346);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Tuo seurat txt filusta";
+            // 
             // SeriesListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 442);
+            this.ClientSize = new System.Drawing.Size(479, 442);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.saveSeurat);
             this.Controls.Add(this.Close);
             this.Controls.Add(this.label3);
@@ -280,5 +291,6 @@
         private BrightIdeasSoftware.OLVColumn buttonColumn;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Button saveSeurat;
+        private System.Windows.Forms.Label label4;
     }
 }

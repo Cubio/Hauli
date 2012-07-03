@@ -25,6 +25,10 @@ namespace Hauli
         {
             InitializeComponent();
 
+            //LUENTAAN INI 
+
+
+            //Tarkistetaan tietokanta
             try
             {
                 dbHandler = new HauliDBHandler();
@@ -37,6 +41,13 @@ namespace Hauli
                 MessageBox.Show(e.Message, "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
+
+
+
+
+
+
+
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)
@@ -77,6 +88,7 @@ namespace Hauli
             new ScoreInputView().ShowDialog();
         }
 
+
         private void suljeSovellusToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -84,7 +96,7 @@ namespace Hauli
 
         private void joukkueetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            new TeamListForm(dbHandler).ShowDialog();
         }
 
         private void seuratToolStripMenuItem_Click(object sender, EventArgs e)
@@ -124,6 +136,11 @@ namespace Hauli
         private void DateErrorMessageBox()
         {
             MessageBox.Show("Tarkista päivän 2 päivämäärä!");
+        }
+
+        private void sarjatToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            new SerialListForm(dbHandler).ShowDialog();
         }
     }
 }

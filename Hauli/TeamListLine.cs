@@ -41,4 +41,19 @@ namespace Hauli
             set { joukkue = value; }
         }
     }
+
+    public class teamComparer : IEqualityComparer<TeamListLine>
+    {
+        public bool Equals(TeamListLine x, TeamListLine y)
+        {
+            return (x.Id == y.Id &&
+                    x.Joukkue == y.Joukkue);
+        }
+
+        public int GetHashCode(TeamListLine obj)
+        {
+            return obj.Joukkue.GetHashCode() ^
+                obj.Id;
+        }
+    }
 }

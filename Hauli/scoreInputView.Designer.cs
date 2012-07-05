@@ -259,7 +259,7 @@
             // 
             // ScoringCloseButton
             // 
-            this.ScoringCloseButton.Location = new System.Drawing.Point(343, 575);
+            this.ScoringCloseButton.Location = new System.Drawing.Point(347, 554);
             this.ScoringCloseButton.Name = "ScoringCloseButton";
             this.ScoringCloseButton.Size = new System.Drawing.Size(75, 23);
             this.ScoringCloseButton.TabIndex = 7;
@@ -268,7 +268,7 @@
             // 
             // ScoringSaveButton
             // 
-            this.ScoringSaveButton.Location = new System.Drawing.Point(262, 575);
+            this.ScoringSaveButton.Location = new System.Drawing.Point(266, 554);
             this.ScoringSaveButton.Name = "ScoringSaveButton";
             this.ScoringSaveButton.Size = new System.Drawing.Size(75, 23);
             this.ScoringSaveButton.TabIndex = 6;
@@ -401,7 +401,7 @@
             this.groupBox2.Controls.Add(this.ScoreFinal);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.sarjaComboBox);
-            this.groupBox2.Location = new System.Drawing.Point(24, 302);
+            this.groupBox2.Location = new System.Drawing.Point(24, 282);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(398, 254);
             this.groupBox2.TabIndex = 5;
@@ -427,7 +427,7 @@
             this.ScoreFinal.GridLines = true;
             this.ScoreFinal.Location = new System.Drawing.Point(6, 57);
             this.ScoreFinal.Name = "ScoreFinal";
-            this.ScoreFinal.Size = new System.Drawing.Size(377, 176);
+            this.ScoreFinal.Size = new System.Drawing.Size(377, 187);
             this.ScoreFinal.TabIndex = 1;
             this.ScoreFinal.UseCompatibleStateImageBehavior = false;
             this.ScoreFinal.View = System.Windows.Forms.View.Details;
@@ -438,7 +438,7 @@
             this.nroFinaali.IsEditable = false;
             this.nroFinaali.Text = "FinaaliNro";
             this.nroFinaali.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nroFinaali.Width = 67;
+            this.nroFinaali.Width = 65;
             // 
             // lastnameFinal
             // 
@@ -468,7 +468,7 @@
             this.solvingFinal.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.solvingFinal.Text = "Ratkonta";
             this.solvingFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.solvingFinal.Width = 65;
+            this.solvingFinal.Width = 61;
             // 
             // label2
             // 
@@ -489,19 +489,22 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.scores);
-            this.groupBox3.Location = new System.Drawing.Point(525, 69);
+            this.groupBox3.Location = new System.Drawing.Point(482, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(585, 551);
+            this.groupBox3.Size = new System.Drawing.Size(589, 524);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sarjan pistetilanne";
             // 
             // scores
             // 
+            this.scores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.scores.Controls.Add(this.tabPage1);
             this.scores.Controls.Add(this.tabPage2);
             this.scores.Controls.Add(this.tabPage3);
@@ -518,7 +521,7 @@
             this.scores.Location = new System.Drawing.Point(15, 25);
             this.scores.Name = "scores";
             this.scores.SelectedIndex = 0;
-            this.scores.Size = new System.Drawing.Size(561, 499);
+            this.scores.Size = new System.Drawing.Size(562, 499);
             this.scores.TabIndex = 1;
             // 
             // tabPage1
@@ -527,7 +530,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(553, 473);
+            this.tabPage1.Size = new System.Drawing.Size(554, 473);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -545,6 +548,9 @@
             this.SarjaYTulokset.AllColumns.Add(this.YscoreYht);
             this.SarjaYTulokset.AllColumns.Add(this.YscoreFin);
             this.SarjaYTulokset.AllColumns.Add(this.YscoreFinRat);
+            this.SarjaYTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaYTulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.YscoreSuku,
             this.YscoreEtu,
@@ -560,7 +566,7 @@
             this.SarjaYTulokset.GridLines = true;
             this.SarjaYTulokset.Location = new System.Drawing.Point(6, 6);
             this.SarjaYTulokset.Name = "SarjaYTulokset";
-            this.SarjaYTulokset.Size = new System.Drawing.Size(541, 461);
+            this.SarjaYTulokset.Size = new System.Drawing.Size(542, 461);
             this.SarjaYTulokset.TabIndex = 0;
             this.SarjaYTulokset.UseCompatibleStateImageBehavior = false;
             this.SarjaYTulokset.View = System.Windows.Forms.View.Details;
@@ -658,7 +664,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(553, 473);
+            this.tabPage2.Size = new System.Drawing.Size(554, 473);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -789,7 +795,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(553, 473);
+            this.tabPage3.Size = new System.Drawing.Size(554, 473);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -920,7 +926,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(553, 473);
+            this.tabPage4.Size = new System.Drawing.Size(554, 473);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1051,7 +1057,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(553, 473);
+            this.tabPage5.Size = new System.Drawing.Size(554, 473);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1182,7 +1188,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(553, 473);
+            this.tabPage6.Size = new System.Drawing.Size(554, 473);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1313,7 +1319,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(553, 473);
+            this.tabPage7.Size = new System.Drawing.Size(554, 473);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1444,7 +1450,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(553, 473);
+            this.tabPage8.Size = new System.Drawing.Size(554, 473);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1575,7 +1581,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(553, 473);
+            this.tabPage9.Size = new System.Drawing.Size(554, 473);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "tabPage9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -1706,7 +1712,7 @@
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(553, 473);
+            this.tabPage10.Size = new System.Drawing.Size(554, 473);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1837,7 +1843,7 @@
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(553, 473);
+            this.tabPage11.Size = new System.Drawing.Size(554, 473);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "tabPage11";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -1968,7 +1974,7 @@
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(553, 473);
+            this.tabPage12.Size = new System.Drawing.Size(554, 473);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "tabPage12";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -2099,7 +2105,7 @@
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(553, 473);
+            this.tabPage13.Size = new System.Drawing.Size(554, 473);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "tabPage13";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -2228,7 +2234,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 653);
+            this.ClientSize = new System.Drawing.Size(1128, 593);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ScoringCloseButton);
             this.Controls.Add(this.ScoringSaveButton);

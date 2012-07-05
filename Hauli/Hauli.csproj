@@ -76,6 +76,7 @@
     <Compile Include="AboutHauli.Designer.cs">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
+    <Compile Include="eräKierrosListLine.cs" />
     <Compile Include="HauliExtension.cs" />
     <Compile Include="ContestantListForm.cs">
       <SubType>Form</SubType>
@@ -90,6 +91,14 @@
     <Compile Include="ContestantRowEditForm.Designer.cs">
       <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SerialListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SerialListForm.Designer.cs">
+      <DependentUpon>SerialListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SerialListLine.cs" />
+    <Compile Include="SeuraListLine.cs" />
     <Compile Include="HauliDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,8 +132,16 @@
     <Compile Include="SeriesListForm.Designer.cs">
       <DependentUpon>SeriesListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamListForm.Designer.cs">
+      <DependentUpon>TeamListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamListLine.cs" />
     <EmbeddedResource Include="AboutHauli.resx">
       <DependentUpon>AboutHauli.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ContestantListForm.resx">
       <DependentUpon>ContestantListForm.cs</DependentUpon>
@@ -151,11 +168,16 @@
     <EmbeddedResource Include="ScoreInputView.resx">
       <DependentUpon>ScoreInputView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SerialListForm.resx">
+      <DependentUpon>SerialListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SeriesListForm.resx">
       <DependentUpon>SeriesListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TeamListForm.resx">
+      <DependentUpon>TeamListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="HauliDBDataSet.xsc">
       <DependentUpon>HauliDBDataSet.xsd</DependentUpon>
     </None>

@@ -9,7 +9,8 @@ namespace Hauli
     {
         //public ContestantListLine() { }
 
-        string Id { get; set; }
+        bool HotRound { get; set; }
+        int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         string FullName { get; set; }
@@ -21,7 +22,8 @@ namespace Hauli
 
     public class Contestant : ContestantListLine
     {
-        private string id;
+        private bool hotRound;
+        private int id;
         private string firstName;
         private string lastName;
         private string fullName;
@@ -29,8 +31,9 @@ namespace Hauli
         private string sarja;
         private string team;
 
-        public Contestant(string id, string firstName, string lastName, string seura, string sarja, string team)
+        public Contestant(int id, string firstName, string lastName, string seura, string sarja, string team)
         {
+            hotRound = false;
             this.Id = id;
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -49,7 +52,13 @@ namespace Hauli
             this.Team = c.Team;
         }
 
-        public string Id
+        public bool HotRound
+        {
+            get { return hotRound; }
+            set { ; }
+        }
+
+        public int Id
         {
             get { return id; }
             set { id = value; }
@@ -100,16 +109,23 @@ namespace Hauli
 
     public class RoundDivider : ContestantListLine
     {
-        private string id;
+        private bool hotRound;
+        private int id;
         private string name = "";
         private string seura = "";
         private string sarja = "";
         private string team = "";
 
-        public string Id
+        public int Id
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public bool HotRound
+        {
+            get { return hotRound; }
+            set { hotRound = value; }
         }
 
         public string FirstName
@@ -133,8 +149,9 @@ namespace Hauli
         public string Sarja { get; set; }
         public string Team { get; set; }
 
-        public RoundDivider(string id, string round)
+        public RoundDivider(bool hot, int id, string round)
         {
+            hotRound = hot;
             this.Id = id;
             this.FullName = round;
         }

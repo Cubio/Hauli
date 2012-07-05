@@ -58,18 +58,13 @@ namespace Hauli
 
         private void refresSeriesListView()
         {
-            Console.WriteLine("refreshContestantListView");
             SeriesList.SetObjects(seuraList);
-
-            // WTF SeriesList.RefreshObject(seuraList);
-            
         }
 
 
 
         private void SeriesList_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Painallus");
             Point cursor = Cursor.Position;
             cursor = PointToClient(cursor);
 
@@ -142,7 +137,6 @@ namespace Hauli
                         rivi++;
                         string[] tiedot = line.Split(',');
                         lines.Add(tiedot);
-                        Console.WriteLine("TIETO:" + tiedot);
                         //if (tiedot.Length != 3)
                         if (tiedot.Length != 7)
                         {

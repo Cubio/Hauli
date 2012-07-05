@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AddContestGroupBox = new System.Windows.Forms.GroupBox();
+            this.placeTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.eraComboBox = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.saveSettings = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.rataComboBox = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,12 +53,11 @@
             this.day1Calendar = new System.Windows.Forms.DateTimePicker();
             this.day1min = new System.Windows.Forms.ComboBox();
             this.day1h = new System.Windows.Forms.ComboBox();
-            this.organizer = new System.Windows.Forms.TextBox();
-            this.locality = new System.Windows.Forms.TextBox();
+            this.organizerTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.contest = new System.Windows.Forms.TextBox();
+            this.contestTextBox = new System.Windows.Forms.TextBox();
             this.contestantListButton = new System.Windows.Forms.Button();
             this.roundScheduleButton = new System.Windows.Forms.Button();
             this.scoreInputViewButton = new System.Windows.Forms.Button();
@@ -127,27 +127,34 @@
             // 
             // AddContestGroupBox
             // 
+            this.AddContestGroupBox.Controls.Add(this.placeTextBox);
             this.AddContestGroupBox.Controls.Add(this.label13);
             this.AddContestGroupBox.Controls.Add(this.label12);
-            this.AddContestGroupBox.Controls.Add(this.comboBox2);
+            this.AddContestGroupBox.Controls.Add(this.eraComboBox);
             this.AddContestGroupBox.Controls.Add(this.label10);
             this.AddContestGroupBox.Controls.Add(this.saveSettings);
-            this.AddContestGroupBox.Controls.Add(this.comboBox1);
+            this.AddContestGroupBox.Controls.Add(this.rataComboBox);
             this.AddContestGroupBox.Controls.Add(this.label11);
             this.AddContestGroupBox.Controls.Add(this.groupBox2);
             this.AddContestGroupBox.Controls.Add(this.groupBox1);
-            this.AddContestGroupBox.Controls.Add(this.organizer);
-            this.AddContestGroupBox.Controls.Add(this.locality);
+            this.AddContestGroupBox.Controls.Add(this.organizerTextBox);
             this.AddContestGroupBox.Controls.Add(this.label3);
             this.AddContestGroupBox.Controls.Add(this.label2);
             this.AddContestGroupBox.Controls.Add(this.label1);
-            this.AddContestGroupBox.Controls.Add(this.contest);
+            this.AddContestGroupBox.Controls.Add(this.contestTextBox);
             this.AddContestGroupBox.Location = new System.Drawing.Point(12, 33);
             this.AddContestGroupBox.Name = "AddContestGroupBox";
             this.AddContestGroupBox.Size = new System.Drawing.Size(258, 537);
             this.AddContestGroupBox.TabIndex = 0;
             this.AddContestGroupBox.TabStop = false;
             this.AddContestGroupBox.Text = "Järjestäjä";
+            // 
+            // placeTextBox
+            // 
+            this.placeTextBox.Location = new System.Drawing.Point(9, 136);
+            this.placeTextBox.Name = "placeTextBox";
+            this.placeTextBox.Size = new System.Drawing.Size(232, 20);
+            this.placeTextBox.TabIndex = 19;
             // 
             // label13
             // 
@@ -167,11 +174,11 @@
             this.label12.TabIndex = 17;
             this.label12.Text = "Kpl";
             // 
-            // comboBox2
+            // eraComboBox
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.eraComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.eraComboBox.FormattingEnabled = true;
+            this.eraComboBox.Items.AddRange(new object[] {
             "15",
             "20",
             "25",
@@ -181,11 +188,11 @@
             "45",
             "50",
             "55"});
-            this.comboBox2.Location = new System.Drawing.Point(145, 180);
-            this.comboBox2.MaxDropDownItems = 10;
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(42, 21);
-            this.comboBox2.TabIndex = 5;
+            this.eraComboBox.Location = new System.Drawing.Point(145, 180);
+            this.eraComboBox.MaxDropDownItems = 10;
+            this.eraComboBox.Name = "eraComboBox";
+            this.eraComboBox.Size = new System.Drawing.Size(42, 21);
+            this.eraComboBox.TabIndex = 5;
             // 
             // label10
             // 
@@ -207,11 +214,11 @@
             this.saveSettings.UseVisualStyleBackColor = true;
             this.saveSettings.Click += new System.EventHandler(this.saveSettings_Click);
             // 
-            // comboBox1
+            // rataComboBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.rataComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rataComboBox.FormattingEnabled = true;
+            this.rataComboBox.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -222,11 +229,11 @@
             "8",
             "9",
             "10"});
-            this.comboBox1.Location = new System.Drawing.Point(15, 180);
-            this.comboBox1.MaxDropDownItems = 10;
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(42, 21);
-            this.comboBox1.TabIndex = 4;
+            this.rataComboBox.Location = new System.Drawing.Point(15, 180);
+            this.rataComboBox.MaxDropDownItems = 10;
+            this.rataComboBox.Name = "rataComboBox";
+            this.rataComboBox.Size = new System.Drawing.Size(42, 21);
+            this.rataComboBox.TabIndex = 4;
             // 
             // label11
             // 
@@ -474,19 +481,12 @@
             this.day1h.Size = new System.Drawing.Size(42, 21);
             this.day1h.TabIndex = 8;
             // 
-            // organizer
+            // organizerTextBox
             // 
-            this.organizer.Location = new System.Drawing.Point(9, 92);
-            this.organizer.Name = "organizer";
-            this.organizer.Size = new System.Drawing.Size(232, 20);
-            this.organizer.TabIndex = 2;
-            // 
-            // locality
-            // 
-            this.locality.Location = new System.Drawing.Point(9, 141);
-            this.locality.Name = "locality";
-            this.locality.Size = new System.Drawing.Size(232, 20);
-            this.locality.TabIndex = 3;
+            this.organizerTextBox.Location = new System.Drawing.Point(9, 92);
+            this.organizerTextBox.Name = "organizerTextBox";
+            this.organizerTextBox.Size = new System.Drawing.Size(232, 20);
+            this.organizerTextBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -515,12 +515,12 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Tapahtuma";
             // 
-            // contest
+            // contestTextBox
             // 
-            this.contest.Location = new System.Drawing.Point(9, 43);
-            this.contest.Name = "contest";
-            this.contest.Size = new System.Drawing.Size(232, 20);
-            this.contest.TabIndex = 1;
+            this.contestTextBox.Location = new System.Drawing.Point(9, 43);
+            this.contestTextBox.Name = "contestTextBox";
+            this.contestTextBox.Size = new System.Drawing.Size(232, 20);
+            this.contestTextBox.TabIndex = 1;
             // 
             // contestantListButton
             // 
@@ -1037,9 +1037,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem mattiMeikäläinenToolStripMenuItem;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox contest;
-        private System.Windows.Forms.TextBox organizer;
-        private System.Windows.Forms.TextBox locality;
+        private System.Windows.Forms.TextBox contestTextBox;
+        private System.Windows.Forms.TextBox organizerTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1055,13 +1054,13 @@
         private System.Windows.Forms.ComboBox day2min;
         private System.Windows.Forms.ComboBox day2h;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox rataComboBox;
         private System.Windows.Forms.Button saveSettings;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tietojaHauliTulospalvelustaToolStripMenuItem;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox eraComboBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStripMenuItem joukkueetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seuratToolStripMenuItem;
@@ -1093,6 +1092,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem yToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem y20ToolStripMenuItem;
+        private System.Windows.Forms.TextBox placeTextBox;
     }
 }
 

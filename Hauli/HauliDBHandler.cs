@@ -662,8 +662,6 @@ namespace Hauli
             SqlCeDataReader rdr = null;
 
             SqlCeConnection con = _connection;
-
-            Console.WriteLine("TIEDOT KANTAAN");
             try
             {
                 for (int i = 0; i < lines.Count; i++)
@@ -684,9 +682,8 @@ namespace Hauli
                     sarjaID = int.Parse(lines[i][5]);
                     era = int.Parse(lines[i][6]);
 
-                    idNumber = generateId("Seura", "seuraID");
+                    idNumber = generateId("Osallistuja", "osallistujaID");
 
-                    Console.WriteLine("NRO:" + idNumber);
 
                     if (con.State == ConnectionState.Closed)
                         con.Open();
@@ -707,16 +704,13 @@ namespace Hauli
 
                     cmd.ExecuteNonQuery();
 
-                    //Console.WriteLine("RIVAREITA:" + RowsAffected);
-
-
                 }
 
 
             }
             catch (SqlCeException e)
             {
-                //ShowErrors(e);
+                Console.WriteLine("VIRHE user add form file");
                 Console.WriteLine(e.Message);
             }
             finally
@@ -727,6 +721,123 @@ namespace Hauli
                 }
                 cmd.Dispose();
             }
+        }
+
+        internal void setCompetitionDatetime(string d1, string d2, string contest, string organizer, string place, string rata, string era)
+        {
+            SqlCeCommand cmd = null;
+            SqlCeConnection con = _connection;
+
+            //Pyyhitään vanhat tiedot veke.
+            delDBTable("Asetukset");
+
+            try
+            {
+               int id = 1;
+
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                cmd = con.CreateCommand();
+
+                if (d2 == "")
+                {
+                    cmd.CommandText = "INSERT INTO Asetukset (AsetuksetID, jarjestaja, tapahtuma, paikkakunta, radat, erankesto, paiva1) Values(@idNumero, @contest, @organizer, @place, @rata, @era, @paiva1)";
+                }
+                else
+                {
+                    cmd.CommandText = "INSERT INTO Asetukset (AsetuksetID, jarjestaja, tapahtuma, paikkakunta, radat, erankesto, paiva1, paiva2) Values(@idNumero, @contest, @organizer, @place, @rata, @era, @paiva1, @paiva2)";
+                }
+
+                cmd.Parameters.AddWithValue("idNumero", id);
+                cmd.Parameters.AddWithValue("contest", contest);
+                cmd.Parameters.AddWithValue("organizer", organizer);
+                cmd.Parameters.AddWithValue("place", place);
+                cmd.Parameters.AddWithValue("rata", rata);
+                cmd.Parameters.AddWithValue("era", era);
+                cmd.Parameters.AddWithValue("paiva1", d1);
+                cmd.Parameters.AddWithValue("paiva2", d2);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlCeException e)
+            {
+                Console.WriteLine("VIRHE add date");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+
+        }
+
+        internal List<Object> getMainInfo()
+        {
+            List<Object> tiedot = new List<Object>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
+            do
+            {
+
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+
+                    string Sql = String.Format(" SELECT * FROM Asetukset WHERE asetuksetID = 1");
+                    cmd = new SqlCeCommand(Sql, con);
+
+
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+
+                       // tiedot.Add(rdr.GetString(0));
+                        tiedot.Add(rdr.GetString(1));
+                        tiedot.Add(rdr.GetString(2));
+                        tiedot.Add(rdr.GetString(3));
+                        tiedot.Add(rdr.GetInt32(4));
+                        tiedot.Add(rdr.GetInt32(5));
+                        tiedot.Add(rdr.GetDateTime(6));
+
+                        if (!rdr.IsDBNull(7))
+                        {
+                            tiedot.Add(rdr.GetDateTime(7));
+                        }
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return tiedot;
         }
     }//End db
 } //end db class

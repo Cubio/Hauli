@@ -379,45 +379,7 @@ namespace Hauli
 
         }
 
-        /*
-       internal void setTeam(List<TeamListLine> teamList)
-       {
 
-            SqlCeCommand cmd = null;
-            SqlCeConnection con = _connection;
-            try
-            {
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
-
-                string Sql = String.Format(@" SELECT seura FROM Seura ORDER BY seura ASC");
-                cmd = new SqlCeCommand(Sql, con);
-                cmd.ExecuteNonQuery();
-
-                try
-                {
-                    SqlCeDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        seuraBox.Items.Add(dr["seura"]);
-                    }
-                }
-                catch (SqlCeException e)
-                {
-                    //show errors
-                    Console.WriteLine(e.Message);
-                }
-
-                con.Close();
-                cmd.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-*/
         public void LoadSeuraBox(ComboBox seuraBox)
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -531,68 +493,6 @@ namespace Hauli
                 Console.WriteLine(ex.Message);
             }
         }
-
-/*
-
-           
-           String lyhenne;
-           String seura;
-           String alue;
-           int idNumber;
-
-           SqlCeCommand cmd = null;
-           SqlCeDataReader rdr = null;
-
-           SqlCeConnection con = _connection;
-           try
-           {
-
-
-               for (int i = 0; i < seuraList.Count; i++)
-               {
-                   idNumber = seuraList[i].Id;
-                   lyhenne = seuraList[i].Lyhenne;
-                   seura = seuraList[i].KokoNimi;
-                   alue = seuraList[i].Alue;
-
-
-                   if (con.State == ConnectionState.Closed)
-                       con.Open();
-
-                   cmd = con.CreateCommand();
-                   cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
-
-                   cmd.Parameters.AddWithValue("idNumero", idNumber);
-                   cmd.Parameters.AddWithValue("seura", seura);
-                   cmd.Parameters.AddWithValue("lyhenne", lyhenne);
-                   cmd.Parameters.AddWithValue("alue", alue);
-
-                   cmd.ExecuteNonQuery();
-               }
-           }
-           catch (SqlCeException e)
-           {
-               //ShowErrors(e);
-               Console.WriteLine(e.Message);
-           }
-           finally
-           {
-               if (con.State == ConnectionState.Open)
-               {
-                   con.Close();
-               }
-               cmd.Dispose();
-           }
-
-
-       }
-
-*/
-
-
-
-
-
 
 
         internal List<TeamListLine> getTeamList()
@@ -755,23 +655,34 @@ namespace Hauli
             int seuraID;
             int joukkueID;
             int sarjaID;
-            int seura;
             int era;
+            int selkalappu;
 
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
 
             SqlCeConnection con = _connection;
+
+            Console.WriteLine("TIEDOT KANTAAN");
             try
             {
                 for (int i = 0; i < lines.Count; i++)
                 {
-                    nimi = lines[i][0];
-                    sukunimi = lines[i][1];
-                    seuraID = ToInt32(lines[i][2]);
-                    joukkueID = lines[i][3];
-                    sarjaID = lines[i][4];
-                    era = lines[i][5];
+                    selkalappu = int.Parse(lines[i][0]);
+                    nimi = lines[i][1];
+                    sukunimi = lines[i][2];
+                    seuraID = int.Parse(lines[i][3]);
+
+                    if (string.IsNullOrEmpty(lines[i][4]))
+                    {
+                        joukkueID = 0;
+                    }
+                    else
+                    {
+                        joukkueID = int.Parse(lines[i][4]);
+                    }
+                    sarjaID = int.Parse(lines[i][5]);
+                    era = int.Parse(lines[i][6]);
 
                     idNumber = generateId("Seura", "seuraID");
 
@@ -783,12 +694,16 @@ namespace Hauli
                     // string Sql = String.Format(@" SELECT * FROM {0} WHERE seuraID = @numero", "Seura");
                     //cmd = new SqlCeCommand(Sql, con);
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+                    cmd.CommandText = "INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era)";
 
                     cmd.Parameters.AddWithValue("idNumero", idNumber);
-                    cmd.Parameters.AddWithValue("seura", seura);
-                    cmd.Parameters.AddWithValue("lyhenne", lyhenne);
-                    cmd.Parameters.AddWithValue("alue", alue);
+                    cmd.Parameters.AddWithValue("nro", selkalappu);
+                    cmd.Parameters.AddWithValue("nimi", nimi);
+                    cmd.Parameters.AddWithValue("sukunimi", sukunimi);
+                    cmd.Parameters.AddWithValue("seuraID", seuraID);
+                    cmd.Parameters.AddWithValue("joukkueID", joukkueID);
+                    cmd.Parameters.AddWithValue("sarjaID", sarjaID);
+                    cmd.Parameters.AddWithValue("era", era);
 
                     cmd.ExecuteNonQuery();
 

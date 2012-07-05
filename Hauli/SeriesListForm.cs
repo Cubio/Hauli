@@ -142,7 +142,7 @@ namespace Hauli
                         rivi++;
                         string[] tiedot = line.Split(',');
                         lines.Add(tiedot);
-
+                        Console.WriteLine("TIETO:" + tiedot);
                         //if (tiedot.Length != 3)
                         if (tiedot.Length != 7)
                         {

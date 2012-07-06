@@ -114,9 +114,6 @@ namespace Hauli
 
         private void importSeriesFile_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(openFileDialogSeurat.FileName);
-
-
 
             //Tarkistetaan onko tiedosto olemassa, jos on niin luetaan se.
             if (File.Exists(openFileDialogSeurat.FileName))

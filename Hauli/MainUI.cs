@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
+using Microsoft.Win32;
+
 namespace Hauli
 {
     /// <summary>
@@ -24,9 +26,6 @@ namespace Hauli
         public MainUIform()
         {
             InitializeComponent();
-
-            //LUENTAAN INI 
-
 
             //Tarkistetaan tietokanta
             try
@@ -45,9 +44,6 @@ namespace Hauli
 
             // Hae kannasta näytettävää kamaa pääikkunaan
             getMainInfo();
-
-
-
 
 
 
@@ -190,7 +186,7 @@ namespace Hauli
                 }
 
                 dbHandler.setCompetitionDatetime(d1, d2, this.contestTextBox.Text, this.organizerTextBox.Text, this.placeTextBox.Text, this.rataComboBox.Text, this.eraComboBox.Text);
-
+                MessageBox.Show("Kilpailutapahtuman tiedot tallennettu");
             }
         }
 
@@ -198,6 +194,50 @@ namespace Hauli
         private void sarjatToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             new SerialListForm(dbHandler).ShowDialog();
+        }
+
+        private void tallennaKilpailuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Hauli-Solution|*.hauli";
+            saveFileDialog1.Title = "Tallenna hauli kilpailutapahtuma";
+            //saveFileDialog1.CheckFileExists = true;
+           // saveFileDialog1.CheckPathExists = true;
+
+            saveFileDialog1.FileName = "Hauli_" + contestTextBox.Text+ "_" + DateTime.Now.ToString( "yyyy-MM-dd" );
+
+
+            //Kansio, jossa softa ajetaan
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (File.Exists(Properties.Settings.Default.DBpath))
+            {
+                FileStream fileStream = new FileStream(Properties.Settings.Default.DBpath, FileMode.Open);
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string filename = saveFileDialog1.FileName;
+                File.Copy(Properties.Settings.Default.DBpath, filename, true);
+            }
+               fileStream.Close();
+            }   
+        }
+
+        private void tuoKilpailuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StreamReader file;
+
+            openFileDialog1.Filter = "Hauli|*.hauli";
+            openFileDialog1.Title = "Valitse käytettävä tietokanta";
+            openFileDialog1.ShowDialog();
+
+            //Tarkistetaan onko tiedosto olemassa, jos on niin luetaan se.
+            if (File.Exists(openFileDialog1.FileName))
+            {
+                Properties.Settings.Default.DBpath = openFileDialog1.FileName;
+                dbHandler.updateHauliDB();
+                getMainInfo();
+            }
+
         }
 
     }

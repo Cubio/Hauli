@@ -16,14 +16,22 @@ namespace Hauli
 
         public HauliDBHandler()
         {
-            if (File.Exists("HauliDB.sdf"))
-                _connection = new SqlCeConnection(@"Data Source = |DataDirectory|\HauliDB.sdf");
-            else
-            {
-                throw new HauliException("Tiedostoa HauliDB.sdf ei löytynyt");                
-            }
+            updateHauliDB();
         }
 
+        public void updateHauliDB()
+        {
+            String paht = Properties.Settings.Default.DBpath;
+
+            if (File.Exists(paht))
+                _connection = new SqlCeConnection(@"Data Source = "+paht);
+            else
+            {
+                throw new HauliException("Tiedostoa HauliDB.sdf ei löytynyt");
+            }
+
+
+        }
 
 
         /// <summary>
@@ -57,8 +65,6 @@ namespace Hauli
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
-                   // string Sql = String.Format(@" SELECT * FROM {0} WHERE seuraID = @numero", "Seura");
-                    //cmd = new SqlCeCommand(Sql, con);
                     cmd = con.CreateCommand();
                     cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
 

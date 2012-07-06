@@ -118,6 +118,8 @@
             this.tietojaHauliTulospalvelustaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -586,12 +588,14 @@
             this.tallennaKilpailuToolStripMenuItem.Name = "tallennaKilpailuToolStripMenuItem";
             this.tallennaKilpailuToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.tallennaKilpailuToolStripMenuItem.Text = "Tallenna kilpailu";
+            this.tallennaKilpailuToolStripMenuItem.Click += new System.EventHandler(this.tallennaKilpailuToolStripMenuItem_Click);
             // 
             // tuoKilpailuToolStripMenuItem
             // 
             this.tuoKilpailuToolStripMenuItem.Name = "tuoKilpailuToolStripMenuItem";
             this.tuoKilpailuToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.tuoKilpailuToolStripMenuItem.Text = "Tuo kilpailu";
+            this.tuoKilpailuToolStripMenuItem.Click += new System.EventHandler(this.tuoKilpailuToolStripMenuItem_Click);
             // 
             // suljeSovellusToolStripMenuItem1
             // 
@@ -976,6 +980,10 @@
             this.toolTip1.InitialDelay = 1000;
             this.toolTip1.ReshowDelay = 300;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1093,6 +1101,8 @@
         private System.Windows.Forms.ToolStripMenuItem yToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem y20ToolStripMenuItem;
         private System.Windows.Forms.TextBox placeTextBox;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

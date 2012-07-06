@@ -98,6 +98,7 @@
       <DependentUpon>SerialListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SerialListLine.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SeuraListLine.cs" />
     <Compile Include="HauliDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

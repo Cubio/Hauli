@@ -24,7 +24,8 @@ namespace Hauli
         public MainUIform()
         {
             InitializeComponent();
-
+            comboBox1.Text = "1";
+            comboBox2.Text = "15";
             //LUENTAAN INI 
 
 
@@ -80,7 +81,7 @@ namespace Hauli
 
         private void roundScheduleButton_Click(object sender, EventArgs e)
         {
-            new RoundScheduleView(dbHandler).ShowDialog();
+            new RoundScheduleView(dbHandler, comboBox1.Text, comboBox2.Text, activeDay2Selection.Checked, day1h.Text, day1min.Text, day2h.Text, day2min.Text).ShowDialog();
         }
 
         private void scoreInputViewButton_Click(object sender, EventArgs e)

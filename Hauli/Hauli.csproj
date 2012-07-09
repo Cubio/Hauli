@@ -91,6 +91,7 @@
     <Compile Include="ContestantRowEditForm.Designer.cs">
       <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoundListLine.cs" />
     <Compile Include="SerialListForm.cs">
       <SubType>Form</SubType>
     </Compile>

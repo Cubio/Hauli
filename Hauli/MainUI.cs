@@ -26,7 +26,8 @@ namespace Hauli
         public MainUIform()
         {
             InitializeComponent();
-
+            rataComboBox.Text = "1";
+            eraComboBox.Text = "15";
             //Tarkistetaan tietokanta
             try
             {
@@ -80,7 +81,7 @@ namespace Hauli
                     day2min.Text = "00";
                 }
                 day2min.Text = day2.Minute.ToString();
-                day1Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
+                //day1Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
                 activeDay2Selection.Checked = true;
                 Console.WriteLine("J:" + day2.Minute);
             }
@@ -119,7 +120,7 @@ namespace Hauli
 
         private void roundScheduleButton_Click(object sender, EventArgs e)
         {
-            new RoundScheduleView(dbHandler).ShowDialog();
+            new RoundScheduleView(dbHandler, rataComboBox.Text, eraComboBox.Text, activeDay2Selection.Checked, day1h.Text, day1min.Text, day2h.Text, day2min.Text).ShowDialog();
         }
 
         private void scoreInputViewButton_Click(object sender, EventArgs e)

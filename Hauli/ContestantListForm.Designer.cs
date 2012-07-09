@@ -70,7 +70,7 @@
             this.asetuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tulostuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialogContestant = new System.Windows.Forms.OpenFileDialog();
             this.contestantRowContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editContestantItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteContestantItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -513,10 +513,10 @@
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
             // 
-            // openFileDialog1
+            // openFileDialogContestant
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            this.openFileDialogContestant.FileName = "openFileDialogContestant";
+            this.openFileDialogContestant.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // contestantRowContextMenuStrip
             // 
@@ -632,7 +632,7 @@
         private System.Windows.Forms.ToolStripMenuItem tulostuksetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.Button addEmptyRowsButton;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialogContestant;
         private BrightIdeasSoftware.OLVColumn grabColumn;
         private System.Windows.Forms.Button addEmptyRowButton;
         private System.Windows.Forms.Button addNewRoundButton;

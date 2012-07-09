@@ -134,8 +134,7 @@ namespace Hauli
                         rivi++;
                         string[] tiedot = line.Split(',');
                         lines.Add(tiedot);
-                        //if (tiedot.Length != 3)
-                        if (tiedot.Length != 7)
+                        if (tiedot.Length != 3)
                         {
                             virhe = true;
                             throw new HauliException("Tekstitiedostossa on virheellisiä merkintöjä. Rivillä:" + rivi);
@@ -153,9 +152,7 @@ namespace Hauli
                 }
                 if (virhe == false)
                 {
-                    //Pistetään kantaan
-                    //dbHandler.addFileSeurat(lines);
-                    dbHandler.addFileOsallistujat(lines);
+                    dbHandler.addFileSeurat(lines);
                 }
           }
  }

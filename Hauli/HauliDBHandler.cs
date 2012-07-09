@@ -12,7 +12,7 @@ namespace Hauli
     public class HauliDBHandler
     {
         private SqlCeConnection _connection;
-        
+
 
         public HauliDBHandler()
         {
@@ -24,19 +24,13 @@ namespace Hauli
             String paht = Properties.Settings.Default.DBpath;
 
             if (File.Exists(paht))
-                _connection = new SqlCeConnection(@"Data Source = "+paht);
+                _connection = new SqlCeConnection(@"Data Source = " + paht);
             else
             {
-                throw new HauliException("Tietokantaa ei löytynyt, luodaan Haulin alkuperäinen tietokanta uudelleen");
-                generateOrginalDB();
+                throw new HauliException("Tietokantaa ei löytynyt. Asenna uudelleen sovellus");
             }
 
 
-        }
-
-        private void generateOrginalDB()
-        {
-            throw new NotImplementedException();
         }
 
 
@@ -133,7 +127,7 @@ namespace Hauli
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        seuraList.Add(new Seura( rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3) ));
+                        seuraList.Add(new Seura(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3)));
                     }
                 }
                 catch (SqlCeException ex)
@@ -171,12 +165,12 @@ namespace Hauli
             int idNro = 0;
             idNro = random.Next(10000, 99999);
 
-         
+
             // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
             do
             {
 
-            SqlCeConnection con =_connection;
+                SqlCeConnection con = _connection;
                 try
                 {
                     if (con.State == ConnectionState.Closed)
@@ -197,7 +191,7 @@ namespace Hauli
                 catch (SqlCeException ex)
                 {
                     //ShowErrors(e);
-                    Console.WriteLine("VIRHEILMOITUS, Generointi ID"); 
+                    Console.WriteLine("VIRHEILMOITUS, Generointi ID");
                     Console.WriteLine(ex.Message);
                 }
                 finally
@@ -248,7 +242,7 @@ namespace Hauli
             }
         }
 
-        internal void setContestant(List<ContestantListLine> contestantList) 
+        internal void setContestant(List<ContestantListLine> contestantList)
         {
 
             SqlCeCommand cmd = null;
@@ -392,10 +386,10 @@ namespace Hauli
         }
 
 
-        public void LoadSeuraBox(ComboBox seuraBox)
+        public List<string> getSeuraBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
-
+            List<string> tiedot = new List<string>();
             SqlCeCommand cmd = null;
             SqlCeConnection con = _connection;
             try
@@ -412,7 +406,7 @@ namespace Hauli
                     SqlCeDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        seuraBox.Items.Add(dr["seura"]);
+                        tiedot.Add(dr.GetString(0));
                     }
                 }
                 catch (SqlCeException e)
@@ -428,12 +422,14 @@ namespace Hauli
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return tiedot;
         }
 
-        public void LoadSarjaBox(ComboBox sarjaBox)
+        public List<string> getSarjaBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
-
+            List<string> tiedot = new List<string>();
             SqlCeCommand cmd = null;
             SqlCeConnection con = _connection;
             try
@@ -450,7 +446,7 @@ namespace Hauli
                     SqlCeDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        sarjaBox.Items.Add(dr["sarja"]);
+                        tiedot.Add(dr.GetString(0));
                     }
                 }
                 catch (SqlCeException e)
@@ -466,7 +462,10 @@ namespace Hauli
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return tiedot;
         }
+
 
         public void LoadJoukkueBox(ComboBox joukkueBox)
         {
@@ -534,7 +533,7 @@ namespace Hauli
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        teamList.Add(new Team(rdr.GetInt32(0), rdr.GetString(1) ));
+                        teamList.Add(new Team(rdr.GetInt32(0), rdr.GetString(1)));
                     }
                 }
                 catch (SqlCeException ex)
@@ -745,7 +744,7 @@ namespace Hauli
 
             try
             {
-               int id = 1;
+                int id = 1;
 
                 if (con.State == ConnectionState.Closed)
                     con.Open();
@@ -816,7 +815,7 @@ namespace Hauli
                     while (rdr.Read())
                     {
 
-                       // tiedot.Add(rdr.GetString(0));
+                        // tiedot.Add(rdr.GetString(0));
                         tiedot.Add(rdr.GetString(1));
                         tiedot.Add(rdr.GetString(2));
                         tiedot.Add(rdr.GetString(3));

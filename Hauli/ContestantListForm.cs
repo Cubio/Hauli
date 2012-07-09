@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using BrightIdeasSoftware;
+using System.IO;
 
 namespace Hauli
 {
@@ -21,6 +22,8 @@ namespace Hauli
         private Cursor moveHandCursor;
         private List<int> roundContestantCounts;
         private List<int> roundDividerIndices;
+        private StreamReader file;
+        private Boolean virhe = false;
 
         public ContestantListForm(HauliDBHandler dbHandler)
         {
@@ -33,34 +36,18 @@ namespace Hauli
 
             moveHandCursor = new Cursor("Resources/move.cur");
 
-            seuraList.Add("AavU");
-            seuraList.Add("ASA");
-            seuraList.Add("A-HA");
-            seuraList.Add("A-SA");
-            seuraList.Add("AlavV");
-            seuraList.Add("AlavA");
-            seuraList.Add("OSUMA");
-            seuraList.Add("AK-945");
-            seuraList.Add("AMP-67");
-            seuraList.Add("OSH");
+
+            seuraList = dbHandler.getSeuraBox();
+
 
             seuraAutoCompleteCollection.AddRange(seuraList.ToArray());
             seuraComboBox.AutoCompleteCustomSource = seuraAutoCompleteCollection;
             seuraComboBox.Items.AddRange(seuraList.ToArray());
 
-            sarjaList.Add("Y");
-            sarjaList.Add("Y15");
-            sarjaList.Add("Y17");
-            sarjaList.Add("Y20");
-            sarjaList.Add("Y55");
-            sarjaList.Add("Y65");
-            sarjaList.Add("Y70");
-            sarjaList.Add("N");
-            sarjaList.Add("N20");
-            sarjaList.Add("A");
-            sarjaList.Add("B");
-            sarjaList.Add("C");
-            sarjaList.Add("D");
+
+            sarjaList = dbHandler.getSarjaBox();
+
+
 
             sarjaComboBox.Items.AddRange(sarjaList.ToArray());
             sarjaComboBox.Text = sarjaList[0];
@@ -472,12 +459,14 @@ namespace Hauli
 
         private void openPathButton_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            openFileDialogContestant.Filter = "Cursor Files|*.txt";
+            openFileDialogContestant.Title = "Valitse ";
+            openFileDialogContestant.ShowDialog();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            importFilePathTextBox.Text = openFileDialog1.FileName;
+            importFilePathTextBox.Text = openFileDialogContestant.FileName;
         }
 
         private void addContestantButton_Click(object sender, EventArgs e)
@@ -687,7 +676,46 @@ namespace Hauli
 
         private void importContestantsButton_Click(object sender, EventArgs e)
         {
-            //todo
+            //Tarkistetaan onko tiedosto olemassa, jos on niin luetaan se.
+            if (File.Exists(openFileDialogContestant.FileName))
+            {
+                // Read the file and display it line by line.
+                string line;
+                int rivi = 0;
+               
+                List<string[]> lines = new List<string[]>();
+
+                file = new StreamReader(openFileDialogContestant.FileName);
+                try
+                {
+
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        rivi++;
+                        string[] tiedot = line.Split(',');
+                        lines.Add(tiedot);
+                        if (tiedot.Length != 7)
+                        {
+                            virhe = true;
+                            throw new HauliException("Tekstitiedostossa on virheellisiä merkintöjä. Rivillä:" + rivi);
+                        }
+                    }
+                }
+                catch (HauliException ex)
+                {
+                    file.ReadToEnd();
+                    MessageBox.Show(ex.Message, "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    file.Close();
+                }
+                if (virhe == false)
+                {
+                    dbHandler.addFileOsallistujat(lines);
+                }
+            }
         }
 
         private void objectListView1_CellOver(object sender, CellOverEventArgs e)

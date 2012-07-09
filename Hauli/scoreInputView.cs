@@ -18,7 +18,6 @@ namespace Hauli
             InitializeComponent();
             nameSarjaTabs();
             this.dbHandler = dbHandler;
-            dbHandler.LoadSarjaBox(sarjaComboBox);
             
             //Laitetaan scores taulukkoon uusi välilehti
             //Infoa: http://msdn.microsoft.com/en-us/library/system.windows.forms.tabcontrol.aspx

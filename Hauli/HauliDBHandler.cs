@@ -467,45 +467,6 @@ namespace Hauli
         }
 
 
-        public void LoadJoukkueBox(ComboBox joukkueBox)
-        {
-            // hakee tietokannasta comboboxissa esitettävät kentät
-
-            SqlCeCommand cmd = null;
-            SqlCeConnection con = _connection;
-            try
-            {
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
-
-                string Sql = String.Format(@" SELECT joukkue FROM Joukkue ORDER BY joukkue ASC");
-                cmd = new SqlCeCommand(Sql, con);
-                cmd.ExecuteNonQuery();
-
-                try
-                {
-                    SqlCeDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        joukkueBox.Items.Add(dr["joukkue"]);
-                    }
-                }
-                catch (SqlCeException e)
-                {
-                    //show errors
-                    Console.WriteLine(e.Message);
-                }
-
-                con.Close();
-                cmd.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-
         internal List<TeamListLine> getTeamList()
         {
             List<TeamListLine> teamList;
@@ -847,6 +808,46 @@ namespace Hauli
                 }
 
             } while (!ok);
+
+            return tiedot;
+        }
+
+        internal List<string> getJoukkueBox()
+        {
+            // hakee tietokannasta comboboxissa esitettävät kentät
+            List<string> tiedot = new List<string>();
+            SqlCeCommand cmd = null;
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" SELECT joukkue FROM Joukkue ORDER BY joukkue ASC");
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.ExecuteNonQuery();
+
+                try
+                {
+                    SqlCeDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tiedot.Add(dr.GetString(0));
+                    }
+                }
+                catch (SqlCeException e)
+                {
+                    //show errors
+                    Console.WriteLine(e.Message);
+                }
+
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             return tiedot;
         }

@@ -19,6 +19,7 @@ namespace Hauli
         private List<ContestantListLine> contestantList;
         private List<string> seuraList;
         private List<string> sarjaList;
+        private List<string> joukkueList;
         private Cursor moveHandCursor;
         private List<int> roundContestantCounts;
         private List<int> roundDividerIndices;
@@ -31,6 +32,7 @@ namespace Hauli
             this.dbHandler = dbHandler;
 
             AutoCompleteStringCollection seuraAutoCompleteCollection = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection joukkueAutoCompleteCollection = new AutoCompleteStringCollection();
             seuraList = new List<string>();
             sarjaList = new List<string>();
 
@@ -46,6 +48,14 @@ namespace Hauli
 
 
             sarjaList = dbHandler.getSarjaBox();
+
+            joukkueList = dbHandler.getJoukkueBox();
+
+            // KORJAA
+            joukkueAutoCompleteCollection.AddRange(joukkueList.ToArray());
+            joukkueComboBox.AutoCompleteCustomSource = seuraAutoCompleteCollection;
+            joukkueComboBox.Items.AddRange(joukkueList.ToArray());
+
 
 
 

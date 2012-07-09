@@ -27,10 +27,16 @@ namespace Hauli
                 _connection = new SqlCeConnection(@"Data Source = "+paht);
             else
             {
-                throw new HauliException("Tiedostoa HauliDB.sdf ei löytynyt");
+                throw new HauliException("Tietokantaa ei löytynyt, luodaan Haulin alkuperäinen tietokanta uudelleen");
+                generateOrginalDB();
             }
 
 
+        }
+
+        private void generateOrginalDB()
+        {
+            throw new NotImplementedException();
         }
 
 

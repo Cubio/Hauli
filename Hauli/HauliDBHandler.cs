@@ -845,5 +845,46 @@ namespace Hauli
 
             return tiedot;
         }
+
+        public List<string> getRoundColumn()
+        {
+            List<string> columnData = new List<string>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format("SELECT era FROM Osallistuja");
+                cmd = new SqlCeCommand(Sql, con);
+
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    //columnData.Add(rdr.GetString(0));
+                }
+            }
+            catch (SqlCeException ex)
+            {
+                //ShowErrors(ex);
+                Console.WriteLine("TIETOKANTAVIRHE: getRoundColumn()");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                rdr.Close();
+                cmd.Dispose();
+            }
+            return columnData;
+        }
+
     }//End db
 } //end db class

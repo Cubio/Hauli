@@ -892,7 +892,7 @@ namespace Hauli
                         }
 
 
-                        contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
+                        //contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
 
 
 

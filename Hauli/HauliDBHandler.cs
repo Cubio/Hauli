@@ -887,7 +887,7 @@ namespace Hauli
                     {
                         if(eraNro < rdr.GetInt32(15) )
                         {
-                            contestantList.Add(new RoundDivider(rdr.GetBoolean(16), rdr.GetInt32(15), "Erä"));
+                            //contestantList.Add(new RoundDivider(rdr.GetBoolean(16), rdr.GetInt32(15), "Erä"));
                             eraNro = rdr.GetInt32(15);
                         }
 

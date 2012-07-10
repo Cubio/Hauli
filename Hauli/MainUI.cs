@@ -75,19 +75,15 @@ namespace Hauli
             {
                 DateTime day2 = (DateTime)tiedot[6];
                 day2h.Text = day2.Hour.ToString();
-
                 if (day2.Minute.ToString() == "0")
                 {
                     day2min.Text = "00";
                 }
                 day2min.Text = day2.Minute.ToString();
-                //day1Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
+                day2Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
                 activeDay2Selection.Checked = true;
                 Console.WriteLine("J:" + day2.Minute);
             }
-
-           
-
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)

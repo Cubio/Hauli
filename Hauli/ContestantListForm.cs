@@ -51,7 +51,6 @@ namespace Hauli
 
             joukkueList = dbHandler.getJoukkueBox();
 
-            // KORJAA
             joukkueAutoCompleteCollection.AddRange(joukkueList.ToArray());
             joukkueComboBox.AutoCompleteCustomSource = seuraAutoCompleteCollection;
             joukkueComboBox.Items.AddRange(joukkueList.ToArray());
@@ -69,6 +68,8 @@ namespace Hauli
             objectListView1.DropSink = dropsink;
 
             contestantList = new List<ContestantListLine>();
+
+            contestantList = dbHandler.getContestant();
 
             contestantList.Add(new RoundDivider(false, 1, "Erä"));
 

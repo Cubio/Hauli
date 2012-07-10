@@ -851,5 +851,74 @@ namespace Hauli
 
             return tiedot;
         }
+
+        internal List<ContestantListLine> getContestant()
+        {
+            List<ContestantListLine> contestantList = new List<ContestantListLine>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            int eraNro = 1;
+            //contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
+            //contestantList.Add(new RoundDivider(false, 2, "Erä"));
+
+      
+
+            // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
+
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+
+                    string Sql = String.Format(" SELECT * FROM Osallistuja ORDER BY era ASC");
+                    cmd = new SqlCeCommand(Sql, con);
+
+
+                    rdr = cmd.ExecuteReader();
+
+                    
+
+                    while (rdr.Read())
+                    {
+                        if(eraNro < rdr.GetInt32(15) )
+                        {
+                            contestantList.Add(new RoundDivider(rdr.GetBoolean(16), rdr.GetInt32(15), "Erä"));
+                            eraNro = rdr.GetInt32(15);
+                        }
+
+
+                        contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
+
+
+
+         
+
+                        //contestantlList.Add(new Serial(rdr.GetInt32(14), rdr.GetString(1)));
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+                return contestantList;
+        }
     }//End db
 } //end db class

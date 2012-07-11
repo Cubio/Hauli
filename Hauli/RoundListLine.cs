@@ -8,11 +8,12 @@ namespace Hauli
     class RoundLine
     {
         private int round;
+        private int subRound;
         private string text;
 
-        public RoundLine(int i, string s) {
-            round = i;
-            text = s;
+        public RoundLine(int round, int subRound) {
+            this.round = round;
+            this.subRound = subRound;
         }
 
         public int Round
@@ -21,9 +22,21 @@ namespace Hauli
             set { round = value; }
         }
 
+        public int SubRound
+        {
+            get { return subRound; }
+            set { subRound = value; }
+        }
+
         public string Text
         {
-            get { return text; }
+            get 
+            {
+                if (round > 0 && subRound > 0)
+                    return "Erä " + round + "\nKierros " + subRound;
+                else
+                    return "";
+            }
             set { text = value; }
         }
     }

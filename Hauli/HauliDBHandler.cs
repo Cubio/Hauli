@@ -60,8 +60,6 @@ namespace Hauli
 
                     idNumber = generateId("Seura", "seuraID");
 
-                    Console.WriteLine("NRO:" + idNumber);
-
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
@@ -74,10 +72,6 @@ namespace Hauli
                     cmd.Parameters.AddWithValue("alue", alue);
 
                     cmd.ExecuteNonQuery();
-
-                    //Console.WriteLine("RIVAREITA:" + RowsAffected);
-
-
                 }
 
 
@@ -185,7 +179,7 @@ namespace Hauli
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        Console.WriteLine(rdr.GetString(1));
+                        //Console.WriteLine(rdr.GetString(1));
                     }
                 }
                 catch (SqlCeException ex)
@@ -207,7 +201,6 @@ namespace Hauli
 
             } while (!ok);
 
-            Console.WriteLine("ID:" + idNro);
             return idNro;
         }
 
@@ -902,7 +895,6 @@ namespace Hauli
 
                     if (string.IsNullOrEmpty(rdr.GetString(2)))
                     {
-                        Console.WriteLine("JÄLKI ILMT");
                         contestantList.Add(new Contestant(rdr.GetInt32(0), "", "", "", "", ""));
                     }
                     else
@@ -977,7 +969,6 @@ namespace Hauli
                         }
                         else
                         {
-                            Console.WriteLine("HOJMO");
                             nimi = "";
                             sukunimi = "";
                             seuraID = 0;
@@ -1068,5 +1059,45 @@ namespace Hauli
             return id;
         }
 
+
+        public List<string> getRoundColumn()
+        {
+            List<string> columnData = new List<string>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format("SELECT era FROM Osallistuja");
+                cmd = new SqlCeCommand(Sql, con);
+
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    //columnData.Add(rdr.GetString(0));
+                }
+            }
+            catch (SqlCeException ex)
+            {
+                //ShowErrors(ex);
+                Console.WriteLine("TIETOKANTAVIRHE: getRoundColumn()");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                rdr.Close();
+                cmd.Dispose();
+            }
+            return columnData;
+        }
     }//End db
 } //end db class

@@ -859,66 +859,214 @@ namespace Hauli
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
             bool ok = false;
-
             int eraNro = 1;
+            String joukkue = "";
             //contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
             //contestantList.Add(new RoundDivider(false, 2, "Erä"));
 
-      
+
 
             // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
 
-                SqlCeConnection con = _connection;
-                try
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+
+                string Sql = String.Format("SELECT * FROM  Osallistuja LEFT JOIN Seura ON Osallistuja.seuraID = Seura.seuraID LEFT JOIN Sarja ON Osallistuja.sarjaID = Sarja.sarjaID LEFT OUTER JOIN Joukkue ON Osallistuja.joukkueID = Joukkue.joukkueID ORDER BY Osallistuja.era ASC");
+                cmd = new SqlCeCommand(Sql, con);
+
+
+                rdr = cmd.ExecuteReader();
+                rdr.Read();
+                contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
+                eraNro = rdr.GetInt32(15);
+
+                rdr = cmd.ExecuteReader();
+
+
+                while (rdr.Read())
                 {
-                    if (con.State == ConnectionState.Closed)
-                        con.Open();
+                    if (eraNro < rdr.GetInt32(15))
+                    {
+                        contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
+                        eraNro = rdr.GetInt32(15);
+                    }
 
+                    if (!rdr.IsDBNull(24))
+                    {
+                        joukkue = rdr.GetString(24);
+                    }
 
-                    string Sql = String.Format(" SELECT * FROM Osallistuja ORDER BY era ASC");
-                    cmd = new SqlCeCommand(Sql, con);
-
-
-                    rdr = cmd.ExecuteReader();
+                    if (string.IsNullOrEmpty(rdr.GetString(2)))
+                    {
+                        Console.WriteLine("JÄLKI ILMT");
+                        contestantList.Add(new Contestant(rdr.GetInt32(0), "", "", "", "", ""));
+                    }
+                    else
+                    {
+                        contestantList.Add(new Contestant(rdr.GetInt32(0), rdr.GetString(2), rdr.GetString(3), rdr.GetString(18), rdr.GetString(22), joukkue));
+                    }
 
                     
+                }
+            }
+            catch (SqlCeException ex)
+            {
+                //ShowErrors(ex);
+                Console.WriteLine("VIRHEILMOITUS");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                rdr.Close();
+                cmd.Dispose();
+                ok = true;
+            }
 
-                    while (rdr.Read())
+            return contestantList;
+        }
+
+        internal void setContestantSS(List<ContestantListLine> contestantList)
+        {
+
+            delDBTable("Osallistuja");
+
+            int eraNro = 0;
+            int kuuma = 0;
+            int idNumber = 0;
+            String nimi = "";
+            String sukunimi = "";
+            int seuraID = 0;
+            int joukkueID = 0;
+            int sarjaID = 0;
+            int selkalappu = 0;
+
+
+            SqlCeConnection con = _connection;
+            SqlCeCommand cmd = null;
+            try
+            {
+                for (int i = 0; i < contestantList.Count; i++)
+                {
+                    selkalappu++;
+                    if (contestantList[i] is RoundDivider)
                     {
-                        if(eraNro < rdr.GetInt32(15) )
+                        eraNro = contestantList[i].Id;
+                        kuuma = Convert.ToInt32(contestantList[i].HotRound);
+                    }
+
+                    if (contestantList[i] is Contestant)
+                    {
+                        idNumber = contestantList[i].Id;
+
+                        if (!string.IsNullOrEmpty(contestantList[i].FirstName) )
                         {
-                            contestantList.Add(new RoundDivider(rdr.GetBoolean(16), rdr.GetInt32(15), "Erä"));
-                            eraNro = rdr.GetInt32(15);
+                            
+                            nimi = contestantList[i].FirstName;
+                            sukunimi = contestantList[i].LastName;
+                            seuraID = getTableID("Seura", "seura", contestantList[i].Seura);
+                            joukkueID = getTableID("Joukkue", "joukkue", contestantList[i].Team);
+                            sarjaID = getTableID("Sarja", "sarja", contestantList[i].Sarja);
+                        }
+                        else
+                        {
+                            Console.WriteLine("HOJMO");
+                            nimi = "";
+                            sukunimi = "";
+                            seuraID = 0;
+                            joukkueID = 0;
+                            sarjaID = 0;
                         }
 
 
-                        contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
+                        if (con.State == ConnectionState.Closed)
+                            con.Open();
 
 
+                        string Sql = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot)" );
+                        cmd = new SqlCeCommand(Sql, con);
+                        cmd.CommandType = CommandType.Text;
 
-         
+                        cmd.Parameters.AddWithValue("idNumero", idNumber);
+                        cmd.Parameters.AddWithValue("nro", selkalappu);
+                        cmd.Parameters.AddWithValue("nimi", nimi);
+                        cmd.Parameters.AddWithValue("sukunimi", sukunimi);
+                        cmd.Parameters.AddWithValue("seuraID", seuraID);
+                        cmd.Parameters.AddWithValue("joukkueID", joukkueID);
+                        cmd.Parameters.AddWithValue("sarjaID", sarjaID);
+                        cmd.Parameters.AddWithValue("era", eraNro);
+                        cmd.Parameters.AddWithValue("hotOrNot", kuuma);
 
-                        //contestantlList.Add(new Serial(rdr.GetInt32(14), rdr.GetString(1)));
+                        cmd.ExecuteNonQuery();
                     }
                 }
-                catch (SqlCeException ex)
+            }
+            catch (SqlCeException e)
+            {
+                Console.WriteLine("VIRHE osallistujien tallentamisessa");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
                 {
-                    //ShowErrors(ex);
-                    Console.WriteLine("VIRHEILMOITUS");
-                    Console.WriteLine(ex.Message);
+                    con.Close();
                 }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                    {
-                        con.Close();
-                    }
-                    rdr.Close();
-                    cmd.Dispose();
-                    ok = true;
-                }
+                cmd.Dispose();
 
-                return contestantList;
+
+            }
         }
+
+        private int getTableID(string taulu, string sarake, string nimike)
+        {
+            int id = 0;
+            SqlCeConnection con = _connection;
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            try
+            {
+
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" SELECT * FROM {0} WHERE {1} = @nimike ", taulu, sarake);
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("nimike", nimike);
+
+                rdr = cmd.ExecuteReader();
+                rdr.Read();
+                id = rdr.GetInt32(0);
+
+                
+
+            }
+            catch (SqlCeException ex)
+            {
+                Console.WriteLine("VIRHEILMOITUS getTableID");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                cmd.Dispose();
+            }
+
+
+            return id;
+        }
+
     }//End db
 } //end db class

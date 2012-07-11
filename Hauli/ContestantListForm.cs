@@ -71,24 +71,6 @@ namespace Hauli
 
             contestantList = dbHandler.getContestant();
 
-            contestantList.Add(new RoundDivider(false, 1, "Erä"));
-
-            contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
-            contestantList.Add(new Contestant(generateId(), "Beppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new RoundDivider(false, 2, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Deppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Eeppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Feppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Geppoliina", "Töppönen", "OSH", "N", "Ninja-pinjat"));
-            contestantList.Add(new RoundDivider(false, 3, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Heppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
-            contestantList.Add(new Contestant(generateId(), "Ieppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Jeppoliina", "Töppönen", "OSH", "N", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new RoundDivider(false, 4, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Zeppo", "Töppönen", "OSH", "Y", ""));
 
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
 
@@ -140,12 +122,16 @@ namespace Hauli
             countRoundSizes();
         }
 
-        public List<string> GetSarjaList()
+        public List<string> getSarjaList()
         {
             return sarjaList;
         }
 
-        public List<string> GetSeuraList()
+        public List<string> getJoukkueList()
+        {
+            return joukkueList;
+        }
+        public List<string> getSeuraList()
         {
             return seuraList;
         }
@@ -859,21 +845,9 @@ namespace Hauli
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < contestantList.Count; i++)
-            {
-                if (contestantList[i] is RoundDivider){
-                    Console.WriteLine("Erä " + contestantList[i].Id + ", kuuma: " + contestantList[i].HotRound);
 
-                    ContestantListLine tempLine = (ContestantListLine)objectListView1.GetModelObject(i);
+            dbHandler.setContestantSS(contestantList);
 
-                    Console.WriteLine("List model id: " + tempLine.Id);
-                }else{
-                    Console.WriteLine(contestantList[i].Id + " " + contestantList[i].FullName);
-                    ContestantListLine tempLine = (ContestantListLine)objectListView1.GetModelObject(i);
-
-                    Console.WriteLine("List model id: " + tempLine.Id);
-                }
-           }
         }
     }
 }

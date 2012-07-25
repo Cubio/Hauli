@@ -378,7 +378,10 @@ namespace Hauli
 
         }
 
-
+        /// <summary>
+        /// Hakee kaikki seurat tietokannasta
+        /// </summary>
+        /// <returns></returns>
         public List<string> getSeuraBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -419,6 +422,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee kaikki sarjat tietokannasta
+        /// </summary>
+        /// <returns></returns>
         public List<string> getSarjaBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -459,6 +466,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee kilpailussa mukana olevat uniikit sarjat
+        /// </summary>
+        /// <returns></returns>
         public List<string> getKilpailussaOlevatSarjatBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -500,6 +511,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee tietokannasta uniikit erat (ei kahta samanlaista eranumeroa)
+        /// </summary>
+        /// <returns></returns>
         public List<int> getEraBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -885,6 +900,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee tietokannassa olevat joukkueet
+        /// </summary>
+        /// <returns></returns>
         internal List<string> getJoukkueBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -1180,6 +1199,11 @@ namespace Hauli
             return columnData;
         }
 
+        /// <summary>
+        /// Hakee valitun eran kilpailijoiden pisteet
+        /// </summary>
+        /// <param name="eraNro">valittu era</param>
+        /// <returns></returns>
         public List<OsallistujaListLine> getOsallistujaList(int eraNro)
         {
             List<OsallistujaListLine> osallistujaList;
@@ -1228,6 +1252,11 @@ namespace Hauli
             return osallistujaList;
         }
 
+        /// <summary>
+        /// Hakee sarjan osallistujien pisteet
+        /// </summary>
+        /// <param name="sarja">valittu sarja</param>
+        /// <returns></returns>
         public List<OsallistujaListLine> getScores(string sarja)
         {
             List<OsallistujaListLine> osallistujaList2;
@@ -1286,6 +1315,11 @@ namespace Hauli
             return osallistujaList2;
         }
 
+        /// <summary>
+        /// Hakee valitun sarjan kuusi parasta kilpailijaa finaaliin
+        /// </summary>
+        /// <param name="sarja">valitu sarja</param>
+        /// <returns></returns>
         public List<OsallistujaListLine> getFinal6(string sarja)
         {
             List<OsallistujaListLine> osallistujaList3;
@@ -1346,6 +1380,11 @@ namespace Hauli
             return osallistujaList3;
         }
 
+        /// <summary>
+        /// Paivittaa osallistujalistassa olevien kilpailijoiden
+        /// pisteet (paitsi finaalin pisteet)
+        /// </summary>
+        /// <param name="Osallistujalist">lista, jossa on kilpailijoiden tietoja</param>
         internal void setScores(List<OsallistujaListLine> Osallistujalist)
         {
             int id;
@@ -1413,6 +1452,11 @@ namespace Hauli
             }
         }
 
+        /// <summary>
+        /// Paivittaa osallistujalistassa olevien kilpailijoiden
+        /// finaalin pisteet
+        /// </summary>
+        /// <param name="Osallistujalist">lista, jossa on kilpailijoiden tietoja</param>
         internal void setScoresFinal(List<OsallistujaListLine> Osallistujalist)
         {
             int id;

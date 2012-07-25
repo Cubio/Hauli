@@ -778,8 +778,9 @@
             this.SarjaY15Tulokset.AllColumns.Add(this.Y15scoreFin);
             this.SarjaY15Tulokset.AllColumns.Add(this.Y15scoreFinRat);
             this.SarjaY15Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY15Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY15Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY15Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y15scoreSuku,
             this.Y15scoreEtu,
@@ -935,8 +936,9 @@
             this.SarjaY17Tulokset.AllColumns.Add(this.Y17scoreFin);
             this.SarjaY17Tulokset.AllColumns.Add(this.Y17scoreFinRat);
             this.SarjaY17Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY17Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY17Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY17Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y17scoreSuku,
             this.Y17scoreEtu,
@@ -1092,8 +1094,9 @@
             this.SarjaY20Tulokset.AllColumns.Add(this.Y20scoreFin);
             this.SarjaY20Tulokset.AllColumns.Add(this.Y20scoreFinRat);
             this.SarjaY20Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY20Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY20Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY20Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y20scoreSuku,
             this.Y20scoreEtu,
@@ -1249,8 +1252,9 @@
             this.SarjaY50Tulokset.AllColumns.Add(this.Y50scoreFin);
             this.SarjaY50Tulokset.AllColumns.Add(this.Y50scoreFinRat);
             this.SarjaY50Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY50Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY50Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY50Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y50scoreSuku,
             this.Y50scoreEtu,
@@ -1406,8 +1410,9 @@
             this.SarjaY60Tulokset.AllColumns.Add(this.Y60scoreFin);
             this.SarjaY60Tulokset.AllColumns.Add(this.Y60scoreFinRat);
             this.SarjaY60Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY60Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY60Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY60Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y60scoreSuku,
             this.Y60scoreEtu,
@@ -1563,8 +1568,9 @@
             this.SarjaY70Tulokset.AllColumns.Add(this.Y70scoreFin);
             this.SarjaY70Tulokset.AllColumns.Add(this.Y70scoreFinRat);
             this.SarjaY70Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaY70Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaY70Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaY70Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Y70scoreSuku,
             this.Y70scoreEtu,
@@ -1720,8 +1726,9 @@
             this.SarjaNTulokset.AllColumns.Add(this.NscoreFin);
             this.SarjaNTulokset.AllColumns.Add(this.NscoreFinRat);
             this.SarjaNTulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaNTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaNTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaNTulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NscoreSuku,
             this.NscoreEtu,
@@ -1877,8 +1884,9 @@
             this.SarjaN20Tulokset.AllColumns.Add(this.N20scoreFin);
             this.SarjaN20Tulokset.AllColumns.Add(this.N20scoreFinRat);
             this.SarjaN20Tulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaN20Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaN20Tulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaN20Tulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.N20scoreSuku,
             this.N20scoreEtu,
@@ -2034,8 +2042,9 @@
             this.SarjaATulokset.AllColumns.Add(this.AscoreFin);
             this.SarjaATulokset.AllColumns.Add(this.AscoreFinRat);
             this.SarjaATulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaATulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaATulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaATulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.AscoreSuku,
             this.AscoreEtu,
@@ -2191,8 +2200,9 @@
             this.SarjaBTulokset.AllColumns.Add(this.BscoreFin);
             this.SarjaBTulokset.AllColumns.Add(this.BscoreFinRat);
             this.SarjaBTulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaBTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaBTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaBTulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.BscoreSuku,
             this.BscoreEtu,
@@ -2348,8 +2358,9 @@
             this.SarjaCTulokset.AllColumns.Add(this.CscoreFin);
             this.SarjaCTulokset.AllColumns.Add(this.CscoreFinRat);
             this.SarjaCTulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaCTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaCTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaCTulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CscoreSuku,
             this.CscoreEtu,
@@ -2505,8 +2516,9 @@
             this.SarjaDTulokset.AllColumns.Add(this.DscoreFin);
             this.SarjaDTulokset.AllColumns.Add(this.DscoreFinRat);
             this.SarjaDTulokset.AlternateRowBackColor = System.Drawing.Color.LightGray;
-            this.SarjaDTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.SarjaDTulokset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SarjaDTulokset.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.DscoreSuku,
             this.DscoreEtu,
@@ -2673,6 +2685,7 @@
             this.Controls.Add(this.groupBox4);
             this.MinimumSize = new System.Drawing.Size(1024, 631);
             this.Name = "ScoreInputView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tulosten kirjaus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScoreInputView_FormClosing);
             this.groupBox1.ResumeLayout(false);

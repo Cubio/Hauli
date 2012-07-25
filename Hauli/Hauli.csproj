@@ -77,6 +77,7 @@
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
     <Compile Include="eräKierrosListLine.cs" />
+    <Compile Include="HauliColors.cs" />
     <Compile Include="HauliExtension.cs" />
     <Compile Include="ContestantListForm.cs">
       <SubType>Form</SubType>

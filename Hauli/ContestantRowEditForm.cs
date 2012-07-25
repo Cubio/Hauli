@@ -20,14 +20,18 @@ namespace Hauli
             contestant = c;
             clf = f;
 
-            List<string> sarjaList = clf.GetSarjaList();
-            List<string> seuraList = clf.GetSeuraList();
+            List<string> sarjaList = clf.getSarjaList();
+            List<string> seuraList = clf.getSeuraList();
+            List<string> joukkueList = clf.getJoukkueList();
 
             sarjaComboBox.Items.AddRange(sarjaList.ToArray());
             seuraComboBox.Items.AddRange(seuraList.ToArray());
+            joukkueComboBox.Items.Add("");
+            joukkueComboBox.Items.AddRange(joukkueList.ToArray());
 
             firstNameTextBox.Text = contestant.FirstName;
             lastNameTextBox.Text = contestant.LastName;
+            
             joukkueComboBox.Text = contestant.Team;
             sarjaComboBox.Text = contestant.Sarja;
             seuraComboBox.Text = contestant.Seura;

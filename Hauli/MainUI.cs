@@ -160,7 +160,7 @@ namespace Hauli
         {
             String d1 = "";
             String d2 = "";
-            
+            bool ok = true;
 
             d1 = day1Calendar.Value.ToString("dd-MM-yyyy "+ this.day1h.Text + ":" + this.day1min.Text);
 
@@ -178,12 +178,15 @@ namespace Hauli
                     else
                     {
                         d2 = day2Calendar.Value.ToString("dd-MM-yyyy " + this.day2h.Text + ":" + this.day2min.Text);
+                        ok = false;
                     }
 
                 }
-
-                dbHandler.setCompetitionDatetime(d1, d2, this.contestTextBox.Text, this.organizerTextBox.Text, this.placeTextBox.Text, this.rataComboBox.Text, this.eraComboBox.Text);
-                MessageBox.Show("Kilpailutapahtuman tiedot tallennettu");
+                if (ok)
+                {
+                    dbHandler.setCompetitionDatetime(d1, d2, this.contestTextBox.Text, this.organizerTextBox.Text, this.placeTextBox.Text, this.rataComboBox.Text, this.eraComboBox.Text);
+                    MessageBox.Show("Kilpailutapahtuman tiedot tallennettu");
+                }
             }
         }
 

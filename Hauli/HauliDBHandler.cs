@@ -378,7 +378,10 @@ namespace Hauli
 
         }
 
-
+        /// <summary>
+        /// Hakee kaikki seurat tietokannasta
+        /// </summary>
+        /// <returns></returns>
         public List<string> getSeuraBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -419,6 +422,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee kaikki sarjat tietokannasta
+        /// </summary>
+        /// <returns></returns>
         public List<string> getSarjaBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -459,6 +466,94 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee kilpailussa mukana olevat uniikit sarjat
+        /// </summary>
+        /// <returns></returns>
+        public List<string> getKilpailussaOlevatSarjatBox()
+        {
+            // hakee tietokannasta comboboxissa esitettävät kentät
+            List<string> tiedot = new List<string>();
+            SqlCeCommand cmd = null;
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" SELECT DISTINCT Sarja.sarja FROM Osallistuja INNER JOIN
+                                              Sarja ON Osallistuja.sarjaID = Sarja.sarjaID");
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.ExecuteNonQuery();
+
+                try
+                {
+                    SqlCeDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tiedot.Add(dr.GetString(0));
+                    }
+                }
+                catch (SqlCeException e)
+                {
+                    //show errors
+                    Console.WriteLine(e.Message);
+                }
+
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return tiedot;
+        }
+
+        /// <summary>
+        /// Hakee tietokannasta uniikit erat (ei kahta samanlaista eranumeroa)
+        /// </summary>
+        /// <returns></returns>
+        public List<int> getEraBox()
+        {
+            // hakee tietokannasta comboboxissa esitettävät kentät
+            List<int> tiedot = new List<int>();
+            SqlCeCommand cmd = null;
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+                string Sql = String.Format(@" SELECT DISTINCT era FROM Osallistuja");
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.ExecuteNonQuery();
+
+                try
+                {
+                    SqlCeDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        tiedot.Add(dr.GetInt32(0)); //tiedot.Add(dr.GetString(0));
+                    }
+                }
+                catch (SqlCeException e)
+                {
+                    //show errors
+                    Console.WriteLine(e.Message);
+                }
+
+                con.Close();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return tiedot;
+        }
 
         internal List<TeamListLine> getTeamList()
         {
@@ -805,6 +900,10 @@ namespace Hauli
             return tiedot;
         }
 
+        /// <summary>
+        /// Hakee tietokannassa olevat joukkueet
+        /// </summary>
+        /// <returns></returns>
         internal List<string> getJoukkueBox()
         {
             // hakee tietokannasta comboboxissa esitettävät kentät
@@ -848,7 +947,7 @@ namespace Hauli
         internal List<ContestantListLine> getContestant()
         {
             List<ContestantListLine> contestantList = new List<ContestantListLine>();
-
+/*
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
             bool ok = false;
@@ -921,7 +1020,7 @@ namespace Hauli
                 cmd.Dispose();
                 ok = true;
             }
-
+*/
             return contestantList;
         }
 
@@ -1146,5 +1245,328 @@ namespace Hauli
             }
             return tulos;
         }
+
+        /// <summary>
+        /// Hakee valitun eran kilpailijoiden pisteet
+        /// </summary>
+        /// <param name="eraNro">valittu era</param>
+        /// <returns></returns>
+        public List<OsallistujaListLine> getOsallistujaList(int eraNro)
+        {
+            List<OsallistujaListLine> osallistujaList;
+            osallistujaList = new List<OsallistujaListLine>();
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            do
+            {
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string Sql = String.Format(" SELECT * FROM Osallistuja WHERE era =" + eraNro);
+                    cmd = new SqlCeCommand(Sql, con);
+
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        osallistujaList.Add(new Osallistuja(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetString(3), rdr.GetString(2), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8), rdr.GetInt32(9), rdr.GetInt32(10), rdr.GetInt32(11), rdr.GetInt32(17)));
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS getOsallistujaList");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return osallistujaList;
+        }
+
+        /// <summary>
+        /// Hakee sarjan osallistujien pisteet
+        /// </summary>
+        /// <param name="sarja">valittu sarja</param>
+        /// <returns></returns>
+        public List<OsallistujaListLine> getScores(string sarja)
+        {
+            List<OsallistujaListLine> osallistujaList2;
+            osallistujaList2 = new List<OsallistujaListLine>();
+            
+            SqlCeCommand cmd = new SqlCeCommand();
+           // cmd.Parameters.Add("@sarja", sarja);
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            do
+            {
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                  /*  string Sql = String.Format(@"SELECT * FROM Osallistuja INNER JOIN Sarja ON Osallistuja.sarjaID = Sarja.sarjaID 
+                                                 WHERE Sarja.sarja = @sarja"); */
+                    string Sql = String.Format(@"SELECT *, Osallistuja.kierros25 + Osallistuja.kierros50 + Osallistuja.kierros75 + Osallistuja.kierros100 + Osallistuja.kierros125 + Osallistuja.kierrosRatkonta + Osallistuja.finaaliKierros
+                                                 + Osallistuja.finaaliRatkonta AS sum
+                                                 FROM Osallistuja INNER JOIN Sarja ON Osallistuja.sarjaID = Sarja.sarjaID
+                                                 WHERE (Sarja.sarja = @sarja)
+                                                 ORDER BY sum DESC, Osallistuja.finaaliRatkonta DESC, Osallistuja.finaaliKierros DESC, Osallistuja.kierrosRatkonta DESC, Osallistuja.kierros125 DESC, 
+                                                 Osallistuja.kierros100 DESC, Osallistuja.kierros75 DESC, Osallistuja.kierros50 DESC, Osallistuja.kierros25 DESC");
+                    cmd = new SqlCeCommand(Sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("sarja", sarja);
+
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        osallistujaList2.Add(new Osallistuja(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetString(3), rdr.GetString(2), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8), rdr.GetInt32(9), rdr.GetInt32(10), rdr.GetInt32(11), rdr.GetInt32(17)));
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS getScores()");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    //  rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return osallistujaList2;
+        }
+
+        /// <summary>
+        /// Hakee valitun sarjan kuusi parasta kilpailijaa finaaliin
+        /// </summary>
+        /// <param name="sarja">valitu sarja</param>
+        /// <returns></returns>
+        public List<OsallistujaListLine> getFinal6(string sarja)
+        {
+            List<OsallistujaListLine> osallistujaList3;
+            osallistujaList3 = new List<OsallistujaListLine>();
+            int count = 0;;
+            int[] finNro = new int[] { 1, 2, 3, 4, 5, 6 };
+            SqlCeCommand cmd = new SqlCeCommand();
+            // cmd.Parameters.Add("@sarja", sarja);
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            do
+            {
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    String Sql = String.Format(@"SELECT *, Osallistuja.kierros25 + Osallistuja.kierros50 + Osallistuja.kierros75 + Osallistuja.kierros100 + Osallistuja.kierros125 + Osallistuja.kierrosRatkonta AS sum
+                    FROM Osallistuja 
+                    INNER JOIN Sarja ON Osallistuja.sarjaID = Sarja.sarjaID
+                    WHERE (Sarja.sarja = @sarja)
+                    ORDER BY sum DESC, Osallistuja.kierrosRatkonta DESC, Osallistuja.kierros125 DESC, Osallistuja.kierros100 DESC, Osallistuja.kierros75 DESC, 
+                    Osallistuja.kierros50 DESC, Osallistuja.kierros25 DESC");
+                    
+                    cmd = new SqlCeCommand(Sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("sarja", sarja);
+
+                    rdr = cmd.ExecuteReader();
+    
+                    while (rdr.Read() && count < 6)
+                    {
+                        osallistujaList3.Add(new Osallistuja(rdr.GetInt32(0),finNro[count]/* rdr.GetInt32(1)*/, rdr.GetString(3), rdr.GetString(2), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8), rdr.GetInt32(9), rdr.GetInt32(10), rdr.GetInt32(11), rdr.GetInt32(17)));
+                        count++;
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS: getFinal6()");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    //  rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return osallistujaList3;
+        }
+
+        /// <summary>
+        /// Paivittaa osallistujalistassa olevien kilpailijoiden
+        /// pisteet (paitsi finaalin pisteet)
+        /// </summary>
+        /// <param name="Osallistujalist">lista, jossa on kilpailijoiden tietoja</param>
+        internal void setScores(List<OsallistujaListLine> Osallistujalist)
+        {
+            int id;
+            int k25;
+            int k50;
+            int k75;
+            int k100;
+            int k125;
+            int kRat;
+            int kFin;
+            int kFinRat;
+            int yht;
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            SqlCeConnection con = _connection;
+            Console.WriteLine("Kilpailun pisteet (setScores)");
+            try
+            {
+                for (int i = 0; i < Osallistujalist.Count; i++)
+                {
+                    id = Osallistujalist[i].Id;
+                    k25 = Osallistujalist[i].Kierros25;
+                    k50 = Osallistujalist[i].Kierros50;
+                    k75 = Osallistujalist[i].Kierros75;
+                    k100 = Osallistujalist[i].Kierros100;
+                    k125 = Osallistujalist[i].Kierros125;
+                    kRat = Osallistujalist[i].KierrosRatkonta;
+                    kFin = Osallistujalist[i].FinaaliKierros;
+                    kFinRat = Osallistujalist[i].FinaaliRatkonta;
+
+                    Console.WriteLine(id + " " + k25 + " " + k50 + " " + k75 + " " + k100 + " " + k125 + " " + kRat);
+
+                    yht = k25 + k50 + k75 + k100 + k125 + kRat + kFin + kFinRat;                   
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "UPDATE Osallistuja SET [kierros25] = @k25, [kierros50] = @k50, [kierros75] = @k75, [kierros100] = @k100, [kierros125] = @k125, [kierrosRatkonta] = @kRat, [yht] = @yht WHERE [OsallistujaID] = @id";
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("k25", k25);
+                    cmd.Parameters.AddWithValue("k50", k50);                 
+                    cmd.Parameters.AddWithValue("k75", k75);
+                    cmd.Parameters.AddWithValue("k100", k100);
+                    cmd.Parameters.AddWithValue("k125", k125);
+                    cmd.Parameters.AddWithValue("kRat", kRat);
+                    cmd.Parameters.AddWithValue("yht", yht);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlCeException e)
+            {
+                Console.WriteLine("setscores");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                //cmd.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Paivittaa osallistujalistassa olevien kilpailijoiden
+        /// finaalin pisteet
+        /// </summary>
+        /// <param name="Osallistujalist">lista, jossa on kilpailijoiden tietoja</param>
+        internal void setScoresFinal(List<OsallistujaListLine> Osallistujalist)
+        {
+            int id;
+            int k25;
+            int k50;
+            int k75;
+            int k100;
+            int k125;
+            int kRat;
+            int kFin;
+            int kFinRat;
+            int yht;
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            SqlCeConnection con = _connection;
+            Console.WriteLine("Kilpailun finaalin pisteet (setScoresFinal)");
+            
+            try
+            {
+                for (int i = 0; i < Osallistujalist.Count; i++)
+                {
+                    id = Osallistujalist[i].Id;
+                    k25 = Osallistujalist[i].Kierros25;
+                    k50 = Osallistujalist[i].Kierros50;
+                    k75 = Osallistujalist[i].Kierros75;
+                    k100 = Osallistujalist[i].Kierros100;
+                    k125 = Osallistujalist[i].Kierros125;
+                    kRat = Osallistujalist[i].KierrosRatkonta;
+                    kFin = Osallistujalist[i].FinaaliKierros;
+                    kFinRat = Osallistujalist[i].FinaaliRatkonta;
+
+                    Console.WriteLine(id + " " + kFin + " " + kFinRat);
+
+                    yht = k25 + k50 + k75 + k100 + k125 + kRat + kFin + kFinRat;
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    cmd = con.CreateCommand();
+                    cmd.CommandText = "UPDATE Osallistuja SET [finaaliKierros] = @kFin, [finaaliRatkonta] = @kFinRat, [yht] = @yht WHERE [OsallistujaID] = @id";
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("kFin", kFin);
+                    cmd.Parameters.AddWithValue("kFinRat", kFinRat);
+                    cmd.Parameters.AddWithValue("yht", yht);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlCeException e)
+            {
+                Console.WriteLine("setscores");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                //cmd.Dispose();
+            }
+        }
+ 
     }//End db
 } //end db class

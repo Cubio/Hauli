@@ -82,7 +82,6 @@ namespace Hauli
                 day2min.Text = day2.Minute.ToString();
                 day2Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
                 activeDay2Selection.Checked = true;
-                Console.WriteLine("J:" + day2.Minute);
             }
         }
 

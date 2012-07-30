@@ -16,8 +16,8 @@ namespace Hauli
         private HauliDBHandler dbHandler;
         private StreamReader file;
         private Boolean virhe = false;
+        private Boolean tallennettu = true;
         private List<TeamListLine> teamList;
-        private List<TeamListLine> teamListOrginal;
 
         public TeamListForm(HauliDBHandler dbHandler)
         {
@@ -26,10 +26,8 @@ namespace Hauli
             this.dbHandler = dbHandler;
 
             teamList = new List<TeamListLine>();
-            teamListOrginal = new List<TeamListLine>();
 
             teamList = dbHandler.getTeamList();
-            teamListOrginal = dbHandler.getTeamList();
 
 
             idColumn.AspectGetter = delegate(object x) { return ((TeamListLine)x).Id; };
@@ -52,10 +50,6 @@ namespace Hauli
         private void refresTeamListView()
         {
             TeamsList.SetObjects(teamList);
-            //teamListOrginal = teamList;
-            //teamList = new List<TeamListLine>();
-            //TeamsList.RefreshObject(teamList);
-            //TeamsList.RefreshObject(teamListOrginal);
         }
 
         private void TeamList_Click(object sender, EventArgs e)
@@ -95,6 +89,7 @@ namespace Hauli
                     if (teamList[i].Id == idNro)
                         teamList.RemoveAt(i);
 
+                tallennettu = false;
                 refresTeamListView();
             }
         }
@@ -102,40 +97,6 @@ namespace Hauli
 
         private void Close_Click(object sender, EventArgs e)
         {
-
-
-            teamComparer TeamComparer = new teamComparer();
-            IEnumerable<TeamListLine> differences3 = teamList.Except(teamListOrginal, TeamComparer);
-
-            int onko = differences3.Count();
-            int pituus = teamList.Count() - teamListOrginal.Count();
-
-
-
-
-            if (onko != 0 || pituus != 0)
-            {
-
-                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
-                            "Seurojen tallennus",
-                            MessageBoxButtons.YesNoCancel,
-                            MessageBoxIcon.Question))
-                {
-                    case DialogResult.Yes:
-                        dbHandler.delDBTable("Joukkue");
-                        dbHandler.setTeam(teamList);
-                        refresTeamListView();
-                        this.Close();
-                        break;
-
-                    case DialogResult.No:
-                        this.Close();
-                        break;
-
-                    case DialogResult.Cancel:
-                        break;
-                }
-            }
             this.Close();
         }
 
@@ -148,18 +109,45 @@ namespace Hauli
             else
             {
                 teamList.Add(new Team(dbHandler.generateId("Joukkue", "joukkueID"), joukkueTextBox.Text));
-                refresTeamListView();
                 joukkueTextBox.Clear();
+                tallennettu = false;
+                refresTeamListView();
             }
         }
 
         private void saveTeam_Click(object sender, EventArgs e)
         {
-            //teamList = new List<TeamListLine>();
-            teamListOrginal = teamList;
+            tallennettu = true;
             dbHandler.delDBTable("Joukkue");
             dbHandler.setTeam(teamList);
             refresTeamListView();
+        }
+
+        private void TeamListForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (!tallennettu)
+            {
+
+                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
+                            "Joukkueiden tallennus",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        dbHandler.delDBTable("Joukkue");
+                        dbHandler.setTeam(teamList);
+                        refresTeamListView();
+                        break;
+
+                    case DialogResult.No:
+                        break;
+
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
         }
     }
 }

@@ -262,6 +262,7 @@
             this.Controls.Add(this.SeriesList);
             this.Name = "SeriesListForm";
             this.Text = "SeriesListForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SeriesListForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.SeriesList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

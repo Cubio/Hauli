@@ -125,6 +125,7 @@
             this.TeamsList.TabIndex = 34;
             this.TeamsList.UseCompatibleStateImageBehavior = false;
             this.TeamsList.View = System.Windows.Forms.View.Details;
+            this.TeamsList.Click += new System.EventHandler(this.TeamList_Click);
             // 
             // idColumn
             // 
@@ -154,6 +155,7 @@
             this.Controls.Add(this.addTeam);
             this.Name = "TeamListForm";
             this.Text = "TeamListForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeamListForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.TeamsList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -76,6 +76,12 @@
     <Compile Include="AboutHauli.Designer.cs">
       <DependentUpon>AboutHauli.cs</DependentUpon>
     </Compile>
+    <Compile Include="ContestantWrongInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContestantWrongInfo.Designer.cs">
+      <DependentUpon>ContestantWrongInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="eräKierrosListLine.cs" />
     <Compile Include="HauliColors.cs" />
     <Compile Include="HauliExtension.cs" />
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContestantRowEditForm.resx">
       <DependentUpon>ContestantRowEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContestantWrongInfo.resx">
+      <DependentUpon>ContestantWrongInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>

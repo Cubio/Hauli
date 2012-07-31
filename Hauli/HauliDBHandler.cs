@@ -1027,7 +1027,7 @@ namespace Hauli
         internal void setContestantSS(List<ContestantListLine> contestantList)
         {
 
-            delDBTable("Osallistuja");
+           
 
             int eraNro = 0;
             int kuuma = 0;
@@ -1080,7 +1080,7 @@ namespace Hauli
                             con.Open();
 
 
-                        string Sql = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot)" );
+                        string Sql = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot, kierros25, kierros50, kierros75, kierros125, kierrosRatkonta, finaaliKierros, finaaliRatkonta) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot,0,0,0,0,0,0,0) " );
                         cmd = new SqlCeCommand(Sql, con);
                         cmd.CommandType = CommandType.Text;
 
@@ -1197,6 +1197,53 @@ namespace Hauli
                 cmd.Dispose();
             }
             return columnData;
+        }
+
+        internal Boolean checkIfexist(string taulu, string sarake, string tarkista)
+        {
+            Boolean tulos = false;
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
+            SqlCeConnection con = _connection;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+
+
+                string Sql = String.Format(@" SELECT COUNT(*) FROM {0} WHERE {1} = @tarkista", taulu, sarake);
+                cmd = new SqlCeCommand(Sql, con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("tarkista", tarkista);
+
+                Int32 count = (Int32)cmd.ExecuteScalar();
+
+                if (count != 0)
+                {
+                    tulos = true;
+                }
+
+
+
+            }
+            catch (SqlCeException ex)
+            {
+                //ShowErrors(ex);
+                Console.WriteLine("TIETOKANTAVIRHE: getRoundColumn()");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                //rdr.Close();
+                cmd.Dispose();
+            }
+            return tulos;
         }
 
         /// <summary>

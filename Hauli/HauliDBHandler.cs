@@ -921,9 +921,9 @@ namespace Hauli
                 return contestantList;
         }
 
-        public List<string> getRoundColumn()
+        public List<int> getRoundColumn()
         {
-            List<string> columnData = new List<string>();
+            List<int> columnData = new List<int>();
 
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
@@ -940,7 +940,7 @@ namespace Hauli
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    //columnData.Add(rdr.GetString(0));
+                    columnData.Add(rdr.GetInt32(0));
                 }
             }
             catch (SqlCeException ex)

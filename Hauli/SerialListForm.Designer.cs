@@ -66,7 +66,7 @@
             // serialColumn
             // 
             this.serialColumn.Text = "Sarja";
-            this.serialColumn.Width = 96;
+            this.serialColumn.Width = 191;
             // 
             // label2
             // 
@@ -135,17 +135,19 @@
             this.SerialList.Name = "SerialList";
             this.SerialList.OwnerDraw = true;
             this.SerialList.ShowGroups = false;
-            this.SerialList.Size = new System.Drawing.Size(257, 245);
+            this.SerialList.Size = new System.Drawing.Size(270, 245);
             this.SerialList.SmallImageList = this.imageList1;
+            this.SerialList.StateImageList = this.imageList1;
             this.SerialList.TabIndex = 33;
             this.SerialList.UseCompatibleStateImageBehavior = false;
             this.SerialList.View = System.Windows.Forms.View.Details;
+            this.SerialList.Click += new System.EventHandler(this.SerialList_Click);
             // 
             // SerialListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 366);
+            this.ClientSize = new System.Drawing.Size(294, 366);
             this.Controls.Add(this.Close);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.saveTeam);
@@ -154,6 +156,7 @@
             this.Controls.Add(this.SerialList);
             this.Name = "SerialListForm";
             this.Text = "SerialListForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialListForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.SerialList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

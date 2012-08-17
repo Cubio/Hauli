@@ -42,18 +42,4 @@ namespace Hauli
         }
     }
 
-    public class serialComparer : IEqualityComparer<SerialListLine>
-    {
-        public bool Equals(SerialListLine x, SerialListLine y)
-        {
-            return (x.Id == y.Id &&
-                    x.Sarja == y.Sarja);
-        }
-
-        public int GetHashCode(SerialListLine obj)
-        {
-            return obj.Sarja.GetHashCode() ^
-                obj.Id;
-        }
-    }
 }

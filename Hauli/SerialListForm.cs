@@ -17,7 +17,7 @@ namespace Hauli
         private StreamReader file;
         private Boolean virhe = false;
         private List<SerialListLine> serialList;
-        private List<SerialListLine> serialListOrginal;
+        private Boolean tallennettu = true;
 
         public SerialListForm(HauliDBHandler dbHandler)
         {
@@ -27,10 +27,8 @@ namespace Hauli
             this.dbHandler = dbHandler;
 
             serialList = new List<SerialListLine>();
-            serialListOrginal = new List<SerialListLine>();
 
             serialList = dbHandler.getSerialList();
-            serialListOrginal = dbHandler.getSerialList();
 
 
             idColumn.AspectGetter = delegate(object x) { return ((SerialListLine)x).Id; };
@@ -56,41 +54,12 @@ namespace Hauli
 
         private void Close_Click(object sender, EventArgs e)
         {
-            serialComparer SerialComparer = new serialComparer();
-            IEnumerable<SerialListLine> differences3 = serialList.Except(serialListOrginal, SerialComparer);
-
-            int onko = differences3.Count();
-            int pituus = serialList.Count() - serialListOrginal.Count();
-
-            if (onko != 0 || pituus != 0)
-            {
-
-                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
-                            "Seurojen tallennus",
-                            MessageBoxButtons.YesNoCancel,
-                            MessageBoxIcon.Question))
-                {
-                    case DialogResult.Yes:
-                        dbHandler.delDBTable("Sarja");
-                        dbHandler.setSerial(serialList);
-                        refresSerialListView();
-                        this.Close();
-                        break;
-
-                    case DialogResult.No:
-                        this.Close();
-                        break;
-
-                    case DialogResult.Cancel:
-                        break;
-                }
-            }
             this.Close();
         }
 
         private void saveTeam_Click(object sender, EventArgs e)
         {
-            serialListOrginal = serialList;
+            tallennettu = true;
             dbHandler.delDBTable("Sarja");
             dbHandler.setSerial(serialList);
             refresSerialListView();
@@ -105,10 +74,79 @@ namespace Hauli
             else
             {
                 serialList.Add(new Serial(dbHandler.generateId("Sarja", "SarjaID"), serialTextBox.Text));
-
+                tallennettu = false;
                 refresSerialListView();
                 serialTextBox.Clear();
             }
         }
+
+        private void SerialList_Click(object sender, EventArgs e)
+        {
+            Point cursor = Cursor.Position;
+            cursor = PointToClient(cursor);
+
+            int x = cursor.X - SerialList.Location.X - 2;
+            int y = cursor.Y - SerialList.Location.Y - 2;
+
+            OLVColumn hitColumn;
+            ListViewItem clickedItem = SerialList.GetItemAt(x, y, out hitColumn);
+
+            if (hitColumn != null && hitColumn.Tag != null)
+            {
+                if (hitColumn.Tag.ToString() == "buttonColumn")
+                {
+
+                    String testi = clickedItem.SubItems[0].Text.ToString();
+                    int idNro = 0;
+                    int.TryParse(testi, out idNro);
+                    deleteLine(idNro);
+                    refresSerialListView();
+                    
+                }
+            }
+        }
+        private void deleteLine(int idNro)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Haluatko varmasti poistaa Sarjan?", "Hauli", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                for (int i = 0; i < serialList.Count; i++)
+                    if (serialList[i].Id == idNro)
+                        serialList.RemoveAt(i);
+
+                refresSerialListView();
+                tallennettu = false;
+            }
+        }
+
+        private void SerialListForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!tallennettu)
+            {
+
+                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
+                            "Seurojen tallennus",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        dbHandler.delDBTable("Sarja");
+                        dbHandler.setSerial(serialList);
+                        refresSerialListView();
+                        break;
+
+                    case DialogResult.No:
+                        this.Close();
+                        break;
+
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
+            }
+        }
+
     }
 }

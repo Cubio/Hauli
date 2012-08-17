@@ -17,7 +17,7 @@ namespace Hauli
         private StreamReader file;
         private Boolean virhe = false;
         private List<SeuraListLine> seuraList;
-        private List<SeuraListLine> seuraListOrginal;
+        private Boolean tallennettu = true;
 
         public SeriesListForm(HauliDBHandler dbHandler)
         {
@@ -27,10 +27,8 @@ namespace Hauli
             this.dbHandler = dbHandler;
 
             seuraList = new List<SeuraListLine>();
-            seuraListOrginal = new List<SeuraListLine>();
 
             seuraList = dbHandler.getSeuraList();
-            seuraListOrginal = dbHandler.getSeuraList();
 
 
             idColumn.AspectGetter = delegate(object x) { return ((SeuraListLine)x).Id; };
@@ -98,7 +96,7 @@ namespace Hauli
                 for (int i = 0; i < seuraList.Count; i++)
                     if (seuraList[i].Id == idNro)
                         seuraList.RemoveAt(i);
-
+                tallennettu = false;
                 refresSeriesListView();
             }
         }
@@ -171,9 +169,8 @@ namespace Hauli
             else
             {
                 seuraList.Add(new Seura(dbHandler.generateId("Seura", "seuraID"), lyhenneTextBox.Text, kokoNimiTextBox.Text, alueTextBox.Text));
-
+                tallennettu = false;
                 refresSeriesListView();
-
                 lyhenneTextBox.Clear();
                 kokoNimiTextBox.Clear();
                 alueTextBox.Clear();
@@ -182,7 +179,7 @@ namespace Hauli
 
         private void saveSeurat_Click(object sender, EventArgs e)
         {
-            seuraListOrginal = seuraList;
+            tallennettu = true;
             dbHandler.delDBTable("Seura");
             dbHandler.setSeura(seuraList);
             refresSeriesListView();
@@ -190,13 +187,13 @@ namespace Hauli
 
         private void Close_Click(object sender, EventArgs e)
         {
-            seuraComparer SeuraComparer = new seuraComparer();
-            IEnumerable<SeuraListLine> differences3 = seuraList.Except(seuraListOrginal, SeuraComparer);
+            this.Close();
+        }
 
-            int onko = differences3.Count();
-            int pituus = seuraList.Count() - seuraListOrginal.Count();
 
-            if (onko != 0 || pituus != 0)
+        private void SeriesListForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!tallennettu)
             {
 
                 switch (MessageBox.Show("Haluatko tallentaa muutokset?",
@@ -212,14 +209,14 @@ namespace Hauli
                         break;
 
                     case DialogResult.No:
-                        this.Close();
                         break;
 
                     case DialogResult.Cancel:
+                        e.Cancel = true;
                         break;
                 }
             }
-            this.Close();
+
         }
     }
 }

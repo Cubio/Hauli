@@ -17,6 +17,7 @@ namespace Hauli
         private readonly int MaximumRoundSize = 6;
         private HauliDBHandler dbHandler;
         private List<ContestantListLine> contestantList;
+        private Boolean tallennettu = true;
         private List<string> seuraList;
         private List<string> sarjaList;
         private List<string> joukkueList;
@@ -68,27 +69,7 @@ namespace Hauli
             objectListView1.DropSink = dropsink;
 
             contestantList = new List<ContestantListLine>();
-
             contestantList = dbHandler.getContestant();
-
-            contestantList.Add(new RoundDivider(false, 1, "Erä"));
-
-            contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
-            contestantList.Add(new Contestant(generateId(), "Beppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new RoundDivider(false, 2, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Deppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Eeppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Feppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Geppoliina", "Töppönen", "OSH", "N", "Ninja-pinjat"));
-            contestantList.Add(new RoundDivider(false, 3, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Heppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
-            contestantList.Add(new Contestant(generateId(), "Ieppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new Contestant(generateId(), "Jeppoliina", "Töppönen", "OSH", "N", "Jouko-poukot"));
-            contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
-            contestantList.Add(new RoundDivider(false, 4, "Erä"));
-            contestantList.Add(new Contestant(generateId(), "Zeppo", "Töppönen", "OSH", "Y", ""));
 
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
 
@@ -140,12 +121,16 @@ namespace Hauli
             countRoundSizes();
         }
 
-        public List<string> GetSarjaList()
+        public List<string> getSarjaList()
         {
             return sarjaList;
         }
 
-        public List<string> GetSeuraList()
+        public List<string> getJoukkueList()
+        {
+            return joukkueList;
+        }
+        public List<string> getSeuraList()
         {
             return seuraList;
         }
@@ -287,6 +272,7 @@ namespace Hauli
                     validateRoundDividerIDs();
 
 
+                tallennettu = false;
                 refreshContestantListView();
                 countRoundSizes();
             }
@@ -401,7 +387,8 @@ namespace Hauli
 
         private void countRoundSizes()
         {
-            Console.WriteLine("Count");
+            tallennettu = false;
+           // Console.WriteLine("Count");
 
             int round = 1;
 
@@ -482,7 +469,7 @@ namespace Hauli
 
         private void addContestantButton_Click(object sender, EventArgs e)
         {
-
+            
             if (firstNameTextBox.Text.Trim() != "" && lastNameTextBox.Text.Trim() != "" && seuraComboBox.Text.Trim() != "")
             {
                 if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
@@ -497,6 +484,7 @@ namespace Hauli
                 seuraComboBox.Text = "";
                 joukkueComboBox.Text = "";
                 objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
+                tallennettu = false;
             }
             else
             {
@@ -515,6 +503,7 @@ namespace Hauli
             {
                 contestantList.Add(new RoundDivider(false, 1, "Erä"));
                 objectListView1.AddObject(new RoundDivider(false, 1, "Erä"));
+                tallennettu = false;
             }
         }
 
@@ -659,22 +648,37 @@ namespace Hauli
             refreshContestantListView();
         }
 
+        //Talletaanko muutokset, enne sulkemista ?
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void ContestantListForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result;
-            result = MessageBox.Show("Haluatko tallentaa muutokset?", "Hauli", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
 
-            if (result == DialogResult.Yes)
+             if (!tallennettu)
             {
-                //saveList();
+
+                switch (MessageBox.Show("Haluatko tallentaa muutokset?",
+                            "Osallistujien tallennus",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question))
+                {
+                    case DialogResult.Yes:
+                        dbHandler.delDBTable("Osallistuja");
+                        dbHandler.setContestantSS(contestantList);
+                        break;
+
+                    case DialogResult.No:
+                        break;
+
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                }
             }
-            else if (result == DialogResult.Cancel)
-                e.Cancel = true;
         }
 
         private void objectListView1_Dropped(object sender, OlvDropEventArgs e)
@@ -694,7 +698,11 @@ namespace Hauli
                 string line;
                 int rivi = 0;
                
+                List<ContestantListLine> notValidInfo = new List<ContestantListLine>();
+
                 List<string[]> lines = new List<string[]>();
+               // List<string[]> notValidInfo = new List<string[]>();
+                List<Boolean[]> notValidInfoColumn = new List<Boolean[]>();
 
                 file = new StreamReader(openFileDialogContestant.FileName);
                 try
@@ -703,10 +711,24 @@ namespace Hauli
 
                     while ((line = file.ReadLine()) != null)
                     {
-                        rivi++;
+                        
                         string[] tiedot = line.Split(',');
                         lines.Add(tiedot);
-                        if (tiedot.Length != 7)
+
+                        //showTopEntries >= totalEntries ? totalEntries : showTopEntries;
+                        if (string.IsNullOrEmpty(tiedot[0]) || string.IsNullOrEmpty(tiedot[1]) || !dbHandler.checkIfexist("Seura", "seura", tiedot[2]) || !dbHandler.checkIfexist("Sarja", "sarja", tiedot[3]) ) 
+                        {
+                            Console.WriteLine("Virhe havaittu");
+                            Boolean[] errorInfo = new Boolean[] { string.IsNullOrEmpty(lines[rivi][0]), string.IsNullOrEmpty(lines[rivi][1]), dbHandler.checkIfexist("Seura", "seura", lines[rivi][2]), dbHandler.checkIfexist("Sarja", "sarja", lines[rivi][3]) };
+                            notValidInfoColumn.Add(errorInfo);
+
+                            notValidInfo.Add(new Contestant(0,lines[rivi][0],lines[rivi][1], lines[rivi][2], lines[rivi][3], "") );
+
+                        }
+
+
+                        rivi++;
+                        if (tiedot.Length != 4)
                         {
                             virhe = true;
                             throw new HauliException("Tekstitiedostossa on virheellisiä merkintöjä. Rivillä:" + rivi);
@@ -724,7 +746,14 @@ namespace Hauli
                 }
                 if (virhe == false)
                 {
-                    dbHandler.addFileOsallistujat(lines);
+                    //Tarkistetaan, mitkä seurat ja sarjat ovat olemassa, jos ei ole laitetaan toiseen listaan
+
+                    Console.WriteLine("VIRHEITÄ" + notValidInfoColumn.Count());
+
+                    new ContestantWrongInfo(notValidInfo, notValidInfoColumn).ShowDialog();
+                    
+                    // EI toimi jos tiedosto on ns aito
+                    //dbHandler.addFileOsallistujat(lines);
                 }
             }
         }
@@ -838,42 +867,14 @@ namespace Hauli
             countRoundSizes();
         }
 
-        private void objectListView1_CellRightClick(object sender, CellRightClickEventArgs e)
-        {
-            ContestantListLine modelLine = (ContestantListLine)objectListView1.GetModelObject(e.Item.Index);
 
-            if (modelLine is RoundDivider)
-            {
-                e.MenuStrip = roundDividerContextMenuStrip;
-            }
-            else
-            {
-                e.MenuStrip = contestantRowContextMenuStrip;
-            }
-        }
-
-        private void deleteContestantItem_Click(object sender, EventArgs e)
-        {
-            //
-        }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < contestantList.Count; i++)
-            {
-                if (contestantList[i] is RoundDivider){
-                    Console.WriteLine("Erä " + contestantList[i].Id + ", kuuma: " + contestantList[i].HotRound);
+            tallennettu = true;
+            dbHandler.delDBTable("Osallistuja");
+            dbHandler.setContestantSS(contestantList);
 
-                    ContestantListLine tempLine = (ContestantListLine)objectListView1.GetModelObject(i);
-
-                    Console.WriteLine("List model id: " + tempLine.Id);
-                }else{
-                    Console.WriteLine(contestantList[i].Id + " " + contestantList[i].FullName);
-                    ContestantListLine tempLine = (ContestantListLine)objectListView1.GetModelObject(i);
-
-                    Console.WriteLine("List model id: " + tempLine.Id);
-                }
-           }
         }
     }
 }

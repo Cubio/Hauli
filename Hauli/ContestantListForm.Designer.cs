@@ -71,19 +71,11 @@
             this.tulostuksetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialogContestant = new System.Windows.Forms.OpenFileDialog();
-            this.contestantRowContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editContestantItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteContestantItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roundDividerContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.hotColdItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteDividerItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.newContestantGroupBox.SuspendLayout();
             this.reorderListGroupBox.SuspendLayout();
             this.contestantImportGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.contestantRowContextMenuStrip.SuspendLayout();
-            this.roundDividerContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // objectListView1
@@ -137,7 +129,6 @@
             this.objectListView1.UseTranslucentSelection = true;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             this.objectListView1.CellOver += new System.EventHandler<BrightIdeasSoftware.CellOverEventArgs>(this.objectListView1_CellOver);
-            this.objectListView1.CellRightClick += new System.EventHandler<BrightIdeasSoftware.CellRightClickEventArgs>(this.objectListView1_CellRightClick);
             this.objectListView1.CellToolTipShowing += new System.EventHandler<BrightIdeasSoftware.ToolTipShowingEventArgs>(this.objectListView1_CellToolTipShowing);
             this.objectListView1.Dropped += new System.EventHandler<BrightIdeasSoftware.OlvDropEventArgs>(this.objectListView1_Dropped);
             this.objectListView1.FormatCell += new System.EventHandler<BrightIdeasSoftware.FormatCellEventArgs>(this.objectListView1_FormatCell);
@@ -423,7 +414,6 @@
             // 
             // importContestantsButton
             // 
-            this.importContestantsButton.Enabled = false;
             this.importContestantsButton.Location = new System.Drawing.Point(6, 49);
             this.importContestantsButton.Name = "importContestantsButton";
             this.importContestantsButton.Size = new System.Drawing.Size(97, 23);
@@ -518,47 +508,6 @@
             this.openFileDialogContestant.FileName = "openFileDialogContestant";
             this.openFileDialogContestant.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // contestantRowContextMenuStrip
-            // 
-            this.contestantRowContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editContestantItem,
-            this.deleteContestantItem});
-            this.contestantRowContextMenuStrip.Name = "contestantRowContextMenuStrip";
-            this.contestantRowContextMenuStrip.Size = new System.Drawing.Size(185, 48);
-            // 
-            // editContestantItem
-            // 
-            this.editContestantItem.Name = "editContestantItem";
-            this.editContestantItem.Size = new System.Drawing.Size(184, 22);
-            this.editContestantItem.Text = "Muokkaa osallistujaa";
-            // 
-            // deleteContestantItem
-            // 
-            this.deleteContestantItem.Name = "deleteContestantItem";
-            this.deleteContestantItem.Size = new System.Drawing.Size(184, 22);
-            this.deleteContestantItem.Text = "Poista osallistuja";
-            this.deleteContestantItem.Click += new System.EventHandler(this.deleteContestantItem_Click);
-            // 
-            // roundDividerContextMenuStrip
-            // 
-            this.roundDividerContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hotColdItem,
-            this.deleteDividerItem});
-            this.roundDividerContextMenuStrip.Name = "roundDividerContextMenuStrip";
-            this.roundDividerContextMenuStrip.Size = new System.Drawing.Size(249, 48);
-            // 
-            // hotColdItem
-            // 
-            this.hotColdItem.Name = "hotColdItem";
-            this.hotColdItem.Size = new System.Drawing.Size(248, 22);
-            this.hotColdItem.Text = "Muuta erä kuumaksi/normaaliksi";
-            // 
-            // deleteDividerItem
-            // 
-            this.deleteDividerItem.Name = "deleteDividerItem";
-            this.deleteDividerItem.Size = new System.Drawing.Size(248, 22);
-            this.deleteDividerItem.Text = "Poista erä";
-            // 
             // ContestantListForm
             // 
             this.AcceptButton = this.addContestantButton;
@@ -586,8 +535,6 @@
             this.contestantImportGroupBox.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contestantRowContextMenuStrip.ResumeLayout(false);
-            this.roundDividerContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -636,11 +583,5 @@
         private BrightIdeasSoftware.OLVColumn grabColumn;
         private System.Windows.Forms.Button addEmptyRowButton;
         private System.Windows.Forms.Button addNewRoundButton;
-        private System.Windows.Forms.ContextMenuStrip contestantRowContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem editContestantItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteContestantItem;
-        private System.Windows.Forms.ContextMenuStrip roundDividerContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem hotColdItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteDividerItem;
     }
 }

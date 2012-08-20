@@ -1232,9 +1232,9 @@ namespace Hauli
         }
 
 
-        public List<string> getRoundColumn()
+        public List<int> getRoundColumn()
         {
-            List<string> columnData = new List<string>();
+            List<int> columnData = new List<int>();
 
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
@@ -1251,7 +1251,7 @@ namespace Hauli
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    //columnData.Add(rdr.GetString(0));
+                    columnData.Add(rdr.GetInt32(0));
                 }
             }
             catch (SqlCeException ex)
@@ -1321,6 +1321,7 @@ namespace Hauli
 
         /// <summary>
         /// Hakee valitun eran kilpailijoiden pisteet
+        /// ja kaantaa pelaajajarjestyksen 2 paivana
         /// </summary>
         /// <param name="eraNro">valittu era</param>
         /// <returns></returns>
@@ -1328,6 +1329,9 @@ namespace Hauli
         {
             List<OsallistujaListLine> osallistujaList;
             osallistujaList = new List<OsallistujaListLine>();
+            List<OsallistujaListLine> osallistujaListB;
+            osallistujaListB = new List<OsallistujaListLine>();
+            var k75 = false;
 
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
@@ -1348,6 +1352,12 @@ namespace Hauli
                     while (rdr.Read())
                     {
                         osallistujaList.Add(new Osallistuja(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetString(3), rdr.GetString(2), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8), rdr.GetInt32(9), rdr.GetInt32(10), rdr.GetInt32(11), rdr.GetInt32(17)));
+                        
+                        if (rdr.GetInt32(6) > 0)
+                        {
+                            k75 = true;
+                            Console.WriteLine("k75 arvo = " + k75);
+                        }
                     }
                 }
                 catch (SqlCeException ex)
@@ -1369,7 +1379,64 @@ namespace Hauli
 
             } while (!ok);
 
-            return osallistujaList;
+            // kaannetaan pelaajien jarjestys kun he ovat ampuneet 3 kierrosta
+
+            if (k75 == false)
+            {
+                return osallistujaList;
+            }
+            else if (k75 == true)
+            {
+                int count = osallistujaList.Count();
+
+                if (count == 1)
+                {
+                    osallistujaListB.Add(osallistujaList[0]);
+                }
+                else if (count == 2)
+                {
+                    osallistujaListB.Add(osallistujaList[1]);
+                    osallistujaListB.Add(osallistujaList[0]);
+                }
+                else if (count == 3)
+                {
+                    osallistujaListB.Add(osallistujaList[2]);
+                    osallistujaListB.Add(osallistujaList[1]);
+                    osallistujaListB.Add(osallistujaList[0]);
+                }
+                else if (count == 4)
+                {
+                    osallistujaListB.Add(osallistujaList[3]);
+                    osallistujaListB.Add(osallistujaList[2]);
+                    osallistujaListB.Add(osallistujaList[0]);
+                    osallistujaListB.Add(osallistujaList[1]);
+                }
+                else if (count == 5)
+                {
+                    osallistujaListB.Add(osallistujaList[4]);
+                    osallistujaListB.Add(osallistujaList[3]);
+                    osallistujaListB.Add(osallistujaList[0]);
+                    osallistujaListB.Add(osallistujaList[1]);
+                    osallistujaListB.Add(osallistujaList[2]);
+                }
+                else if (count == 6)
+                {
+                    //osallistujaListB = osallistujaList;
+                    osallistujaListB.Add(osallistujaList[5]);
+                    osallistujaListB.Add(osallistujaList[4]);
+                    osallistujaListB.Add(osallistujaList[3]);
+                    osallistujaListB.Add(osallistujaList[0]);
+                    osallistujaListB.Add(osallistujaList[1]);
+                    osallistujaListB.Add(osallistujaList[2]);
+                }
+
+                return osallistujaListB;
+            }
+            else {
+                Console.WriteLine("else meni paalle");
+                return osallistujaList; 
+            }
+
         }
 
         /// <summary>

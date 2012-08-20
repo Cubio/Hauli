@@ -120,6 +120,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.masterSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -578,7 +579,8 @@
             this.avaaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tallennaKilpailuToolStripMenuItem,
             this.tuoKilpailuToolStripMenuItem,
-            this.suljeSovellusToolStripMenuItem1});
+            this.suljeSovellusToolStripMenuItem1,
+            this.masterSwitchToolStripMenuItem});
             this.avaaToolStripMenuItem.Name = "avaaToolStripMenuItem";
             this.avaaToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.avaaToolStripMenuItem.Text = "Tiedosto";
@@ -984,6 +986,13 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // masterSwitchToolStripMenuItem
+            // 
+            this.masterSwitchToolStripMenuItem.Name = "masterSwitchToolStripMenuItem";
+            this.masterSwitchToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.masterSwitchToolStripMenuItem.Text = "master switch";
+            this.masterSwitchToolStripMenuItem.Click += new System.EventHandler(this.masterSwitchToolStripMenuItem_Click);
+            // 
             // MainUIform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1103,6 +1112,7 @@
         private System.Windows.Forms.TextBox placeTextBox;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem masterSwitchToolStripMenuItem;
     }
 }
 

@@ -54,35 +54,40 @@ namespace Hauli
         {
             List<Object> tiedot = dbHandler.getMainInfo();
 
-
-            contestTextBox.Text = (String)tiedot[0];
-            organizerTextBox.Text = (String)tiedot[1];
-            placeTextBox.Text =  (String)tiedot[2];
-            rataComboBox.Text = Convert.ToString((int)tiedot[3]);
-            eraComboBox.Text = Convert.ToString((int)tiedot[4]);
-            DateTime day1 = (DateTime)tiedot[5];
-
-            day1Calendar.Value = new DateTime(day1.Year, day1.Month, day1.Day);
-
-            day1h.Text = day1.Hour.ToString();
-            if (day1.Minute.ToString() == "0")
+            if (tiedot.Count != 0)
             {
-                day1min.Text = "00";
-            }
-            day1min.Text = day1.Minute.ToString();
+                contestTextBox.Text = (String)tiedot[0];
+                organizerTextBox.Text = (String)tiedot[1];
+                placeTextBox.Text = (String)tiedot[2];
+                rataComboBox.Text = Convert.ToString((int)tiedot[3]);
+                eraComboBox.Text = Convert.ToString((int)tiedot[4]);
+                DateTime day1 = (DateTime)tiedot[5];
 
-            if (tiedot.Count == 7)
-            {
-                DateTime day2 = (DateTime)tiedot[6];
-                day2h.Text = day2.Hour.ToString();
-                if (day2.Minute.ToString() == "0")
+                day1Calendar.Value = new DateTime(day1.Year, day1.Month, day1.Day);
+
+                day1h.Text = day1.Hour.ToString();
+                if (day1.Minute.ToString() == "0")
                 {
-                    day2min.Text = "00";
+                    day1min.Text = "00";
                 }
-                day2min.Text = day2.Minute.ToString();
-                day2Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
-                activeDay2Selection.Checked = true;
+                day1min.Text = day1.Minute.ToString();
+
+                if (tiedot.Count == 7)
+                {
+                    DateTime day2 = (DateTime)tiedot[6];
+                    day2h.Text = day2.Hour.ToString();
+                    if (day2.Minute.ToString() == "0")
+                    {
+                        day2min.Text = "00";
+                    }
+                    day2min.Text = day2.Minute.ToString();
+                    day2Calendar.Value = new DateTime(day2.Year, day2.Month, day2.Day);
+                    activeDay2Selection.Checked = true;
+                }
+
             }
+
+
         }
 
         private void contestantListButton_Click(object sender, EventArgs e)
@@ -237,6 +242,15 @@ namespace Hauli
                 getMainInfo();
             }
 
+        }
+
+        private void masterSwitchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("PYYHITÄÄN");
+            dbHandler.delDBTable("Asetukset");
+            dbHandler.delDBTable("Eraluettelo");
+            dbHandler.delDBTable("Joukkue");
+            dbHandler.delDBTable("Osallistuja");
         }
 
     }

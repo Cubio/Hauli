@@ -51,13 +51,11 @@ namespace Hauli
             sarjaList = dbHandler.getSarjaBox();
 
             joukkueList = dbHandler.getJoukkueBox();
+         
 
             joukkueAutoCompleteCollection.AddRange(joukkueList.ToArray());
             joukkueComboBox.AutoCompleteCustomSource = seuraAutoCompleteCollection;
             joukkueComboBox.Items.AddRange(joukkueList.ToArray());
-
-
-
 
             sarjaComboBox.Items.AddRange(sarjaList.ToArray());
             sarjaComboBox.Text = sarjaList[0];
@@ -70,6 +68,28 @@ namespace Hauli
 
             contestantList = new List<ContestantListLine>();
             contestantList = dbHandler.getContestant();
+
+            /*
+            contestantList.Add(new RoundDivider(false, 1, "Erä"));
+
+            
+            contestantList.Add(new Contestant(generateId(), "Teppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
+            contestantList.Add(new Contestant(generateId(), "Aeppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
+            contestantList.Add(new Contestant(generateId(), "Beppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
+            contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new RoundDivider(false, 2, "Erä"));
+            contestantList.Add(new Contestant(generateId(), "Deppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant(generateId(), "Eeppo", "Töppönen", "OSH", "Y", "Jouko-poukot"));
+            contestantList.Add(new Contestant(generateId(), "Feppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant(generateId(), "Geppoliina", "Töppönen", "OSH", "N", "Ninja-pinjat"));
+            contestantList.Add(new RoundDivider(false, 3, "Erä"));
+            contestantList.Add(new Contestant(generateId(), "Heppo", "Töppönen", "OSH", "Y", "Ninja-pinjat"));
+            contestantList.Add(new Contestant(generateId(), "Ieppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new Contestant(generateId(), "Jeppoliina", "Töppönen", "OSH", "N", "Jouko-poukot"));
+            contestantList.Add(new Contestant(generateId(), "Keppo", "Töppönen", "OSH", "Y", ""));
+            contestantList.Add(new RoundDivider(false, 4, "Erä"));
+            contestantList.Add(new Contestant(generateId(), "Zeppo", "Töppönen", "OSH", "Y", ""));
+            */
 
             idColumn.AspectGetter = delegate(object x) { return ((ContestantListLine)x).Id; };
 
@@ -119,6 +139,8 @@ namespace Hauli
 
             objectListView1.SetObjects(contestantList);
             countRoundSizes();
+
+            tallennettu = true;
         }
 
         public List<string> getSarjaList()
@@ -271,8 +293,6 @@ namespace Hauli
                 if (modelLine is RoundDivider)
                     validateRoundDividerIDs();
 
-
-                tallennettu = false;
                 refreshContestantListView();
                 countRoundSizes();
             }
@@ -312,6 +332,7 @@ namespace Hauli
 
         private void refreshContestantListView()
         {
+            tallennettu = false;
             Console.WriteLine("refreshContestantListView");
 
             int topItemIndex = objectListView1.TopItemIndex;
@@ -388,9 +409,9 @@ namespace Hauli
         private void countRoundSizes()
         {
             tallennettu = false;
-           // Console.WriteLine("Count");
-
             int round = 1;
+
+            Console.WriteLine("countRoundSizes tarkista erät");
 
             updateDividerIndicesAndContestantCounts();
 
@@ -473,16 +494,20 @@ namespace Hauli
             if (firstNameTextBox.Text.Trim() != "" && lastNameTextBox.Text.Trim() != "" && seuraComboBox.Text.Trim() != "")
             {
                 if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
+                {
+                    Console.WriteLine("uusi erä");
                     addNewRound();
+                }
 
-                int id = generateId();
+                int id = dbHandler.generateId("Osallistuja", "osallistujaID");
                 contestantList.Add(new Contestant(id, firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
-                objectListView1.AddObject(new Contestant(generateId(), firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
+                objectListView1.AddObject(new Contestant(id, firstNameTextBox.Text, lastNameTextBox.Text, seuraComboBox.Text, sarjaComboBox.Text, joukkueComboBox.Text));
                 
                 firstNameTextBox.Clear();
                 lastNameTextBox.Clear();
                 seuraComboBox.Text = "";
                 joukkueComboBox.Text = "";
+                countRoundSizes();
                 objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
                 tallennettu = false;
             }
@@ -564,6 +589,7 @@ namespace Hauli
 
         private void mixListOrderButton_Click(object sender, EventArgs e)
         {
+            tallennettu = false; 
             List<int> indexList = new List<int>();
             List<ContestantListLine> newModelList = new List<ContestantListLine>();
             List<ListViewItem> newViewList = new List<ListViewItem>();
@@ -607,6 +633,7 @@ namespace Hauli
 
         private void evenOutRounds_Click(object sender, EventArgs e)
         {
+            tallennettu = false;
             List<ContestantListLine> newList = new List<ContestantListLine>();
             bool done = false;
             int index = MaximumRoundSize + 1;
@@ -814,6 +841,7 @@ namespace Hauli
 
         private void addEmptyRowButton_Click(object sender, EventArgs e)
         {
+            tallennettu = false;
             if (roundContestantCounts[roundContestantCounts.Count - 1] >= MaximumRoundSize)
                 addNewRound();
 
@@ -828,7 +856,7 @@ namespace Hauli
 
         private void addEmptyRowsButton_Click(object sender, EventArgs e)
         {
-
+            tallennettu = false;
             for (int i = 0; i < roundContestantCounts.Count; i++)
             {
                 if (roundContestantCounts[i] < MaximumRoundSize)
@@ -862,6 +890,7 @@ namespace Hauli
 
         private void addNewRoundButton_Click(object sender, EventArgs e)
         {
+            tallennettu = false;
             addNewRound();
             objectListView1.EnsureVisible(objectListView1.Items.Count - 1);
             countRoundSizes();
@@ -871,9 +900,15 @@ namespace Hauli
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            // TO DU: Päivitetään vain tiedot, jos on olemassa, muuten lisätään uudet
             tallennettu = true;
-            dbHandler.delDBTable("Osallistuja");
-            dbHandler.setContestantSS(contestantList);
+
+            if (contestantList.Count() != 1)
+            {
+               // dbHandler.delDBTable("Osallistuja");
+                dbHandler.setContestantSS(contestantList);
+            }
+
 
         }
     }

@@ -59,8 +59,6 @@ namespace Hauli
             SeriesList.SetObjects(seuraList);
         }
 
-
-
         private void SeriesList_Click(object sender, EventArgs e)
         {
             Point cursor = Cursor.Position;
@@ -76,7 +74,6 @@ namespace Hauli
             {
                 if (hitColumn.Tag.ToString() == "buttonColumn")
                 {
-
                     String testi = clickedItem.SubItems[0].Text.ToString();
                     int idNro = 0;
                     int.TryParse(testi, out idNro);
@@ -101,7 +98,6 @@ namespace Hauli
             }
         }
 
-
         private void openPathButton_Click(object sender, EventArgs e)
         {
             openFileDialogSeurat.Filter = "Cursor Files|*.txt";
@@ -109,10 +105,8 @@ namespace Hauli
             openFileDialogSeurat.ShowDialog();
         }
 
-
         private void importSeriesFile_Click(object sender, EventArgs e)
         {
-
             //Tarkistetaan onko tiedosto olemassa, jos on niin luetaan se.
             if (File.Exists(openFileDialogSeurat.FileName))
             {
@@ -125,8 +119,6 @@ namespace Hauli
                 file = new StreamReader(openFileDialogSeurat.FileName);
                 try
                 {
-
-
                     while ((line = file.ReadLine()) != null)
                     {
                         rivi++;
@@ -153,7 +145,7 @@ namespace Hauli
                     dbHandler.addFileSeurat(lines);
                 }
           }
- }
+        }
 
         private void selectFile(object sender, CancelEventArgs e)
         {
@@ -164,7 +156,7 @@ namespace Hauli
         {
             if (this.lyhenneTextBox.Text == "" || this.kokoNimiTextBox.Text == "" || this.alueTextBox.Text == "")
             {
-                MessageBox.Show("Uuden seuran tiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+                MessageBox.Show("Uuden seuran tiedoissa on puutteita. Tarkista, että tekstikentissä on tekstiä!", "Virhe");
             }
             else
             {
@@ -190,12 +182,10 @@ namespace Hauli
             this.Close();
         }
 
-
         private void SeriesListForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!tallennettu)
             {
-
                 switch (MessageBox.Show("Haluatko tallentaa muutokset?",
                             "Seurojen tallennus",
                             MessageBoxButtons.YesNoCancel,
@@ -205,7 +195,7 @@ namespace Hauli
                         dbHandler.delDBTable("Seura");
                         dbHandler.setSeura(seuraList);
                         refresSeriesListView();
-                        this.Close();
+                        //this.Close();
                         break;
 
                     case DialogResult.No:

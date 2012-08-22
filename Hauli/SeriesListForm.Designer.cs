@@ -51,7 +51,12 @@
             this.Close = new System.Windows.Forms.Button();
             this.saveSeurat = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.SeriesList)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // SeriesList
@@ -62,9 +67,10 @@
             this.SeriesList.AllColumns.Add(this.kokoNimiColumn);
             this.SeriesList.AllColumns.Add(this.alueColumn);
             this.SeriesList.AllColumns.Add(this.buttonColumn);
-            this.SeriesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SeriesList.AlternateRowBackColor = System.Drawing.Color.White;
+            this.SeriesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.SeriesList.AutoArrange = false;
             this.SeriesList.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick;
             this.SeriesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -73,16 +79,19 @@
             this.kokoNimiColumn,
             this.alueColumn,
             this.buttonColumn});
+            this.SeriesList.FullRowSelect = true;
             this.SeriesList.HasCollapsibleGroups = false;
             this.SeriesList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.SeriesList.Location = new System.Drawing.Point(12, 12);
             this.SeriesList.Name = "SeriesList";
             this.SeriesList.OwnerDraw = true;
             this.SeriesList.ShowGroups = false;
-            this.SeriesList.Size = new System.Drawing.Size(455, 238);
+            this.SeriesList.Size = new System.Drawing.Size(455, 261);
             this.SeriesList.SmallImageList = this.imageList1;
             this.SeriesList.TabIndex = 0;
+            this.SeriesList.TabStop = false;
             this.SeriesList.UseCompatibleStateImageBehavior = false;
+            this.SeriesList.UseTranslucentSelection = true;
             this.SeriesList.View = System.Windows.Forms.View.Details;
             this.SeriesList.Click += new System.EventHandler(this.SeriesList_Click);
             // 
@@ -101,16 +110,19 @@
             // kokoNimiColumn
             // 
             this.kokoNimiColumn.Text = "Nimi";
-            this.kokoNimiColumn.Width = 136;
+            this.kokoNimiColumn.Width = 170;
             // 
             // alueColumn
             // 
             this.alueColumn.Text = "Paikkakunta";
-            this.alueColumn.Width = 96;
+            this.alueColumn.Width = 132;
             // 
             // buttonColumn
             // 
+            this.buttonColumn.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.buttonColumn.Text = "";
+            this.buttonColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.buttonColumn.Width = 32;
             // 
             // imageList1
             // 
@@ -124,10 +136,10 @@
             // 
             // addSeura
             // 
-            this.addSeura.Location = new System.Drawing.Point(392, 300);
+            this.addSeura.Location = new System.Drawing.Point(159, 128);
             this.addSeura.Name = "addSeura";
             this.addSeura.Size = new System.Drawing.Size(75, 23);
-            this.addSeura.TabIndex = 1;
+            this.addSeura.TabIndex = 3;
             this.addSeura.Text = "Lisää";
             this.addSeura.UseVisualStyleBackColor = true;
             this.addSeura.Click += new System.EventHandler(this.addSeura_Click);
@@ -139,95 +151,102 @@
             // 
             // openPathButton
             // 
-            this.openPathButton.Location = new System.Drawing.Point(183, 362);
+            this.openPathButton.Location = new System.Drawing.Point(159, 35);
             this.openPathButton.Name = "openPathButton";
             this.openPathButton.Size = new System.Drawing.Size(34, 23);
             this.openPathButton.TabIndex = 12;
+            this.openPathButton.TabStop = false;
             this.openPathButton.Text = "...";
             this.openPathButton.UseVisualStyleBackColor = true;
             this.openPathButton.Click += new System.EventHandler(this.openPathButton_Click);
             // 
             // importFilePathTextBox
             // 
-            this.importFilePathTextBox.Location = new System.Drawing.Point(15, 362);
+            this.importFilePathTextBox.Location = new System.Drawing.Point(15, 37);
             this.importFilePathTextBox.Name = "importFilePathTextBox";
-            this.importFilePathTextBox.Size = new System.Drawing.Size(162, 20);
-            this.importFilePathTextBox.TabIndex = 13;
+            this.importFilePathTextBox.Size = new System.Drawing.Size(138, 20);
+            this.importFilePathTextBox.TabIndex = 11;
+            this.importFilePathTextBox.TabStop = false;
             // 
             // importSeriesFile
             // 
-            this.importSeriesFile.Location = new System.Drawing.Point(223, 362);
+            this.importSeriesFile.Location = new System.Drawing.Point(118, 92);
             this.importSeriesFile.Name = "importSeriesFile";
             this.importSeriesFile.Size = new System.Drawing.Size(75, 23);
-            this.importSeriesFile.TabIndex = 14;
-            this.importSeriesFile.Text = "Tallenna";
+            this.importSeriesFile.TabIndex = 13;
+            this.importSeriesFile.TabStop = false;
+            this.importSeriesFile.Text = "Tuo";
             this.importSeriesFile.UseVisualStyleBackColor = true;
             this.importSeriesFile.Click += new System.EventHandler(this.importSeriesFile_Click);
             // 
             // lyhenneTextBox
             // 
-            this.lyhenneTextBox.Location = new System.Drawing.Point(12, 274);
+            this.lyhenneTextBox.Location = new System.Drawing.Point(87, 37);
             this.lyhenneTextBox.Name = "lyhenneTextBox";
-            this.lyhenneTextBox.Size = new System.Drawing.Size(92, 20);
-            this.lyhenneTextBox.TabIndex = 15;
+            this.lyhenneTextBox.Size = new System.Drawing.Size(147, 20);
+            this.lyhenneTextBox.TabIndex = 0;
             // 
             // kokoNimiTextBox
             // 
-            this.kokoNimiTextBox.Location = new System.Drawing.Point(110, 274);
+            this.kokoNimiTextBox.Location = new System.Drawing.Point(87, 63);
             this.kokoNimiTextBox.Name = "kokoNimiTextBox";
-            this.kokoNimiTextBox.Size = new System.Drawing.Size(236, 20);
-            this.kokoNimiTextBox.TabIndex = 16;
+            this.kokoNimiTextBox.Size = new System.Drawing.Size(147, 20);
+            this.kokoNimiTextBox.TabIndex = 1;
             // 
             // alueTextBox
             // 
-            this.alueTextBox.Location = new System.Drawing.Point(352, 274);
+            this.alueTextBox.Location = new System.Drawing.Point(87, 89);
             this.alueTextBox.Name = "alueTextBox";
-            this.alueTextBox.Size = new System.Drawing.Size(115, 20);
-            this.alueTextBox.TabIndex = 17;
+            this.alueTextBox.Size = new System.Drawing.Size(147, 20);
+            this.alueTextBox.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 255);
+            this.label1.Location = new System.Drawing.Point(11, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Lyhenne:";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "Lyhenne";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(107, 255);
+            this.label2.Location = new System.Drawing.Point(11, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Kokonimi:";
+            this.label2.Text = "Seuran nimi";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(349, 255);
+            this.label3.Location = new System.Drawing.Point(11, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Paikkakunta:";
+            this.label3.Text = "Paikkakunta";
             // 
             // Close
             // 
-            this.Close.Location = new System.Drawing.Point(392, 359);
+            this.Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Close.Location = new System.Drawing.Point(392, 437);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(75, 23);
-            this.Close.TabIndex = 21;
+            this.Close.TabIndex = 23;
+            this.Close.TabStop = false;
             this.Close.Text = "Sulje";
             this.Close.UseVisualStyleBackColor = true;
             this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
             // saveSeurat
             // 
-            this.saveSeurat.Location = new System.Drawing.Point(311, 300);
+            this.saveSeurat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveSeurat.Location = new System.Drawing.Point(311, 437);
             this.saveSeurat.Name = "saveSeurat";
             this.saveSeurat.Size = new System.Drawing.Size(75, 23);
             this.saveSeurat.TabIndex = 22;
+            this.saveSeurat.TabStop = false;
             this.saveSeurat.Text = "Tallenna";
             this.saveSeurat.UseVisualStyleBackColor = true;
             this.saveSeurat.Click += new System.EventHandler(this.saveSeurat_Click);
@@ -235,37 +254,75 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 346);
+            this.label4.Location = new System.Drawing.Point(12, 21);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.Size = new System.Drawing.Size(112, 13);
             this.label4.TabIndex = 23;
-            this.label4.Text = "Tuo seurat txt filusta";
+            this.label4.Text = "Tuo seurat tiedostosta";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.alueTextBox);
+            this.groupBox1.Controls.Add(this.kokoNimiTextBox);
+            this.groupBox1.Controls.Add(this.lyhenneTextBox);
+            this.groupBox1.Controls.Add(this.addSeura);
+            this.groupBox1.Location = new System.Drawing.Point(14, 279);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(247, 157);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Seuran lisäys";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.importSeriesFile);
+            this.groupBox2.Controls.Add(this.importFilePathTextBox);
+            this.groupBox2.Controls.Add(this.openPathButton);
+            this.groupBox2.Location = new System.Drawing.Point(268, 279);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(199, 127);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Seurojen tuonti";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Location = new System.Drawing.Point(-6, -13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(488, 486);
+            this.groupBox3.TabIndex = 26;
+            this.groupBox3.TabStop = false;
             // 
             // SeriesListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 442);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(479, 469);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.saveSeurat);
             this.Controls.Add(this.Close);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.alueTextBox);
-            this.Controls.Add(this.kokoNimiTextBox);
-            this.Controls.Add(this.lyhenneTextBox);
-            this.Controls.Add(this.importSeriesFile);
-            this.Controls.Add(this.importFilePathTextBox);
-            this.Controls.Add(this.openPathButton);
-            this.Controls.Add(this.addSeura);
             this.Controls.Add(this.SeriesList);
+            this.Controls.Add(this.groupBox3);
             this.Name = "SeriesListForm";
-            this.Text = "SeriesListForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Seurojen muokkaus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SeriesListForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.SeriesList)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -293,5 +350,8 @@
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Button saveSeurat;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

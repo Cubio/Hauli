@@ -121,7 +121,7 @@ namespace Hauli
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        seuraList.Add(new Seura(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(2), rdr.GetString(3)));
+                        seuraList.Add(new Seura(rdr.GetInt32(0), rdr.GetString(1), rdr.GetString(3), rdr.GetString(2)));
                     }
                 }
                 catch (SqlCeException ex)
@@ -947,17 +947,16 @@ namespace Hauli
         internal List<ContestantListLine> getContestant()
         {
             List<ContestantListLine> contestantList = new List<ContestantListLine>();
-/*
+
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
-            bool ok = false;
             int eraNro = 1;
             String joukkue = "";
-            //contestantList.Add(new Contestant(generateId(), "Ceppo", "Töppönen", "OSH", "Y", ""));
-            //contestantList.Add(new RoundDivider(false, 2, "Erä"));
+            //contestantList.Add(new Contestant(generateId("Osallistuja","OsallistujaID"), "Ceppo", "Töppönen", "OSH", "Y", ""));
+            //contestantList.Add(new RoundDivider(false, 1, "Erä"));
 
 
-
+            
             // Testataan hakua. Katsotaan saadaanko uutta idNro.ta
 
             SqlCeConnection con = _connection;
@@ -972,36 +971,45 @@ namespace Hauli
 
 
                 rdr = cmd.ExecuteReader();
-                rdr.Read();
-                contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
-                eraNro = rdr.GetInt32(15);
-
-                rdr = cmd.ExecuteReader();
-
-
-                while (rdr.Read())
+                if (null != cmd.ExecuteScalar())
                 {
-                    if (eraNro < rdr.GetInt32(15))
-                    {
-                        contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
-                        eraNro = rdr.GetInt32(15);
-                    }
+                    rdr.Read();
+                    contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
+                    eraNro = rdr.GetInt32(15);
 
-                    if (!rdr.IsDBNull(24))
-                    {
-                        joukkue = rdr.GetString(24);
-                    }
+                    rdr = cmd.ExecuteReader();
 
-                    if (string.IsNullOrEmpty(rdr.GetString(2)))
-                    {
-                        contestantList.Add(new Contestant(rdr.GetInt32(0), "", "", "", "", ""));
-                    }
-                    else
-                    {
-                        contestantList.Add(new Contestant(rdr.GetInt32(0), rdr.GetString(2), rdr.GetString(3), rdr.GetString(18), rdr.GetString(22), joukkue));
-                    }
 
-                    
+                    while (rdr.Read())
+                    {
+                        if (eraNro < rdr.GetInt32(15))
+                        {
+                            contestantList.Add(new RoundDivider(Convert.ToBoolean(rdr.GetInt32(16)), rdr.GetInt32(15), "Erä"));
+                            eraNro = rdr.GetInt32(15);
+                        }
+
+                        if (!rdr.IsDBNull(24))
+                        {
+                            joukkue = rdr.GetString(24);
+                        }
+                        //Lisätään jälki-ilmottautunut, jos 
+                        Console.WriteLine("NIMI: " + rdr.GetString(2));
+                        if (string.IsNullOrEmpty(rdr.GetString(2)) && string.IsNullOrEmpty(rdr.GetString(3)) )
+                        {
+                            Console.WriteLine("Jälki-ilmottautuja lisätty");
+                            contestantList.Add(new Contestant(rdr.GetInt32(0), "", "", "", "", ""));
+                        }
+                        // Oikeaosallstija id, nimi, sukunimi, seura, sarja, joukkue
+                        else
+                        {
+                            contestantList.Add(new Contestant(rdr.GetInt32(0), rdr.GetString(2), rdr.GetString(3), rdr.GetString(19), rdr.GetString(23), joukkue));
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Tietoa osallistujista ei ole kannassa");
+                    contestantList.Add(new RoundDivider(false, 1, "Erä"));
                 }
             }
             catch (SqlCeException ex)
@@ -1018,17 +1026,17 @@ namespace Hauli
                 }
                 rdr.Close();
                 cmd.Dispose();
-                ok = true;
             }
-*/
+
+       
+
             return contestantList;
         }
 
+        //Tallenetaan käyttätiedot tietokantaan.
+        // JOS löytyy ID päivitetään tiedot, muussa tapauksessa lisätään.
         internal void setContestantSS(List<ContestantListLine> contestantList)
         {
-
-           
-
             int eraNro = 0;
             int kuuma = 0;
             int idNumber = 0;
@@ -1042,11 +1050,18 @@ namespace Hauli
 
             SqlCeConnection con = _connection;
             SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+
             try
             {
                 for (int i = 0; i < contestantList.Count; i++)
                 {
-                    selkalappu++;
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+
                     if (contestantList[i] is RoundDivider)
                     {
                         eraNro = contestantList[i].Id;
@@ -1055,46 +1070,99 @@ namespace Hauli
 
                     if (contestantList[i] is Contestant)
                     {
+                        selkalappu++;
+
                         idNumber = contestantList[i].Id;
 
-                        if (!string.IsNullOrEmpty(contestantList[i].FirstName) )
+                        Console.WriteLine("ID NUMERO HENKILÖLLÖ:" + idNumber );
+
+                        //JOS ID löytyy päivitetään tidot, muussatapauksessa lisätään uusi
+
+                        if (checkIfexist("Osallistuja", "osallistujaID", idNumber.ToString()))
                         {
-                            
+                            Console.WriteLine("LÖYTYI SAMANLAINENNENENENEN !!!!!");
+                        }
+                        string Sql = String.Format(@"SELECT * FROM osallistuja WHERE osallistujaID = @idNumero");
+                        cmd = new SqlCeCommand(Sql, con);
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("idNumero", idNumber);
+                        rdr = cmd.ExecuteReader();
+                        if (null != cmd.ExecuteScalar())
+                        {
+                            Console.WriteLine("Päivitetään tiedot osallistuja");
                             nimi = contestantList[i].FirstName;
                             sukunimi = contestantList[i].LastName;
                             seuraID = getTableID("Seura", "seura", contestantList[i].Seura);
                             joukkueID = getTableID("Joukkue", "joukkue", contestantList[i].Team);
                             sarjaID = getTableID("Sarja", "sarja", contestantList[i].Sarja);
+
+                            if (con.State == ConnectionState.Closed)
+                                con.Open();
+
+
+                            string Sql2 = String.Format(@"UPDATE Osallistuja SET nimi = @nimi, sukunimi = @sukunimi, seuraID = @seuraID, joukkueID = @joukkueID, sarjaID = @sarjaID, era = @era, hotOrNot = @hotOrNot WHERE OsallistujaID = @idNumero  ");
+                            cmd = new SqlCeCommand(Sql2, con);
+                            cmd.CommandType = CommandType.Text;
+
+                            cmd.Parameters.AddWithValue("idNumero", idNumber);
+                            cmd.Parameters.AddWithValue("nro", selkalappu);
+                            cmd.Parameters.AddWithValue("nimi", nimi);
+                            cmd.Parameters.AddWithValue("sukunimi", sukunimi);
+                            cmd.Parameters.AddWithValue("seuraID", seuraID);
+                            cmd.Parameters.AddWithValue("joukkueID", joukkueID);
+                            cmd.Parameters.AddWithValue("sarjaID", sarjaID);
+                            cmd.Parameters.AddWithValue("era", eraNro);
+                            cmd.Parameters.AddWithValue("hotOrNot", kuuma);
+
+                            cmd.ExecuteNonQuery();
+
                         }
                         else
                         {
-                            nimi = "";
-                            sukunimi = "";
-                            seuraID = 0;
-                            joukkueID = 0;
-                            sarjaID = 0;
+                            if (!string.IsNullOrEmpty(contestantList[i].FirstName) && !string.IsNullOrEmpty(contestantList[i].LastName))
+                            {
+                                Console.WriteLine("Lisätään osallistuja");
+                            
+                                nimi = contestantList[i].FirstName;
+                                sukunimi = contestantList[i].LastName;
+                                seuraID = getTableID("Seura", "seura", contestantList[i].Seura);
+                                joukkueID = getTableID("Joukkue", "joukkue", contestantList[i].Team);
+                                sarjaID = getTableID("Sarja", "sarja", contestantList[i].Sarja);
+                            }
+                            // Jälki-ilmottautuja paikka
+                            else
+                            {
+                                Console.WriteLine("Lisätään jälki-ilmottautumispaikka");
+                                nimi = "";
+                                sukunimi = "";
+                                seuraID = 0;
+                                joukkueID = 0;
+                                sarjaID = 0;
+                            }
+                           
+
+                            //GENEROIDAAN UUSI ID
+                            idNumber = generateId("Osallistuja", "osallistujaID");
+
+                            if (con.State == ConnectionState.Closed)
+                                con.Open();
+                            // Lisätään uusi osallistuja
+                            string Sql3 = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot, kierros25, kierros50, kierros75, kierros100, kierros125, kierrosRatkonta, finaaliKierros, finaaliRatkonta) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot,0,0,0,0,0,0,0,0) ");
+                            cmd = new SqlCeCommand(Sql3, con);
+                            cmd.CommandType = CommandType.Text;
+
+                            cmd.Parameters.AddWithValue("idNumero", idNumber);
+                            cmd.Parameters.AddWithValue("nro", selkalappu);
+                            cmd.Parameters.AddWithValue("nimi", nimi);
+                            cmd.Parameters.AddWithValue("sukunimi", sukunimi);
+                            cmd.Parameters.AddWithValue("seuraID", seuraID);
+                            cmd.Parameters.AddWithValue("joukkueID", joukkueID);
+                            cmd.Parameters.AddWithValue("sarjaID", sarjaID);
+                            cmd.Parameters.AddWithValue("era", eraNro);
+                            cmd.Parameters.AddWithValue("hotOrNot", kuuma);
+
+                            cmd.ExecuteNonQuery();
                         }
-
-
-                        if (con.State == ConnectionState.Closed)
-                            con.Open();
-
-
-                        string Sql = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot, kierros25, kierros50, kierros75, kierros125, kierrosRatkonta, finaaliKierros, finaaliRatkonta) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot,0,0,0,0,0,0,0) " );
-                        cmd = new SqlCeCommand(Sql, con);
-                        cmd.CommandType = CommandType.Text;
-
-                        cmd.Parameters.AddWithValue("idNumero", idNumber);
-                        cmd.Parameters.AddWithValue("nro", selkalappu);
-                        cmd.Parameters.AddWithValue("nimi", nimi);
-                        cmd.Parameters.AddWithValue("sukunimi", sukunimi);
-                        cmd.Parameters.AddWithValue("seuraID", seuraID);
-                        cmd.Parameters.AddWithValue("joukkueID", joukkueID);
-                        cmd.Parameters.AddWithValue("sarjaID", sarjaID);
-                        cmd.Parameters.AddWithValue("era", eraNro);
-                        cmd.Parameters.AddWithValue("hotOrNot", kuuma);
-
-                        cmd.ExecuteNonQuery();
                     }
                 }
             }
@@ -1117,43 +1185,48 @@ namespace Hauli
 
         private int getTableID(string taulu, string sarake, string nimike)
         {
+            Console.WriteLine("getTableID " + taulu + " " + sarake + " " + nimike);
             int id = 0;
             SqlCeConnection con = _connection;
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
 
-            try
+            //jos jälki-ilmottauttunut, niin annetaan arvoksi tyhjä, muussatapauksessa haetaan id
+            if (!string.IsNullOrEmpty(nimike) )
             {
-
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
-
-                string Sql = String.Format(@" SELECT * FROM {0} WHERE {1} = @nimike ", taulu, sarake);
-                cmd = new SqlCeCommand(Sql, con);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("nimike", nimike);
-
-                rdr = cmd.ExecuteReader();
-                rdr.Read();
-                id = rdr.GetInt32(0);
-
-                
-
-            }
-            catch (SqlCeException ex)
-            {
-                Console.WriteLine("VIRHEILMOITUS getTableID");
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (con.State == ConnectionState.Open)
+                try
                 {
-                    con.Close();
-                }
-                cmd.Dispose();
-            }
 
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string Sql = String.Format(@" SELECT * FROM {0} WHERE {1} = @nimike ", taulu, sarake);
+                    cmd = new SqlCeCommand(Sql, con);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("nimike", nimike);
+
+                    rdr = cmd.ExecuteReader();
+                    if (null != cmd.ExecuteScalar())
+                    {
+                        rdr.Read();
+                        Console.WriteLine("HAETTU ID: " + rdr.GetInt32(0) + " JOTAIN: " + nimike);
+                        id = rdr.GetInt32(0);
+                    }
+                }
+                catch (SqlCeException ex)
+                {
+                    Console.WriteLine("VIRHEILMOITUS getTableID");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    cmd.Dispose();
+                }
+            }
 
             return id;
         }
@@ -1248,7 +1321,6 @@ namespace Hauli
 
         /// <summary>
         /// Hakee valitun eran kilpailijoiden pisteet
-        /// ja kaantaa pelaajajarjestyksen 2 paivana
         /// </summary>
         /// <param name="eraNro">valittu era</param>
         /// <returns></returns>
@@ -1256,9 +1328,6 @@ namespace Hauli
         {
             List<OsallistujaListLine> osallistujaList;
             osallistujaList = new List<OsallistujaListLine>();
-            List<OsallistujaListLine> osallistujaListB;
-            osallistujaListB = new List<OsallistujaListLine>();
-            var k75 = false;
 
             SqlCeCommand cmd = null;
             SqlCeDataReader rdr = null;
@@ -1279,12 +1348,6 @@ namespace Hauli
                     while (rdr.Read())
                     {
                         osallistujaList.Add(new Osallistuja(rdr.GetInt32(0), rdr.GetInt32(1), rdr.GetString(3), rdr.GetString(2), rdr.GetInt32(4), rdr.GetInt32(5), rdr.GetInt32(6), rdr.GetInt32(7), rdr.GetInt32(8), rdr.GetInt32(9), rdr.GetInt32(10), rdr.GetInt32(11), rdr.GetInt32(17)));
-                        
-                        if (rdr.GetInt32(6) > 0)
-                        {
-                            k75 = true;
-                            Console.WriteLine("k75 arvo = " + k75);
-                        }
                     }
                 }
                 catch (SqlCeException ex)
@@ -1306,64 +1369,7 @@ namespace Hauli
 
             } while (!ok);
 
-            // kaannetaan pelaajien jarjestys kun he ovat ampuneet 3 kierrosta
-
-            if (k75 == false)
-            {
-                return osallistujaList;
-            }
-            else if (k75 == true)
-            {
-                int count = osallistujaList.Count();
-
-                if (count == 1)
-                {
-                    osallistujaListB.Add(osallistujaList[0]);
-                }
-                else if (count == 2)
-                {
-                    osallistujaListB.Add(osallistujaList[1]);
-                    osallistujaListB.Add(osallistujaList[0]);
-                }
-                else if (count == 3)
-                {
-                    osallistujaListB.Add(osallistujaList[2]);
-                    osallistujaListB.Add(osallistujaList[1]);
-                    osallistujaListB.Add(osallistujaList[0]);
-                }
-                else if (count == 4)
-                {
-                    osallistujaListB.Add(osallistujaList[3]);
-                    osallistujaListB.Add(osallistujaList[2]);
-                    osallistujaListB.Add(osallistujaList[0]);
-                    osallistujaListB.Add(osallistujaList[1]);
-                }
-                else if (count == 5)
-                {
-                    osallistujaListB.Add(osallistujaList[4]);
-                    osallistujaListB.Add(osallistujaList[3]);
-                    osallistujaListB.Add(osallistujaList[0]);
-                    osallistujaListB.Add(osallistujaList[1]);
-                    osallistujaListB.Add(osallistujaList[2]);
-                }
-                else if (count == 6)
-                {
-                    //osallistujaListB = osallistujaList;
-                    osallistujaListB.Add(osallistujaList[5]);
-                    osallistujaListB.Add(osallistujaList[4]);
-                    osallistujaListB.Add(osallistujaList[3]);
-                    osallistujaListB.Add(osallistujaList[0]);
-                    osallistujaListB.Add(osallistujaList[1]);
-                    osallistujaListB.Add(osallistujaList[2]);
-                }
-
-                return osallistujaListB;
-            }
-            else {
-                Console.WriteLine("else meni paalle");
-                return osallistujaList; 
-            }
-
+            return osallistujaList;
         }
 
         /// <summary>
@@ -1633,6 +1639,63 @@ namespace Hauli
                 }
                 //cmd.Dispose();
             }
+        }
+
+        /// <summary>
+        /// Hakee tietokannasta osallistujien ID:T ja paivittaa onkoTyhja
+        /// arvon osallistujien ID-listan pituudella. Arvoa tarvitaan
+        /// evaamaan tai sallimaan paasy tulosten kirjaukseen 
+        /// </summary>
+        /// <param name="onkoTyhja"> arvo kertoo montako osallistujaa tietokannassa on </param>
+        /// <returns></returns>
+        public int checkOsallistujat(int onkoTyhja)
+        {
+            List<int> osallistujat = new List<int>();           
+
+            SqlCeCommand cmd = null;
+            SqlCeDataReader rdr = null;
+            bool ok = false;
+
+            do
+            {
+                SqlCeConnection con = _connection;
+                try
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string Sql = String.Format(" SELECT osallistujaID FROM Osallistuja");
+                    cmd = new SqlCeCommand(Sql, con);
+
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        osallistujat.Add(rdr.GetInt32(0));
+                    }
+
+                    onkoTyhja = osallistujat.Count();
+                    Console.WriteLine("Osallistujien maara tietokannassa: " + onkoTyhja);
+                }
+                catch (SqlCeException ex)
+                {
+                    //ShowErrors(ex);
+                    Console.WriteLine("VIRHEILMOITUS checkOsallistujat");
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                    rdr.Close();
+                    cmd.Dispose();
+                    ok = true;
+                }
+
+            } while (!ok);
+
+            return onkoTyhja;
         }
  
     }//End db

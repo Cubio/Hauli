@@ -46,7 +46,6 @@ namespace Hauli
             refresTeamListView();
         }
 
-
         private void refresTeamListView()
         {
             TeamsList.SetObjects(teamList);
@@ -81,7 +80,7 @@ namespace Hauli
         private void deleteLine(int idNro)
         {
             DialogResult result;
-            result = MessageBox.Show("Haluatko varmasti poistaa seuran?", "Hauli", MessageBoxButtons.YesNo);
+            result = MessageBox.Show("Haluatko varmasti poistaa joukkueen?", "Hauli", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -94,7 +93,6 @@ namespace Hauli
             }
         }
 
-
         private void Close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -104,7 +102,7 @@ namespace Hauli
         {
             if (this.joukkueTextBox.Text == "" )
             {
-                MessageBox.Show("Uuden joukkueen tiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+                MessageBox.Show("Tarkista, että olet kirjoittanut joukkueen nimen!", "Virhe");
             }
             else
             {

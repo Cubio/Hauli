@@ -81,7 +81,7 @@ namespace Hauli
         private void deleteLine(int idNro)
         {
             DialogResult result;
-            result = MessageBox.Show("Haluatko varmasti poistaa seuran?", "Hauli", MessageBoxButtons.YesNo);
+            result = MessageBox.Show("Haluatko varmasti poistaa joukkueen?", "Hauli", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {

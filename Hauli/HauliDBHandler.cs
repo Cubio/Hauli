@@ -29,8 +29,6 @@ namespace Hauli
             {
                 throw new HauliException("Tietokantaa ei löytynyt. Asenna uudelleen sovellus");
             }
-
-
         }
 
 
@@ -317,7 +315,7 @@ namespace Hauli
                 {
                     con.Close();
                 }
-                cmd.Dispose();
+                //cmd.Dispose();
             }
 
 

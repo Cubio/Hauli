@@ -69,7 +69,7 @@ namespace Hauli
         {
             if (this.serialTextBox.Text == "")
             {
-                MessageBox.Show("Uuden joukkueen tiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+                MessageBox.Show("Tarkista, että tekstikenttä ei ole tyhjä!", "Virhe");
             }
             else
             {
@@ -105,10 +105,11 @@ namespace Hauli
                 }
             }
         }
+
         private void deleteLine(int idNro)
         {
             DialogResult result;
-            result = MessageBox.Show("Haluatko varmasti poistaa Sarjan?", "Hauli", MessageBoxButtons.YesNo);
+            result = MessageBox.Show("Haluatko varmasti poistaa sarjan?", "Hauli", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -125,9 +126,8 @@ namespace Hauli
         {
             if (!tallennettu)
             {
-
                 switch (MessageBox.Show("Haluatko tallentaa muutokset?",
-                            "Seurojen tallennus",
+                            "Sarjojen tallennus",
                             MessageBoxButtons.YesNoCancel,
                             MessageBoxIcon.Question))
                 {
@@ -137,8 +137,8 @@ namespace Hauli
                         refresSerialListView();
                         break;
 
-                    case DialogResult.No:
-                        this.Close();
+                    case DialogResult.No:                      
+                        //this.Close();
                         break;
 
                     case DialogResult.Cancel:

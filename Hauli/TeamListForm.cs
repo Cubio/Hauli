@@ -46,7 +46,6 @@ namespace Hauli
             refresTeamListView();
         }
 
-
         private void refresTeamListView()
         {
             TeamsList.SetObjects(teamList);
@@ -94,7 +93,6 @@ namespace Hauli
             }
         }
 
-
         private void Close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -104,7 +102,7 @@ namespace Hauli
         {
             if (this.joukkueTextBox.Text == "" )
             {
-                MessageBox.Show("Uuden joukkueen tiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+                MessageBox.Show("Tarkista, että olet kirjoittanut joukkueen nimen!", "Virhe");
             }
             else
             {

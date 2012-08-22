@@ -125,7 +125,17 @@ namespace Hauli
 
         private void scoreInputViewButton_Click(object sender, EventArgs e)
         {
-            new ScoreInputView(dbHandler).ShowDialog();
+            int onkoTyhja = 0;
+            onkoTyhja = dbHandler.checkOsallistujat(onkoTyhja);  //tarkistetaan onko tietokannassa osallistujia
+            
+            if (onkoTyhja == 0)
+            {
+                MessageBox.Show("Tietokannassa ei ole osallistujia!" + Environment.NewLine + "Lisää osallistujia ennen kuin avaat tulosten kirjauksen.", "Virhe");
+            }
+            else
+            {
+                new ScoreInputView(dbHandler).ShowDialog();
+            }
         }
 
 
@@ -170,14 +180,14 @@ namespace Hauli
 
             if( this.contestTextBox.Text =="" ||  this.organizerTextBox.Text == "" || this.placeTextBox.Text == "" ||  this.rataComboBox.Text == "" || this.eraComboBox.Text == "" || this.day1h.Text =="" || this.day1min.Text =="")  
             {
-                MessageBox.Show("Kilpailutiedoissa puutteita. Tarkista että tekstikentissä on tietoa");
+                MessageBox.Show("Kilpailutiedoissa puutteita. Tarkista, että mikään kenttä ei ole tyhjä", "Virhe");
             } else {
 
                 if (activeDay2Selection.Checked == true)
                 {
                     if (this.day2Calendar.Value <= this.day1Calendar.Value || this.day2h.Text == "" || this.day2min.Text == "")
                     {
-                        MessageBox.Show("Tarkista päivän 2 päivän alkamisajankohtatiedot");
+                        MessageBox.Show("Tarkista päivän 2 päivän alkamisajankohtatiedot", "Virhe");
                     }
                     else
                     {

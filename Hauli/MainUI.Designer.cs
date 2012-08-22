@@ -121,6 +121,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.masterSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddContestGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -992,6 +993,13 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // masterSwitchToolStripMenuItem
+            // 
+            this.masterSwitchToolStripMenuItem.Name = "masterSwitchToolStripMenuItem";
+            this.masterSwitchToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.masterSwitchToolStripMenuItem.Text = "master switch";
+            this.masterSwitchToolStripMenuItem.Click += new System.EventHandler(this.masterSwitchToolStripMenuItem_Click);
             // 
             // MainUIform
             // 

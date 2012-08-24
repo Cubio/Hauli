@@ -1427,7 +1427,6 @@
         #endregion
 
         private System.Windows.Forms.TabControl TabControl;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button returnDefaultButton;
         private System.Windows.Forms.Button saveButton;
@@ -1502,5 +1501,6 @@
         private System.Windows.Forms.ComboBox trackNumberComboBox4Day2;
         private System.Windows.Forms.ComboBox trackNumberComboBox2Day2;
         private System.Windows.Forms.ComboBox trackNumberComboBox3Day2;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

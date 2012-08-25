@@ -1080,6 +1080,11 @@ namespace Hauli
                         {
                             Console.WriteLine("LÖYTYI SAMANLAINENNENENENEN !!!!!");
                         }
+
+                        if (con.State == ConnectionState.Closed)
+                            con.Open();
+
+
                         string Sql = String.Format(@"SELECT * FROM osallistuja WHERE osallistujaID = @idNumero");
                         cmd = new SqlCeCommand(Sql, con);
                         cmd.CommandType = CommandType.Text;

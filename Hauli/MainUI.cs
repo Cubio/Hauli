@@ -254,14 +254,14 @@ namespace Hauli
 
         }
 
-        private void masterSwitchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uusiKilpailutapahtumaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine("PYYHITÄÄN");
             dbHandler.delDBTable("Asetukset");
             dbHandler.delDBTable("Eraluettelo");
             dbHandler.delDBTable("Joukkue");
             dbHandler.delDBTable("Osallistuja");
-        }
 
+        }
     }
 }

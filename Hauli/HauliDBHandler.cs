@@ -1150,7 +1150,7 @@ namespace Hauli
                             if (con.State == ConnectionState.Closed)
                                 con.Open();
                             // Lisätään uusi osallistuja
-                            string Sql3 = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot, kierros25, kierros50, kierros75, kierros100, kierros125, kierrosRatkonta, finaaliKierros, finaaliRatkonta) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot,0,0,0,0,0,0,0,0) ");
+                            string Sql3 = String.Format("INSERT INTO Osallistuja (osallistujaID, nro, nimi, sukunimi, seuraID, joukkueID, sarjaID, era, hotOrNot, kierros25, kierros50, kierros75, kierros100, kierros125, kierrosRatkonta, finaaliKierros, finaaliRatkonta, yht) Values(@idNumero, @nro, @nimi, @sukunimi, @seuraID, @joukkueID, @sarjaID, @era, @hotOrNot,0,0,0,0,0,0,0,0,0) ");
                             cmd = new SqlCeCommand(Sql3, con);
                             cmd.CommandType = CommandType.Text;
 

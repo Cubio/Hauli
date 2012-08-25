@@ -187,15 +187,17 @@ namespace Hauli
                 {
                     if (this.day2Calendar.Value <= this.day1Calendar.Value || this.day2h.Text == "" || this.day2min.Text == "")
                     {
-                        MessageBox.Show("Tarkista päivän 2 päivän alkamisajankohtatiedot", "Virhe");
+                        MessageBox.Show("Tarkista 2 päivän 2 päivän alkamisajankohtatiedot ja kellonajat", "Virhe");
+                        ok = false;
                     }
                     else
                     {
                         d2 = day2Calendar.Value.ToString("dd-MM-yyyy " + this.day2h.Text + ":" + this.day2min.Text);
-                        ok = false;
+                        ok = true;
                     }
 
                 }
+
                 if (ok)
                 {
                     dbHandler.setCompetitionDatetime(d1, d2, this.contestTextBox.Text, this.organizerTextBox.Text, this.placeTextBox.Text, this.rataComboBox.Text, this.eraComboBox.Text);

@@ -26,7 +26,7 @@ namespace Hauli
             // TODO: Complete member initialization
             this.dbHandler = dbHandler;
 
-            seuraList = new List<SeuraListLine>();
+           // seuraList = new List<SeuraListLine>();
 
             seuraList = dbHandler.getSeuraList();
 

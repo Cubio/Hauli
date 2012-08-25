@@ -325,7 +325,7 @@ namespace Hauli
         internal void setSeura(List<SeuraListLine> seuraList)
         {
             String lyhenne;
-            String seura;
+            String KokoNimi;
             String alue;
             int idNumber;
 
@@ -341,22 +341,24 @@ namespace Hauli
                 {
                     idNumber = seuraList[i].Id;
                     lyhenne = seuraList[i].Lyhenne;
-                    seura = seuraList[i].KokoNimi;
+                    KokoNimi = seuraList[i].KokoNimi;
                     alue = seuraList[i].Alue;
 
-
+                    Console.WriteLine("SEURA ID:" + idNumber);
+                    
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
                     cmd = con.CreateCommand();
-                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, lyhenne, alue) Values(@idNumero, @seura, @lyhenne, @alue)";
+                    cmd.CommandText = "INSERT INTO Seura (seuraID, seura, alue, KokoNimi) Values(@idNumero, @lyhenne, @alue, @KokoNimi)";
 
                     cmd.Parameters.AddWithValue("idNumero", idNumber);
-                    cmd.Parameters.AddWithValue("seura", seura);
+                    cmd.Parameters.AddWithValue("KokoNimi", KokoNimi);
                     cmd.Parameters.AddWithValue("lyhenne", lyhenne);
                     cmd.Parameters.AddWithValue("alue", alue);
 
                     cmd.ExecuteNonQuery();
+                     
                 }
             }
             catch (SqlCeException e)

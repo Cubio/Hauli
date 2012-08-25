@@ -69,11 +69,11 @@ namespace Hauli
             }
 
             if (tiedot.Count < 7)
-                day2Enabled = true;
-            else
                 day2Enabled = false;
+            else
+                day2Enabled = true;
 
-            if (day2Enabled)
+            if (!day2Enabled)
                 TabControl.TabPages.Remove(tabPage2);
 
             rataComboBox.Text = Convert.ToString((int)tiedot[3]);
@@ -476,7 +476,7 @@ namespace Hauli
             //lisätään erät ja kierrokset sarakkeisiin
             while (!ok)
             {
-                if (day2Enabled != false || defaultRoundLines[roundLineIndex].SubRound <= 3)
+                if (!day2Enabled || defaultRoundLines[roundLineIndex].SubRound <= 3)
                     trackModelList[trackIndex].Add(defaultRoundLines[roundLineIndex]);
                 else
                     trackModelListDay2[trackIndex].Add(defaultRoundLines[roundLineIndex]);
@@ -488,30 +488,27 @@ namespace Hauli
                 else
                     ok = true;
             }
-            /*
-            for (int i = 0, k = 0; i < RoundCount; i++)
+
+            ok = false;
+            trackIndex = 0;
+
+            //tyhjien paikkojen lisäys
+            while (!ok)
             {
-                int round = i + 1;
-                int subround = i + 1;
+                for (int n = 0; n < 10; n++)
+                    trackModelList[trackIndex].Add(new RoundLine(0, 0));
 
-                if (subround < MaximumSubRoundsMen)
-                    trackModelList[k].Add(new RoundLine(round, subround));
-
-                //tyhjien paikkojen lisäuys ja taulukon vaihto
-                if (i >= (RoundCount - 1))
+                if (day2Enabled)
                 {
-                    for (int n = 0; n < 5; n++)
-                        trackModelList[k].Add(new RoundLine(0, 0));
-
-                    if (k < (trackCount - 1))
-                    {
-                        i = -1;
-                        k++;
-                    }
+                    for (int n = 0; n < 10; n++)
+                        trackModelListDay2[trackIndex].Add(new RoundLine(0, 0));
                 }
-            }
-        */
 
+                if (trackIndex < trackCount-1)
+                    trackIndex++;
+                else
+                    ok = true;
+            }
         }
 
         private void formatRow(object sender, FormatRowEventArgs e)
